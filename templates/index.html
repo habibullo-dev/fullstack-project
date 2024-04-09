@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
+{% block head %}
+{{ super() }}
+<style></style>
+{% endblock %}
+
+{% block content %}
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="./styles/app.css" />
-</head>
-
-<body>
-
-  <head>
+  <div class="container">
     <nav>
       <ul>
         <li>Home</li>
@@ -21,8 +18,7 @@
   </head>
   <h1>Hello world!</h1>
   <h2>Hi, Nina!</h2>
-  <p>Hi</p>
-  <script src="./scripts/server.js"></script>
-</body>
+</div>
+{% endblock %}
 
-</html>
+{% block scripts %}{% endblock %}
