@@ -1,5 +1,5 @@
 from sqlalchemy.sql import text
-from website import sql
+from Project import sql
 
 
 # def insert_doctor(data):
