@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Doctors(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     expertise VARCHAR(255), 
-    hospital VARCHAR(255),
+    type VARCHAR(255),
     address VARCHAR(255),
     phone VARCHAR(20)
 );
@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS Doctors(
 CREATE TABLE IF NOT EXISTS Facilities (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
+    speaker VARCHAR(255) NOT NULL,
     type VARCHAR(255),
     address VARCHAR(255),
     phone VARCHAR(20)
