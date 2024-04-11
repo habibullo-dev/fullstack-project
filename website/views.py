@@ -35,6 +35,7 @@ def login():
 
 @app.route('/mvp')
 def mvp_page():
+    
     return render_template('mvp.html')
 
 @app.route('/register', methods=['POST'])

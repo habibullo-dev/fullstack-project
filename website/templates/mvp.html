@@ -15,8 +15,9 @@
                     <img src="#" alt="Logo">
                 </div>
                 <div class="Login">
-                    <a href></a>
-                    <button id="Login">Log in</button>
+                    <a href="{{ url_for('verify_page') }}">
+                        <button id="Login">Login</button>
+                    </a>
                     <a href="{{ url_for('verify_page') }}">
                         <button id="Register">Register</button>
                     </a>
