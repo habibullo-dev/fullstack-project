@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign In Form</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+        <style>
+            :root {
+                --color-primary: #80A1D4;
+                --color-secondary: #75C9C8;
+                --color-tertiary: #007bff;
+                --color-dark: #2A2C24;
+                --color-light: whitesmoke;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Raleway", sans-serif;
+                overflow: hidden;
+            }
+            .container {
+                min-height: 100vh;
+                display: flex;
+            }
+            .card-left {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+            }
+            #login-form {
+                display: flex;
+                width: 70%;
+                flex-direction: column;
+                text-align: center;
+                margin: 4rem;
+                padding: 5rem;
+            }
+
+            input[type="text"] {
+                padding: 0.8rem 2.5rem;
+                margin: 0.4rem;
+            }
+
+            input[type="text"]::placeholder {
+                font-size: 1.2rem;
+            }
+
+            .remember {
+                margin: 1.2rem;
+                font-size: 1.3rem;
+            }
+
+            p {
+                font-size: 1.4rem;
+            }
+
+            .header {
+                text-align: center;
+            }
+            
+            .card-right {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                background: var(--color-primary);
+                border: 2px solid var(--color-primary);
+                width: 50%;
+                color: whitesmoke;
+            }
+
+            .btn {
+                background-color: var(--color-primary);
+                padding: 0.5rem 1.5rem;
+                border: 1px solid whitesmoke;
+                border-radius: 10px;
+                color: whitesmoke;
+                text-transform: uppercase;
+            }
+
+            .btn {
+                transition: all 0.5s ease-out;
+            }
+
+            .btn:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+                background-color: var(--color-secondary);
+            }
+
+            .btn:hover, btn.btn-1:hover {
+                color: var(--color-light);
+            }
+
+            .btn-div {
+                margin: 3rem;
+            }
+
+            .btn.btn-1 {
+                text-decoration: none;
+            }
+            .btn.btn-1 {
+                text-decoration: none;
+                transition: all 0.5s ease-out;
+            }
+            .btn.btn-1:hover {
+               transform: scale(1.1);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card-left">
+                <form action id="login-form">
+                    <h1>Welcome, again!</h1>
+                    <input type="text" class="login" name="login"
+                        placeholder="Login">
+                    <input type="text" class="password" name="password"
+                        placeholder="Password">
+                    <div class="btn-div">
+                        <button class="btn" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-right">
+                <div class="header">
+                    <h2 class="hello">Hello, there!</h2>
+                    <p class="message1">Not a member yet? Sign up now!</p></p>
+                </div>
+                <a href="{{url_for('verify_page')}}"
+                    class="btn btn-1">Register</a>
+            </div>
+        </div>
+    </body>
+</html>
