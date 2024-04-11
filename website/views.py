@@ -35,8 +35,11 @@ def login():
 
 @app.route('/mvp')
 def mvp_page():
-    
-    return render_template('mvp.html')
+    with engine.connect() as conn:
+        doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
+        facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
+
+    return render_template('mvp.html', doctors=doctors, facilities=facilities)
 
 @app.route('/register', methods=['POST'])
 def register():

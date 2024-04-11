@@ -114,6 +114,35 @@
                 </div>
             </div>
 
+            <div class="database_info">
+                <h3>Doctors and Facilities</h3>
+                <ul>
+                    {% for doctor in doctors %}
+                    <li>
+                        <strong>Name:</strong> {{ doctor.name }}<br>
+                        <strong>Expertise:</strong> {{ doctor.expertise }}<br>
+                        <strong>Company:</strong> {{ doctor.company }}<br>
+                        <strong>Address:</strong> {{ doctor.address }}<br>
+                        <strong>Phone:</strong> {{ doctor. phone }}<br>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <h3>Facilities</h3>
+                <ul>
+                    {% for facility in facilities %}
+                    <li>
+                        <strong>Name:</strong> {{ facility.name }}<br>
+                        <strong>Speaker:</strong> {{ facility.speaker }}<br>
+                        <strong>Type:</strong> {{ facility.type }} <br>
+                        <strong>Address:</strong> {{ facility.address }}<br>
+                        <strong>Phone:</strong> {{ facility.phone }} <br>
+                        <strong>Emergency:</strong> {{ facility.emergency }}<br>
+                        <strong>Services:</strong> {{ facility.services }}<br>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
             <div class="selectedCard">
                 <div class="top">
                     <h1 class="drName">Dr. Nina</h1>
