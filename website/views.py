@@ -23,12 +23,17 @@ def login():
 
 
 # we can use this route to connect to the mvp page and use the search box to 
+# @app.route('/mvp')
+# def search_page():
+#     with engine.connect() as conn:
+#         doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
+#         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM facilities")).fetchall()
+#     return render_template("mvp.html", doctors=doctors, facilities=facilities)
+
 @app.route('/mvp')
-def search_page():
-    with engine.connect() as conn:
-        doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
-        facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM facilities")).fetchall()
-    return render_template("mvp.html", doctors=doctors, facilities=facilities)
+def mvp_page():
+    return render_template('mvp.html')
+
 
 @app.route('/register', methods=['POST'])
 def register():
