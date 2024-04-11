@@ -1,244 +1,155 @@
-{% extends 'base.html' %}
-
-{% block head %}
-{{ super() }}
-<style>
-    .selectedCard {
-        display: none;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-    }
-
-    nav {
-        background-color: #00ADB5;
-        width: 100vw;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .siteLogo {
-        height: 100px;
-        width: 100px;
-    }
-
-    btn,
-    #Login,
-    #Register {
-        width: 100px;
-        height: 60px;
-    }
-
-    #Login {
-        background-color: #222831;
-        color: white;
-        border-radius: 20px;
-        border-color: #222831;
-    }
-
-    #Register {
-        border-color: #222831;
-        color: #222831;
-        border-radius: 20px;
-        background-color: white;
-    }
-
-    .search {
-        width: 100vw;
-        background-color: #00FFF5;
-        display: flex;
-        justify-content: center;
-    }
-
-    .topSearch * {
-        display: flex;
-        width: 100px;
-        border: 1px solid #222831;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .bottomSearch {
-        display: flex;
-    }
-
-    .cards {
-        margin: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-
-    #card {
-        display: flex;
-        flex-direction: row;
-        height: 200px;
-    }
-
-    .hospLogo {
-        width: 50px;
-        height: 50px;
-    }
-
-    .left {
-        width: 200px;
-        font-size: 12px;
-    }
-
-    .material-symbols-outlined {
-        font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-    }
-</style>
-{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <nav>
-        <div class="siteLogo">
-            <img src="#" alt="Logo">
-        </div>
-        <div class="Login">
-            <button id="Login">Log in</button>
-            <button id="Register">Register</button>
-        </div>
-    </nav>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
 </head>
 
-<main>
-    <div class="search">
-        <input class="topSearch" type="" ref="keyword search">
-        <input class="bottomSearch" type="Date" ref="date input">
-        <input class="topSearch" type="" ref="location search">
-        <button class="bottomSearch">Search</button>
-    </div>
+<body>
+    <main>
+        <nav>
+            <div class="siteLogo">
+                <img src="#" alt="Logo">
+            </div>
+            <div class="Login">
+                <button id="Login">Log in</button>
+                <button id="Register">Register</button>
+            </div>
+        </nav>
+        <div class="search">
+            <input class="topSearch" type="" ref="keyword search">
+            <input class="bottomSearch" type="Date" ref="date input">
+            <input class="topSearch" type="" ref="location search">
+            <button class="bottomSearch">Search</button>
+        </div>
 
-    <div class="cards">
-        <div id="card">
-            <div class="left">
-                <div class="hospL">
-                    <img class="hospLogo" src="#" alt="Logo">
+        <div class="cards">
+            <div id="card">
+                <div class="left">
+                    <div class="hospL">
+                        <img class="hospLogo" src="#" alt="Logo">
+                    </div>
+                    <div class="rating">
+                        <p class="rating">3.5/5</p>
+                        <span class="material-symbols-outlined"></span>
+                    </div>
                 </div>
-                <div class="rating">
-                    <p class="rating">3.5/5</p>
-                    <span class="material-symbols-outlined"></span>
+                <div class="middle">
+                    <h2>Dr. Nina</h2>
+                    <div class="hospInfo">
+                        <p class="hospName">Nina Hospital</p>
+                        <p class="hospLocation"> Seoul Forest, Seoul</p>
+                    </div>
+                    <div class="blurb">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe cumque deserunt laborum
+                            similique
+                            perferendis dignissimos ipsam quos unde placeat, non voluptatum ratione incidunt a
+                            repudiandae.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="middle">
-                <h2>Dr. Nina</h2>
-                <div class="hospInfo">
-                    <p class="hospName">Nina Hospital</p>
-                    <p class="hospLocation"> Seoul Forest, Seoul</p>
+            <div id="card">
+                <div class="left">
+                    <div class="hospL">
+                        <img class="hospLogo" src="#" alt="Logo">
+                    </div>
+                    <div class="rating">
+                        <p class="rating">3.5/5</p>
+                        <img src="#" alt="star for rating">
+                    </div>
                 </div>
-                <div class="blurb">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe cumque deserunt laborum similique
-                        perferendis dignissimos ipsam quos unde placeat, non voluptatum ratione incidunt a repudiandae.
-                    </p>
+                <div class="middle">
+                    <h2>Dr. Nina</h2>
+                    <div class="hospInfo">
+                        <p class="hospName">Nina Hospital</p>
+                        <p class="hospLocation"> Seoul Forest, Seoul</p>
+                    </div>
+                    <div class="blurb">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe cumque deserunt laborum
+                            similique
+                            perferendis dignissimos ipsam quos unde placeat, non voluptatum ratione incidunt a
+                            repudiandae.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="card">
+                <div class="left">
+                    <div class="hospL">
+                        <img class="hospLogo" src="#" alt="Logo">
+                    </div>
+                    <div class="rating">
+                        <p class="rating">3.5/5</p>
+                        <img src="#" alt="star for rating">
+                    </div>
+                </div>
+                <div class="middle">
+                    <h2>Dr. Nina</h2>
+                    <div class="hospInfo">
+                        <p class="hospName">Nina Hospital</p>
+                        <p class="hospLocation"> Seoul Forest, Seoul</p>
+                    </div>
+                    <div class="blurb">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe cumque deserunt laborum
+                            similique
+                            perferendis dignissimos ipsam quos unde placeat, non voluptatum ratione incidunt a
+                            repudiandae.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="card">
-            <div class="left">
-                <div class="hospL">
-                    <img class="hospLogo" src="#" alt="Logo">
-                </div>
-                <div class="rating">
-                    <p class="rating">3.5/5</p>
-                    <img src="#" alt="star for rating">
-                </div>
-            </div>
-            <div class="middle">
-                <h2>Dr. Nina</h2>
-                <div class="hospInfo">
-                    <p class="hospName">Nina Hospital</p>
-                    <p class="hospLocation"> Seoul Forest, Seoul</p>
-                </div>
-                <div class="blurb">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe cumque deserunt laborum similique
-                        perferendis dignissimos ipsam quos unde placeat, non voluptatum ratione incidunt a repudiandae.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div id="card">
-            <div class="left">
-                <div class="hospL">
-                    <img class="hospLogo" src="#" alt="Logo">
-                </div>
-                <div class="rating">
-                    <p class="rating">3.5/5</p>
-                    <img src="#" alt="star for rating">
-                </div>
-            </div>
-            <div class="middle">
-                <h2>Dr. Nina</h2>
-                <div class="hospInfo">
-                    <p class="hospName">Nina Hospital</p>
-                    <p class="hospLocation"> Seoul Forest, Seoul</p>
-                </div>
-                <div class="blurb">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe cumque deserunt laborum similique
-                        perferendis dignissimos ipsam quos unde placeat, non voluptatum ratione incidunt a repudiandae.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="selectedCard">
-        <div class="top">
-            <h1 class="drName">Dr. Nina</h1>
-            <img src="#" alt="" ref="img of hosp or dr?">
+        <div class="selectedCard">
+            <div class="top">
+                <h1 class="drName">Dr. Nina</h1>
+                <img src="#" alt="" ref="img of hosp or dr?">
+            </div>
+            <div class="mainInfo">
+                <h2 ref="selectedCardTitle">About</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, sequi.</p>
+                <h2 class="selectedCardTitle">Hospital Information</h2>
+                <div class="hospDetails">
+                    <h4>Hospital Name: </h4>
+                    <p>Hospital Nina</p>
+                    <h4>Phone Number: </h4>
+                    <p>021 345 6789</p>
+                    <h4>Address: </h4>
+                    <address>123 Nina Street, Seoul Forest, Seoul</address>
+                </div>
+            </div>
+            <button>Book an appointment</button>
         </div>
-        <div class="mainInfo">
-            <h2 ref="selectedCardTitle">About</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, sequi.</p>
-            <h2 class="selectedCardTitle">Hospital Information</h2>
-            <div class="hospDetails">
-                <h4>Hospital Name: </h4>
-                <p>Hospital Nina</p>
-                <h4>Phone Number: </h4>
-                <p>021 345 6789</p>
-                <h4>Address: </h4>
-                <address>123 Nina Street, Seoul Forest, Seoul</address>
+
+    </main>
+
+    <footer>
+        <div class="socials">
+            <h4>Follow us at</h4>
+            <div class="socialIcons">
+                <img src="#" alt="LinkedIn" ref="www.wcoding.com">
+                <img src="#" alt="Facebook" ref="www.wcoding.com">
+                <img src="#" alt="Instagram" ref="www.wcoding.com">
+                <img src="#" alt="Twitter/X" ref="www.wcoding.com">
             </div>
         </div>
-        <button>Book an appointment</button>
-    </div>
-
-</main>
-
-<footer>
-    <div class="socials">
-        <h4>Follow us at</h4>
-        <div class="socialIcons">
-            <img src="#" alt="LinkedIn" ref="www.wcoding.com">
-            <img src="#" alt="Facebook" ref="www.wcoding.com">
-            <img src="#" alt="Instagram" ref="www.wcoding.com">
-            <img src="#" alt="Twitter/X" ref="www.wcoding.com">
+        <div class="extraLinks">
+            <div class="extraLinks" id="1">
+                <a href="www.google.com">Link 1</a>
+                <a href="www.google.com">Link 2</a>
+                <a href="www.google.com">Link 3</a>
+            </div>
+            <div class="extraLinks" id="2">
+                <a href="www.google.com">Link 4</a>
+                <a href="www.google.com">Link 5</a>
+                <a href="www.google.com">Link 6</a>
+            </div>
         </div>
-    </div>
-    <div class="extraLinks">
-        <div class="extraLinks" id="1">
-            <a href="www.google.com">Link 1</a>
-            <a href="www.google.com">Link 2</a>
-            <a href="www.google.com">Link 3</a>
-        </div>
-        <div class="extraLinks" id="2">
-            <a href="www.google.com">Link 4</a>
-            <a href="www.google.com">Link 5</a>
-            <a href="www.google.com">Link 6</a>
-        </div>
-    </div>
-</footer>
+    </footer>
+</body>
 
-{% endblock %}
-
-{% block scripts %}{% endblock %}
+</html>

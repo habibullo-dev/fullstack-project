@@ -5,10 +5,9 @@ from website import app, engine
 
 @app.route('/')
 def home():
-<<<<<<< HEAD
+
     return render_template("index.html")
-=======
-    return render_template("index.html")
+
 
 
 # contains the register page with a link to take user into login page
@@ -26,12 +25,16 @@ def login():
 
 
 # we can use this route to connect to the mvp page and use the search box to 
+# @app.route('/mvp')
+# def search_page():
+#     with engine.connect() as conn:
+#         doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
+#         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM facilities")).fetchall()
+#     return render_template("mvp.html", doctors=doctors, facilities=facilities)
+
 @app.route('/mvp')
-def search_page():
-    with engine.connect() as conn:
-        doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
-        facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM facilities")).fetchall()
-    return render_template("mvp.html", doctors=doctors, facilities=facilities)
+def mvp_page():
+    return render_template('mvp.html')
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -82,4 +85,4 @@ def simulate_error():
 
 if __name__ == '__main__':
     app.run(debug=True)
->>>>>>> f2c1a51943d04f4f15ce82aa8612b0566f09f0b9
+
