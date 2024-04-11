@@ -15,10 +15,11 @@ def verify_page():
 # route for the login page
 @app.route('/login')
 def login():
-    params = {
-        'user': request.form.get('username', ''),
-        'pass': request.form.get('password', '')
-    }
+    # params = {
+    #     'user': request.form.get('username', ''),
+    #     'pass': request.form.get('password', '')
+    # }
+    return render_template('login.html')
 
 
 # we can use this route to connect to the mvp page and use the search box to 
@@ -31,6 +32,7 @@ def login():
 
 @app.route('/mvp')
 def mvp_page():
+    
     return render_template('mvp.html')
 
 @app.route('/register', methods=['POST'])
