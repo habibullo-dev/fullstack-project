@@ -4,6 +4,7 @@
 }
 
 h3 {
+<<<<<<< HEAD
     color: cornflowerblue;
 } */
 
@@ -14,4 +15,12 @@ h3 {
 
 nav {
     background-color: #00ADB5;
+=======
+     color: cornflowerblue;
+}
+
+.verify a {
+    text-decoration: none;
+    color: cornflowerblue;
+>>>>>>> f2c1a51943d04f4f15ce82aa8612b0566f09f0b9
 }
