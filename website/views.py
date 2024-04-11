@@ -5,10 +5,7 @@ from website import app, engine
 
 @app.route('/')
 def home():
-
     return render_template("index.html")
-
-
 
 # contains the register page with a link to take user into login page
 @app.route('/verify')
