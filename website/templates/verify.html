@@ -33,8 +33,9 @@
                     <p>Already have an account?</p>
                     <p>Login and start browsing for
                         your favorite doctor</p>
-                    <button class="btn login"><a
-                            href="{{ url_for('login') }}"></a>Login</button>
+                    <a href="{{ url_for('login') }}">
+                        <button class="btn login">Login</button>
+                    </a>
                     <p>Or <a href="{{ url_for('home') }}"
                             class="link">
                             click here </a>
