@@ -5,7 +5,9 @@ from website import app, engine
 
 @app.route('/')
 def home():
+
     return render_template("index.html")
+
 
 
 # contains the register page with a link to take user into login page
@@ -33,7 +35,10 @@ def login():
 @app.route('/mvp')
 def mvp_page():
     return render_template('mvp.html')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 37428c1de91fcb1c4aed33d8440495212aa40e99
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -84,3 +89,4 @@ def simulate_error():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

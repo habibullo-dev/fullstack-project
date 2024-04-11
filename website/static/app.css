@@ -1,14 +1,153 @@
-
-h1 {
-    font-size: 1.4rem;
-    color: red;
+.selectedCard {
+    display: none;
 }
 
-h3 {
-     color: cornflowerblue;
+* {
+    box-sizing: border-box;
+    margin: 0;
 }
 
+main {
+    background-color: #F7F4EA;
+}
+
+nav {
+    background-color: #80A1D4;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.siteLogo {
+    height: 100px;
+    width: 100px;
+}
+
+btn,
+#Login,
+#Register {
+    width: 100px;
+    height: 60px;
+    font-size: 18px;
+    font-weight: 600px;
+}
+
+#Login {
+    background-color: #75C9C8;
+    color: white;
+    border-radius: 20px;
+    border-color: #75C9C8;
+}
+
+#Register {
+    border-color: 2px solid #75C9C8;
+    color: #75C9C8;
+    border-radius: 20px;
+    background-color: white;
+}
+
+
+.search {
+    width: 100vw;
+    background-color: #C0B9DD;
+    display: flex;
+    justify-content: center;
+}
+
+
+.topSearch {
+    display: flex;
+    width: 100px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottomSearch {
+    display: flex;
+}
+
+.cards {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 750px;
+}
+
+#card {
+    display: flex;
+    margin: 8px;
+    flex-direction: row;
+    height: 180px;
+    border-radius: 20px;
+    background-color: #DED9E2;
+}
+
+.hospLogo {
+    width: 90px;
+    height: 90px;
+}
+
+.left {
+    width: 115px;
+    font-size: 12px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    width: 300px;
+    border-radius: 12px;
+    padding: 0 12px;
+    margin-top: 8px;
+    font-size: 36px;
+    background-color: #ffff;
+    margin-bottom: 4px;
+}
+
+.hospInfo {
+    border-radius: 12px;
+    padding: 0 12px;
+    width: 300px;
+    font-size: 10px;
+    color: #625d78;
+    display: flex;
+    justify-content: space-between;
+}
+
+.blurb {
+    display: flex;
+    margin: 30px 8px;
+    background-color: white;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+footer {
+    background-color: #80A1D4;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* 
 .verify a {
     text-decoration: none;
     color: cornflowerblue;
-}
+    >>>>>>>f2c1a51943d04f4f15ce82aa8612b0566f09f0b9
+} */
