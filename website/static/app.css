@@ -1,9 +1,17 @@
-
-h1 {
+/* h1 {
     font-size: 1.4rem;
     color: red;
 }
 
 h3 {
-     color: cornflowerblue;
+    color: cornflowerblue;
+} */
+
+* {
+    box-sizing: border-box;
+    background-color: tomato;
+}
+
+nav {
+    background-color: #00ADB5;
 }
