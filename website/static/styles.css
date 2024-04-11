@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
-    --color-primary: #00ADB5;
+    /* --color-primary: #00ADB5;
     --color-secondary: #42bac1;
-    --color-tertiary: #028466;
+    --color-tertiary: #028466; */
+    /* --color-extra: #007bff; */
+    --color-primary: #80A1D4;
+    --color-secondary: #75C9C8;
+    --color-tertiary: #007bff;
     --color-dark: #2A2C24;
     --color-light: whitesmoke;
-    --color-extra: #007bff;
 }
 * {
     box-sizing: border-box;
@@ -61,7 +64,7 @@ body {
 
 .card-box {
     position: relative;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     color: var(--color-light);
     border: 2px solid var(--color-light);
     border-radius: 8px;
@@ -125,7 +128,7 @@ input[type="text"]::placeholder, input[type="email"]::placeholder {
     padding: 0.5rem 1.5rem;
     border: 1px solid var(--color-primary);
     border-radius: 10px;
-    color: var(--color-secondary);
+    color: var(--color-primary);
     text-transform: uppercase;
     cursor: pointer;
 }
