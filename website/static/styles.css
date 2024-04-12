@@ -34,13 +34,12 @@ body {
 }
 
 .error-title, .error-message, .error-parag {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   letter-spacing: 0.2rem;
 }
 
 .error-parag a {
-  color: var(--color-extra);
-  text-decoration: none;
+  color: var(--color-tertiary);
   font-weight: 800;
 }
 
@@ -70,7 +69,7 @@ body {
     border-radius: 8px;
     height: 420px;
     width: 380px;
-    overflow: hidden; /* Ensure gradients are clipped to the border */
+    overflow: hidden; 
 }
 
 .card-right {

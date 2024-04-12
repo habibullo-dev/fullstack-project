@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Form</title>
+    </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #search-form {
+            margin-bottom: 20px;
+        }
+
+        #search-results {
+            margin-top: 20px;
+        }
+
+        h2, h3 {
+            margin-bottom: 5px;
+        }
+
+        #doctors-results ul,
+        #facilities-results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #doctors-results li,
+        #facilities-results li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <h1>Search Form</h1>
+
+        <form id="search-form">
+            <input type="text" id="search-input"
+                placeholder="Enter search term..." required>
+            <button type="submit">Search</button>
+        </form>
+        <!-- 
+        <div id="search-results">
+            <h2>Doctors</h2>
+            <ul id="doctors-results"></ul>
+            <h2>Facilities</h2>
+            <ul id="facilities-results"></ul>
+        </div> -->
+
+        <div id="search-results">
+            <ul id="doctors-results">
+                <h2>Doctors</h2>
+                {% for doctor in doctors %}
+                <li>{{ doctor.Name }} - {{ doctor.Specialty }} ({{
+                    doctor['Hospital/Clinic'] }}) - {{ doctor.Address }} - {{
+                    doctor.Contact }}</li>
+                {% endfor %}
+            </ul>
+
+            <ul id="facilities-results">
+                <h2>Facilities</h2>
+                {% for facility in facilities %}
+                <li>{{ facility.Name }} - {{ facility.Type }} ({{
+                    facility.Address }}) - {{ facility.Phone }} - {{
+                    facility.Emergency }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('search-form');
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Fetch and display the search results using JavaScript
+        const inputElement = document.getElementById('search-input');
+        const inputValue = inputElement.value.trim();
+        if (inputValue.length === 0) {
+            alert('Please enter a search term.');
+            return;
+        }
+
+        fetch(`/search_data?input=${encodeURIComponent(inputValue)}`)
+            .then(response => {
+                // Handle the response
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Display the fetched data in the results sections
+                const doctorsResults = document.getElementById('doctors-results');
+                const facilitiesResults = document.getElementById('facilities-results');
+
+                // Clear previous results
+                doctorsResults.innerHTML = '';
+                facilitiesResults.innerHTML = '';
+
+                // Display doctors results
+                data.doctors.forEach(doctor => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${doctor.Name} - ${doctor.Specialty} (${doctor['Hospital/Clinic']}) - ${doctor.Address} - ${doctor.Contact}`;
+                    doctorsResults.appendChild(listItem);
+                });
+
+                // Display facilities results
+                data.facilities.forEach(facility => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${facility.Name} - ${facility.Type} (${facility.Address}) - ${facility.Phone} - ${facility.Emergency}`;
+                    facilitiesResults.appendChild(listItem);
+                });
+
+                console.log('Data successfully displayed');
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+});
+        </script>
+    </body>
+    <script>
+    </script>
+</html>
