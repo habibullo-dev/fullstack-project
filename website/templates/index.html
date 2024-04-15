@@ -2,25 +2,188 @@
 
 {% block head %}
 {{ super() }}
-<style></style>
+<style>
+:root {
+    --color-primary: #4d78b8;
+    --color-secondary: #75C9C8;
+    --color-tertiary: #007bff;
+    --color-dark: #2A2C24;
+    --color-light: whitesmoke;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+}
+
+.container-1 {
+    min-height: 100vh;
+    margin: 0 auto;
+    gap: 2.5rem;
+    border: 2px solid tomato;
+    overflow: hidden;
+}
+
+h1 {
+    color: #0056b3;
+}
+
+h2 {
+    color: #007acc;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* styles for navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primary);
+    padding: 0.8rem;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .buttons {
+    display: flex;
+}
+
+.navbar .buttons a {
+    color: var(--color-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid var(--color-light);
+    margin-left: 1rem;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+    text-decoration: none;
+}
+
+.navbar .buttons a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+
+/* styles for the footer */
+.footer {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    bottom: 0;
+    background-color: var(--color-primary);
+    color: #f5f5f5;
+    margin-top: 1rem;
+}
+
+.footer .footer-icons {
+    margin: 2rem;
+    transition: all 0.5s ease-out;
+}
+
+.footer .footer-icons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.footer .footer-icons a {
+    margin: 0 1rem;
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+.footer .footer-icons a:hover {
+    color: #333;
+}
+.copy {
+    margin-top: 2rem;
+}
+</style>
 {% endblock %}
 
 {% block content %}
 <head>
-  <div class="container">
-    <nav>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-        <li class="verify"><a href="{{url_for('verify_page')}}">Verify</a></li>
-      </ul>
-    </nav>
-  </head>
-  <h1>Hello world!</h1>
-  <h2>Hi, Nina!</h2>
-  <h3>Hello, world!</h3>
-</div>
+  <main>
+    <!-- Section 1 - Navigation bar with Picture and Introduction -->
+    <div class="container-1">
+
+      <nav class="navbar">
+        <div class="logo">Website Name</div>
+        <div class="buttons">
+          <a href="{{ url_for('login')}}">Login</a>
+          <a href="{{ url_for('verify_page')}}">Register</a>
+        </div>
+      </nav>
+    </head>
+    <h1>Hello world!</h1>
+    <h2>Hi, Nina!</h2>
+    <h3>Hello, world!</h3>
+  </div>
+
+  <!-- Section 2  - Website Information-->
+  <div class="container-2"></div>
+
+  <!-- Section 3 - Search for doctors -->
+
+  <div class="container-3"></div>
+
+  <!-- Section 4 - Learn more about Korea -->
+
+  <div class="container-4"></div>
+  <!-- Section 5  -->
+
+  <div class="container-5"></div>
+
+  <!-- Section 6 - Footer -->
+  <div class="container-6">
+    <footer class="footer">
+      <!-- Social media icons below the footer -->
+      <div class="footer-icons">
+        <a href="https://www.facebook.com" target="_blank"><i
+            class="fab fa-facebook-f"></i></a>
+        <a href="https://www.twitter.com" target="_blank"><i
+            class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i
+            class="fab fa-instagram"></i></a>
+        <a href="https://github.com" target="_blank"><i
+            class="fab fa-github"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i
+            class="fab fa-linkedin"></i></a>
+      </div>
+      <p class="copy">&copy; 2024 Website name. All right
+        reserved.</p>
+    </footer>
+  </div>
+</main>
 {% endblock %}
 
 {% block scripts %}{% endblock %}

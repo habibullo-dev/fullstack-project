@@ -9,148 +9,102 @@ selectDoctor.forEach(function (h2) {
     });
 });
 
-// // Function to fetch data from the backend using fetch
-// function fetchSearchData() {
-//     // Make sure this matches your backend endpoint URL
-//     // const url = '/search_data'; 
-//     const url = `/search_data?input=${encodeURIComponent(input)}`
 
-//     // Perform the fetch request
-//     return fetch(url)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json(); // Parse JSON response
-//             } else {
-//                 console.error('HTTP error: ' + response.status);
-//                 return { doctors: [], facilities: [] }; // Return empty data on error
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error fetching search data:', error);
-//             return { doctors: [], facilities: [] }; // Return empty data on error
-//         });
-// }
+// code for the search input and fetch data from the backend(Python) with database(MariaDB)
 
-// // Function to perform a search through doctors and facilities
+document.addEventListener('DOMContentLoaded', function () {
+    const searchForm = document.querySelector('#searchForm');
+    const searchInput = document.querySelector('#searchInput');
+    const searchBtn = document.querySelector('#searchButton');
+    const searchResults = document.querySelector('#searchResults');
 
-// function doSearch(input, doctors, facilities) {
-//     // Create an object to store the search results
-//     const output = {
-//         doctors: [],
-//         facilities: []
-//     };
+    if (!searchForm || !searchInput || !searchBtn || !searchResults) {
+        console.error('One or more required elements were not found in the document.');
+        return;
+    }
 
-//     const filteredDoctors = doctors.filter(doctor => {
-//         return (
-//             doctor.name.includes(input) ||
-//             doctor.expertise.includes(input) ||
-//             doctor.address.includes(input) ||
-//             doctor.emergency.includes(input) ||
-//             doctor.phone.includes(input)
-//         );
-//     });
+    // Function to handle the search action
+    function performSearch(e) {
+        e.preventDefault();
 
-//     const filteredFacilities = facilities.filter(facility => {
-//         return (
-//             facility.name.includes(input) ||
-//             facility.speaker.includes(input) ||
-//             facility.type.includes(input) ||
-//             facility.address.includes(input) ||
-//             facility.phone.includes(input) ||
-//             facility.emergency.includes(input) ||
-//             facility.services.includes(input)
-//         );
-//     });
+        const inputValue = searchInput.value.trim();
 
-//     return {
-//         doctors: filteredDoctors,
-//         facilities: filteredFacilities
-//     };
-// }
+        if (!inputValue) {
+            searchResults.innerHTML = '<p>Please enter a search term.</p>';
+            return;
+        }
 
-// // Function to perform a search and display the output
-// function performSearch(event) {
-//     event.preventDefault(); //Prevent form submission 
+        fetch('/search_input', {
+            method: 'POST',
+            body: JSON.stringify({ search_input: inputValue }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json()) // Parse the JSON response
+            .then(data => {
+                searchResults.innerHTML = ''; // Clear previous search results
 
-//     const inputElem = document.querySelector('#search-input');
-//     const inputElement = inputElem.value.trim();
+                // Display search results
+                searchResults.innerHTML = `<p>Search results for: <strong>${inputValue}</strong></p>`;
 
-//     // Fetch data from the backend
-//     fetchSearchData().then(data => {
-//         if (data && data.doctors && data.facilities) {
-//             // Perform search using the input and fetched data
-//             const searchOutput = doSearch(inputElement, data.doctors, data.facilities);
+                // Display doctor results
+                if (Array.isArray(data.Doctors) && data.Doctors.length > 0) {
+                    const doctorsSection = document.createElement('div');
+                    doctorsSection.innerHTML = '<h3>Doctors:</h3>';
+                    data.Doctors.forEach(doctor => {
+                        const doctorDiv = document.createElement('div');
+                        doctorDiv.innerHTML = `
+                            Name: ${doctor.Name},
+                            Specialty: ${doctor.Specialty},
+                            Company: ${doctor.Company},
+                            Address: ${doctor.Address},
+                            Phone: ${doctor.Phone}
+                        `;
+                        doctorsSection.appendChild(doctorDiv);
+                    });
+                    searchResults.appendChild(doctorsSection);
+                } else {
+                    searchResults.innerHTML += '<p>No doctors found.</p>';
+                }
 
-//             // Display search results
-//             const doctorsOutput = document.querySelector('#doctors-results');
-//             const facilitiesOutput = document.querySelector('#facilities-results');
+                // Display facilities results
+                if (Array.isArray(data.Facilities) && data.Facilities.length > 0) {
+                    const facilitiesSection = document.createElement('div');
+                    facilitiesSection.innerHTML = '<h3>Facilities:</h3>';
+                    data.Facilities.forEach(facility => {
+                        const facilityDiv = document.createElement('div');
+                        facilityDiv.innerHTML = `
+                            Name: ${facility.Name},
+                            Speaker: ${facility.Speaker},
+                            Type: ${facility.Type},
+                            Address: ${facility.Address},
+                            Phone: ${facility.Phone},
+                            Emergency: ${facility.Emergency},
+                            Services: ${facility.Services}
+                        `;
+                        facilitiesSection.appendChild(facilityDiv);
+                    });
+                    searchResults.appendChild(facilitiesSection);
+                } else {
+                    searchResults.innerHTML += '<p>No facilities found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                searchResults.innerHTML = '<p>There was an error fetching the data. Try again later!</p>';
+            });
+    }
 
-//             // Clear previous results
-//             doctorsOutput.innerHTML = '';
-//             facilitiesOutput.innerHTML = '';
+    // Add event listener to the search button
+    searchBtn.addEventListener('click', performSearch);
 
-//             // Display the results for doctors
-//             searchOutput.doctors.forEach(doctor => {
-//                 const liElem = document.createElement('li');
-//                 liElem.textContent = `Name: ${doctor.name}, Phone: ${doctor.phone}, Address: ${doctor.address}, Expertise: ${doctor.expertise}`;
-//                 doctorsOutput.appendChild(liElem);
-//             });
-
-//             // Display the results for facilities
-//             searchOutput.facilities.forEach(facility => {
-//                 const liElem = document.createElement('li');
-//                 liElem.textContent = `Name: ${facility.name}, Phone: ${facility.speaker}, Type: ${facility.type}, Address: ${facility.address}, Phone: ${facility.phone}, Emergency Number: ${facility.emergency}, Facility: ${facility.services}`;
-//                 facilitiesOutput.appendChild(liElem);
-//             });
-
-//             return (
-//                 facility.name.includes(input) ||
-//                 facility.speaker.includes(input) ||
-//                 facility.type.includes(input) ||
-//                 facility.address.includes(input) ||
-//                 facility.phone.includes(input) ||
-//                 facility.emergency.includes(input) ||
-//                 facility.services.includes(input)
-//             );
-//         }
-//     })
-// }
-
-// // Add event listener to the form to handle form submission
-// const searchForm = document.querySelector('#search-form');
-// searchForm.addEventListener('submit', performSearch);
-
-// // JavaScript code to handle form submission and display search results
-// const searchForm = document.getElementById('search-form');
-
-// searchForm.addEventListener('submit', function (event) {
-//     event.preventDefault(); // Prevent form submission
-
-//     const inputElement = document.getElementById('search-input');
-//     const inputValue = inputElement.value.trim();
-
-//     fetch(`/search_data?input=${encodeURIComponent(inputValue)}`)
-//         .then(response => response.json())
-//         .then(data => {
-//             const doctorsResults = document.getElementById('doctors-results');
-//             const facilitiesResults = document.getElementById('facilities-results');
-
-//             // Clear previous results
-//             doctorsResults.innerHTML = '';
-//             facilitiesResults.innerHTML = '';
-
-//             // Display doctors results
-//             data.doctors.forEach(doctor => {
-//                 const listItem = document.createElement('li');
-//                 listItem.textContent = `${doctor.Name} - ${doctor.Specialty} (${doctor['Hospital/Clinic']}) - ${doctor.Address} - ${doctor.Contact}`;
-//                 doctorsResults.appendChild(listItem);
-//             });
-
-//             // Display facilities results
-//             data.facilities.forEach(facility => {
-//                 const listItem = document.createElement('li');
-//                 listItem.textContent = `${facility.Name} - ${facility.Type} (${facility.Address}) - ${facility.Phone} - ${facility.Emergency}`;
-//                 facilitiesResults.appendChild(listItem);
-//             });
-//         });
-// });
+    // Add event listener to the search input for the "Enter" key press
+    searchInput.addEventListener('keydown', function (e) {
+        // Check if the pressed key is "Enter" (key code 13)
+        if (e.keyCode === 13) {
+            e.preventDefault(); // Prevent the form from submitting in the default way
+            performSearch(e); // Trigger the search function
+        }
+    });
+});

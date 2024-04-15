@@ -4,7 +4,7 @@
     --color-secondary: #42bac1;
     --color-tertiary: #028466; */
     /* --color-extra: #007bff; */
-    --color-primary: #80A1D4;
+    --color-primary: #547ab3;
     --color-secondary: #75C9C8;
     --color-tertiary: #007bff;
     --color-dark: #2A2C24;
@@ -43,11 +43,13 @@ body {
   font-weight: 800;
 }
 
+/* end custom error pages */
+
+
 .container {
     min-height: 100vh;
     display: flex;
 }
-
 
 .card-left {
     display: flex;
@@ -102,6 +104,7 @@ input[type="text"], input[type="email"] {
     width: 100%; 
     position: relative;
     border-radius: 5px;
+    border: none;
 }
 
 input[type="text"]::placeholder, input[type="email"]::placeholder {

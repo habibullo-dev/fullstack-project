@@ -11,7 +11,7 @@
             rel="stylesheet">
         <style>
             :root {
-                --color-primary: #80A1D4;
+                --color-primary: #6591d2;
                 --color-secondary: #75C9C8;
                 --color-tertiary: #007bff;
                 --color-dark: #2A2C24;
@@ -45,6 +45,13 @@
                 text-align: center;
                 margin: 4rem;
                 padding: 5rem;
+                color: var(--color-primary);
+                font-weight: 900;
+            }
+
+            #login-form h1 {
+                font-size: 2.3rem;
+                letter-spacing: 0.6rem;
             }
 
             input[type="text"] {
@@ -74,7 +81,6 @@
                 justify-content: center;
                 flex-direction: column;
                 align-items: center;
-                gap: 2rem;
                 background: var(--color-primary);
                 border: 2px solid var(--color-primary);
                 width: 50%;
@@ -88,35 +94,53 @@
                 border-radius: 10px;
                 color: whitesmoke;
                 text-transform: uppercase;
+                margin-top: 1.3rem;
             }
 
-            .btn {
+            .btn, .btn.btn-1 {
                 transition: all 0.5s ease-out;
+                color: var(--color-light);
             }
 
             .btn:hover {
                 transform: scale(1.1);
                 cursor: pointer;
                 background-color: var(--color-secondary);
+                color: var(--color-light);
             }
 
-            .btn:hover, btn.btn-1:hover {
-                color: var(--color-light);
+            .btn.btn-1:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+                background-color: var(--color-secondary);
+                color: var(--color-light); 
             }
 
             .btn-div {
                 margin: 3rem;
             }
-
-            .btn.btn-1 {
+            .return {
+                color: var(--color-light);
+            }
+            .return a {
                 text-decoration: none;
             }
-            .btn.btn-1 {
-                text-decoration: none;
-                transition: all 0.5s ease-out;
+            .header h2 {
+                font-size: 3rem;
+                letter-spacing: 0.6rem;
             }
-            .btn.btn-1:hover {
-               transform: scale(1.1);
+            .header p {
+                font-size: 1.2rem;
+            }
+            .header a {
+                text-decoration: none;
+                color: #2A2C24;
+            }
+            .header {
+                gap: 3rem;
+            }
+            input[type="text"]::placeholder {
+                color: var(--color-primary);
             }
         </style>
     </head>
@@ -124,7 +148,7 @@
         <div class="container">
             <div class="card-left">
                 <form action id="login-form">
-                    <h1>Welcome, again!</h1>
+                    <h1>Welcome back!</h1>
                     <input type="text" class="login" name="login"
                         placeholder="Login">
                     <input type="text" class="password" name="password"
@@ -137,10 +161,12 @@
             <div class="card-right">
                 <div class="header">
                     <h2 class="hello">Hello, there!</h2>
-                    <p class="message1">Not a member yet? Sign up now!</p></p>
+                    <p class="message1">Not a member yet? Sign up
+                        now!</p><br><br>
+                    <a href="{{url_for('verify_page')}}"
+                        class="btn btn-1">Register</a><br><br><br>
+                    <p class="return">{{ go_back | safe }}</p><br>
                 </div>
-                <a href="{{url_for('verify_page')}}"
-                    class="btn btn-1">Register</a>
             </div>
         </div>
     </body>
