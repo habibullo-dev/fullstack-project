@@ -4,36 +4,31 @@ from sqlalchemy.sql import text
 engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Project")
 # engine = sqlalchemy.create_engine("mariadb+mariadbconnector://root:@127.0.0.1:3306/fsi-23")
 
+# with engine.begin() as conn:
+    #  Insert data into Doctors table
+    # conn.execute(
+    #     text("INSERT INTO Doctors (name, expertise, company, address, phone) VALUES (:name, :expertise, :company, :address, :phone)"),
+    #     {
+    #         'name': 'Dr. Shin Ho-Chul', 
+    #         'expertise': 'General Practice', 
+    #         'company': 'Kangbuk Samsung Hospital', 
+    #         'address': '108 Pyong-dong, Chung-ku, Seoul', 
+    #         'phone': '2001-2911, 5100'
+    #     }
+    # )
 
-
-# @app.route('/database')
-# def insert_data():
-#     conn = engine.connect()
-
-#         Insert data into Doctors table
-#         conn.execute(
-#             text("INSERT INTO Doctors (name, expertise, company, address, phone) VALUES (:name, :expertise, :company, :address, :phone)"),
-#             {
-#                 'name': 'Dr. Shin Ho-Chul', 
-#                 'expertise': 'General Practice', 
-#                 'company': 'Kangbuk Samsung Hospital', 
-#                 'address': '108 Pyong-dong, Chung-ku, Seoul', 
-#                 'phone': '2001-2911, 5100'
-#             }
-#         )
-
-#         conn.execute(
-#             text("INSERT INTO Facilities (name, speaker, type, address, phone, emergency, services) VALUES (:name, :speaker, :type, :address, :phone, :emergency, :services)"),
-#             {
-#                 'name': 'Yonsei University Medical Center, Severance Hospital', 
-#                 'speaker': 'Dr. John Linton, M.D.', 
-#                 'company': 'Hospital', 
-#                 'address': '134 Shinchon-Dong, Seodaemun-Gu Seoul 120-752', 
-#                 'phone': '2228-5800',
-#                 'emergency': '010-9948-0983',
-#                 'services': '24_hours'
-#             },
-#         )
+    # conn.execute(
+    #     text("INSERT INTO Facilities (name, speaker, type, address, phone, emergency, services) VALUES (:name, :speaker, :type, :address, :phone, :emergency, :services)"),
+    #     {
+    #         'name': 'Yonsei University Medical Center, Severance Hospital', 
+    #         'speaker': 'Dr. John Linton, M.D.', 
+    #         'type': 'Hospital', 
+    #         'address': '134 Shinchon-Dong, Seodaemun-Gu Seoul 120-752', 
+    #         'phone': '2228-5800',
+    #         'emergency': '010-9948-0983',
+    #         'services': '24_hours'
+    #     },
+    # )
 
 #         conn.commit()
 #         conn.close()
@@ -219,8 +214,7 @@ engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Projec
 #         ]
 
 #         conn.execute(
-#             text("INSERT INTO Facilities(name, speaker, type, address, phone, emergency, services) VALUES (:name, :speaker, :company, :address, :phone, :emergency, :services)"), facilities_data)
+#             text("INSERT INTO Facilities(name, speaker, type, address, phone, emergency, services) VALUES (:name, :speaker, :type, :address, :phone, :emergency, :services)"), facilities_data)
         
 #         conn.commit()
 #         con.close()
-
