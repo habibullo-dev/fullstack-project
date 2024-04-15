@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% block head %}
 
+<<<<<<< HEAD
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +13,29 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     {% endblock %}
+=======
+{% block head %}
 
-    <body>
-        {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="../static/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+{% endblock %}
+>>>>>>> 28538df86ef440abd3abf1d08d4d4073d61aac83
 
-        {% endblock %}
+<body>
+    {% block content %}
 
-        {% block scripts %}
-        <script src="../static/server.js"></script>
-        {% endblock %}
-    </body>
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="../static/server.js"></script>
+    {% endblock %}
+</body>
 
 </html>

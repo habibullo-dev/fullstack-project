@@ -1,118 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet"
-            href="{{ url_for('static', filename='app.css') }}">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mvp.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-    <body>
-        <main>
-            <nav>
-                <div class="siteLogo">
-                    <img src="#" alt="Logo">
-                </div>
-                <div class="login">
-                    <a href="{{ url_for('verify_page') }}">
-                        <button id="login">Log in</button>
-                    </a>
-                    <a href="{{ url_for('verify_page') }}">
-                        <button id="register">Register</button>
-                    </a>
-                </div>
-            </nav>
+<body>
+    <main>
+        <nav class="navbar">
+            <div class="logo">Website Name
+                <img src="#" alt="logo.png">
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('login')}}">Login</a>
+                <a href="{{ url_for('verify_page')}}">Register</a>
+            </div>
+        </nav>
 
-            <div class="searchBackground">
-                <div class="searchBar">
-                    <input class="input1" type="text" placeholder="Expertise">
-                    <input type="date">
-                    <input class="input1" type="text" placeholder="Location">
-                    <button class="searchButton">Search</button>
+        <div class="searchBackground">
+            <div class="searchBar">
+                <input class="input1" type="text" placeholder="Expertise">
+                <input type="date">
+                <input class="input2" type="text" placeholder="Location">
+                <button class="searchButton">Search</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="cards">
+                <div class="card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="#" alt="Hospital Logo">
+                        </div>
+                        <div class="rating">
+                            <p class="rating">3.5/5</p>
+                            <img src="#" alt="Star for rating">
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <h2>Dr. Nina</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">Nina Hospital</p>
+                            <p class="hospLocation">Seoul Forest, Seoul</p>
+                        </div>
+                        <div class="blurb">
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit.</p>
+                        </div>
+                    </div>
                 </div>
+                <div class="card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="" alt="Hospital Logo">
+                        </div>
+                        <div class="rating">
+                            <p class="rating">3.5/5</p>
+                            <img src="#" alt="Star for rating">
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <h2>Dr. Nina</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">Nina Hospital</p>
+                            <p class="hospLocation">Seoul Forest, Seoul</p>
+                        </div>
+                        <div class="blurb">
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="#" alt="Hospital Logo">
+                        </div>
+                        <div class="rating">
+                            <p class="rating">3.5/5</p>
+                            <img src="#" alt="Star for rating">
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <h2>Dr. Nina</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">Nina Hospital</p>
+                            <p class="hospLocation">Seoul Forest, Seoul</p>
+                        </div>
+                        <div class="blurb">
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more cards here if needed -->
             </div>
 
-            <div class="container">
-                <div class="cards">
-                    <div id="card">
-                        <div class="left">
-                            <div class="hospL">
-                                <img class="hospLogo" src="#"
-                                    alt="Hospital Logo">
-                            </div>
-                            <div class="rating">
-                                <p class="rating">3.5/5</p>
-                                <img src="#" alt="Star for rating">
-                            </div>
-                        </div>
-                        <div class="middle">
-                            <h2>Dr. Nina</h2>
-                            <div class="hospInfo">
-                                <p class="hospName">Nina Hospital</p>
-                                <p class="hospLocation">Seoul Forest, Seoul</p>
-                            </div>
-                            <div class="blurb">
-                                <p>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more cards here if needed -->
+            <div class="selectedCard">
+                <div class="top">
+                    <h1 class="drName">Dr. Nina</h1>
+                    <img class="drImg" src="" alt="Doctor image">
                 </div>
-
-                <div class="selectedCard">
-                    <div class="top">
-                        <h1 class="drName">Dr. Nina</h1>
-                        <img src="#" alt="Doctor image">
+                <div class="mainInfo">
+                    <h3>About</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.</p>
+                    <h3>Hospital Information</h3>
+                    <div class="hospDetails">
+                        <h4>Hospital Name: </h4>
+                        <p>Hospital Nina</p>
+                        <h4>Phone Number: </h4>
+                        <p>021 345 6789</p>
+                        <h4>Address: </h4>
+                        <address>123 Nina Street, Seoul Forest,
+                            Seoul</address>
                     </div>
-                    <div class="mainInfo">
-                        <h2>About</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.</p>
-                        <h2>Hospital Information</h2>
-                        <div class="hospDetails">
-                            <h4>Hospital Name: </h4>
-                            <p>Hospital Nina</p>
-                            <h4>Phone Number: </h4>
-                            <p>021 345 6789</p>
-                            <h4>Address: </h4>
-                            <address>123 Nina Street, Seoul Forest,
-                                Seoul</address>
-                        </div>
-                        <button>Book an appointment</button>
+                    <div class="buttonWrap">
+                        <button id="apptBook">Book an appointment</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <footer>
-                <div class="socials">
-                    <h4>Follow us at:</h4>
-                    <div class="socialIcons">
-                        <img src="#" alt="LinkedIn">
-                        <img src="#" alt="Facebook">
-                        <img src="#" alt="Instagram">
-                        <img src="#" alt="Twitter">
-                    </div>
-                </div>
-                <div class="extraLinks">
-                    <div class="linksGroup">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                    <div class="linksGroup">
-                        <a href="#">Link 4</a>
-                        <a href="#">Link 5</a>
-                        <a href="#">Link 6</a>
-                    </div>
-                </div>
-            </footer>
-        </main>
+        <footer class="footer">
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 Website name. All right
+                reserved.</p>
+        </footer>
+    </main>
 
-        <script src="../static/server.js"></script>
-    </body>
+    <script src="../static/server.js"></script>
+</body>
+
+</html>
 
 </html>
