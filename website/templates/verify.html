@@ -23,6 +23,17 @@
 </style>
     <body>
         <div class="container">
+
+            <!-- Loop to display flash messages -->
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+            <!-- form content -->
             <div class="card-left">
                 <div class="card-box">
                     <span class="lineBorder"></span>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, flash, render_template, request, redirect, url_for, jsonify
 import json
 import hashlib
 from sqlalchemy.sql import text
@@ -17,6 +17,19 @@ def verify_page():
 
 
 
+
+
+@app.route('/forms')
+def valid():
+    title = "Thank you!"
+    message = f"""
+    <p>Go back to <strong><a href="{url_for('home')}">Home</a></strong> page or go to <strong><a href="{url_for('login')}">Login</a></strong> page.
+    </p>
+    """
+
+    return render_template('form.html', title=title, message=message)
+
+
 # The function below, (hash_password) takes a password, encodes it into UTF-8
 # hashes it using the SHA-256 algorithm from the hashlib library,
 # then returns the hash as a hexadecimal string.
@@ -28,9 +41,6 @@ def hash_password(password):
 
 @app.route('/form', methods=['POST'])
 def register():
-    title = "Thank you!"
-    message = f'<p>Or <strong><a href="{url_for("home")}">click here</a></strong> to go back to home page</p>'
-    
     # Get user input from the form
     username = request.form.get('username', '')
     password = request.form.get('password', '')
@@ -38,7 +48,21 @@ def register():
 
     # Check if any field is empty
     if not username or not password or not email:
-        return redirect(url_for('home'))
+        # Determine which fields are missing
+        missing_fields = []
+        if not username:
+            missing_fields.append('Username')
+        if not password:
+            missing_fields.append('Password')
+        if not email:
+            missing_fields.append('Email')
+        
+        # Flash an error message with the list of missing fields
+        flash(f"Missing fields: {', '.join(missing_fields)}", "error")
+
+        # Redirect the user back to the form page
+        return redirect(url_for('verify_page'))
+        # return redirect(url_for('home'))
     
     # statement  below that calls hash_password(password) hashes the provided password
     # stores the result in the hashed_password variable for later use 
@@ -50,13 +74,15 @@ def register():
     # To-Do: Save the user data to the database or perform any other actions
     with engine.begin() as conn:
         conn.execute(
-            text("INSERT INTO Users(username, password, email) VALUES (:username, :password, :email)")
+            text("INSERT INTO Users(username, password, email) VALUES (:username, :password, :email)"), 
+            {"username": username, "password": hashed_password, "email": email}
         )
 
-    return render_template("form.html", title=title, message=message)
+        # Flash a success message
+        flash("Registration successful!", "success")
 
-# add some extra logic to validate the input?
-#     do not forget to save the data to the database
+        # Redirect the user to the home page or another page
+        return redirect(url_for('valid'))
 
 
 # route for the login page
@@ -73,29 +99,6 @@ def login():
 @app.route('/mvp')
 def search_page():
     return render_template('mvp.html')
-
-# we can use this route to connect to the mvp page and use the search box to 
-# @app.route('/mvp')
-# def search_page():
-#     with engine.connect() as conn:
-#         doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
-#         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM facilities")).fetchall()
-#     return render_template("mvp.html", doctors=doctors, facilities=facilities)
-
-# @app.route('/mvp')
-# def mvp_page():
-#     with engine.connect() as conn:
-#         doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
-#         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
-
-#         for doctor in doctors:
-#             print(f"Doctor Name: {doctor.name}, Expertise: {doctor.expertise}, Company: {doctor.company}, Address: {doctor.address}, Phone: {doctor.phone}")
-    
-#         for facility in facilities:
-#             print(f"Facility Name: {facility.name}, Speaker: {facility.speaker}, Type: {facility.type}, Address: {facility.address}, Phone: {facility.phone}, Emergency: {facility.emergency}, Services: {facility.services}")
-
-#     return render_template('mvp.html', doctors=doctors, facilities=facilities)
-
 
 # Route to take you to the search page 
 @app.route('/search')

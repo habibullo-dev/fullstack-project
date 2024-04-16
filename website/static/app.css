@@ -135,16 +135,6 @@ input {
     flex-direction: column;
 }
 
-h2 {
-    width: 300px;
-    border-radius: 12px;
-    padding: 0 12px;
-    margin-top: 8px;
-    font-size: 36px;
-    background-color: #ffff;
-    margin-bottom: 4px;
-}
-
 .hospInfo {
     border-radius: 12px;
     padding: 0 12px;

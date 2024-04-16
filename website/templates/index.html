@@ -2,188 +2,106 @@
 
 {% block head %}
 {{ super() }}
-<style>
-:root {
-    --color-primary: #4d78b8;
-    --color-secondary: #75C9C8;
-    --color-tertiary: #007bff;
-    --color-dark: #2A2C24;
-    --color-light: whitesmoke;
-}
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
-    text-align: center;
-}
-
-.container-1 {
-    min-height: 100vh;
-    margin: 0 auto;
-    gap: 2.5rem;
-    border: 2px solid tomato;
-    overflow: hidden;
-}
-
-h1 {
-    color: #0056b3;
-}
-
-h2 {
-    color: #007acc;
-}
-
-p {
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-ul {
-    list-style-type: square;
-    padding-left: 20px;
-}
-
-a {
-    color: #0056b3;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* styles for navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--color-primary);
-    padding: 0.8rem;
-    color: white;
-    margin-bottom: 2rem;
-}
-
-.navbar .logo {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.navbar .buttons {
-    display: flex;
-}
-
-.navbar .buttons a {
-    color: var(--color-light);
-    text-decoration: none;
-    padding: 10px 15px;
-    border: 1px solid var(--color-light);
-    margin-left: 1rem;
-    border-radius: 5px;
-    transition: all 0.5s ease-out;
-    text-decoration: none;
-}
-
-.navbar .buttons a:hover {
-    background-color: var(--color-secondary);
-    color: var(--color-light);
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-
-
-/* styles for the footer */
-.footer {
-    background-color: #f5f5f5;
-    padding: 1rem;
-    text-align: center;
-    bottom: 0;
-    background-color: var(--color-primary);
-    color: #f5f5f5;
-    margin-top: 1rem;
-}
-
-.footer .footer-icons {
-    margin: 2rem;
-    transition: all 0.5s ease-out;
-}
-
-.footer .footer-icons:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-.footer .footer-icons a {
-    margin: 0 1rem;
-    color: #f5f5f5;
-    text-decoration: none;
-}
-
-.footer .footer-icons a:hover {
-    color: #333;
-}
-.copy {
-    margin-top: 2rem;
-}
-</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 {% endblock %}
 
 {% block content %}
 <head>
-  <main>
-    <!-- Section 1 - Navigation bar with Picture and Introduction -->
-    <div class="container-1">
-
-      <nav class="navbar">
-        <div class="logo">Website Name</div>
-        <div class="buttons">
-          <a href="{{ url_for('login')}}">Login</a>
-          <a href="{{ url_for('verify_page')}}">Register</a>
+    <main>
+        <nav class="navbar">
+            <div class="logo">MediKorea</div>
+            <div class="buttons">
+                <a href="{{ url_for('login')}}">Login</a>
+                <a href="{{ url_for('verify_page')}}">Register</a>
+            </div>
+        </nav>
+        <!-- Section 1 - Navigation bar with Picture and Introduction -->
+        <div class="container-1">
+            <!-- https://www.pexels.com/video/drugs-pill-meds-3922881/ -->
+            <a href="#!"
+                alt="Video by cottonbro studio: Taking Medicine From Its Packaging">
+                <video class="video-1" width="500px" autoplay muted
+                    loop>
+                    <source src="../static/video/medicine.mp4" type="video/mp4">
+                    <source src="../static/video/medicine2.webm"
+                        type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+            </a>
+            <!-- Text overlay -->
+            <div class="text-overlay">
+                <p>Welcome!</p>
+            </div>
+        </head>
+    </div>
+    <!-- End Section 1 -->
+    <div class="bg-image">
+        <div class="text one">
+            <!--Photo by Artem Podrez: https://www.pexels.com/photo/a-close-up-view-of-a-covid-19-vaccine-vial-on-blue-background-5878501/ -->
+            <span class="label">MediKorea</span>
         </div>
-      </nav>
-    </head>
-    <h1>Hello world!</h1>
-    <h2>Hi, Nina!</h2>
-    <h3>Hello, world!</h3>
-  </div>
-
-  <!-- Section 2  - Website Information-->
-  <div class="container-2"></div>
-
-  <!-- Section 3 - Search for doctors -->
-
-  <div class="container-3"></div>
-
-  <!-- Section 4 - Learn more about Korea -->
-
-  <div class="container-4"></div>
-  <!-- Section 5  -->
-
-  <div class="container-5"></div>
-
-  <!-- Section 6 - Footer -->
-  <div class="container-6">
+    </div>
+    <!-- Section 2  - Website Information -->
+    <div class="container-2">
+        <!-- Second image card -->
+        <div class="image-container">
+            <div class="image-card">
+                <!-- https://www.pexels.com/photo/3683115/ -->
+                <img src="../static/images/pexels-anna-shvets-3683115.jpg"
+                    alt="Medication Pills: Photo by Anna Shvets">
+                <div class="text-overlay-2">
+                    <p class="welcome-text">We're thrilled to have you here.</p>
+                    <p class="mission-text">Our mission is to connect you with
+                        reliable and comprehensive information about
+                        English-speaking medical professionals and facilities in
+                        South Korea.</p>
+                    <p class="mission-text two">Whether you are a resident or a
+                        visitor, we help you find
+                        the medical resources you need in a language you
+                        understand.</p>
+                    <p class="kr-text one">저희의 미션은 한국 내 영어로 의사 및 의료 시설에 대한 신뢰할 수
+                        있고 포괄적인 정보를 제공하는 것입니다.</p>
+                    <p class="kr-text two">거주자이든 방문자이든, 우리는 여러분이 이해하는 언어로 필요한 의료
+                        자원을 찾을 수 있도록 도와드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-image-2">
+        <div class="text two">
+            <span class="label">MediKorea</span>
+        </div>
+    </div>
+    <div class="container-3">
+        <h3>Learn more about Korea</h3>
+    </div>
+    <div class="bg-image-3">
+        <div class="text three">
+            <span class="label">MediKorea</span>
+        </div>
+    </div>
+    <!-- Section 4 - Learn more about Korea -->
+    <div class="container-4"></div>
     <footer class="footer">
-      <!-- Social media icons below the footer -->
-      <div class="footer-icons">
-        <a href="https://www.facebook.com" target="_blank"><i
-            class="fab fa-facebook-f"></i></a>
-        <a href="https://www.twitter.com" target="_blank"><i
-            class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com" target="_blank"><i
-            class="fab fa-instagram"></i></a>
-        <a href="https://github.com" target="_blank"><i
-            class="fab fa-github"></i></a>
-        <a href="https://linkedin.com" target="_blank"><i
-            class="fab fa-linkedin"></i></a>
-      </div>
-      <p class="copy">&copy; 2024 Website name. All right
-        reserved.</p>
+        <p class="explore-text">Feel free to explore our resources and reach
+            out if you have any questions. We're dedicated to supporting
+            your health journey!
+        </p>
+        <!-- Social media icons below the footer -->
+        <div class="footer-icons">
+            <a href="https://www.facebook.com" target="_blank"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i
+                    class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://github.com" target="_blank"><i
+                    class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="copy">&copy; 2024 MediKorea. All right
+            reserved.</p>
     </footer>
-  </div>
 </main>
 {% endblock %}
-
-{% block scripts %}{% endblock %}
