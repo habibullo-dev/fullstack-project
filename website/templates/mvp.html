@@ -19,6 +19,7 @@
                 <img src="#" alt="logo.png">
             </div>
             <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
                 <a href="{{ url_for('login')}}">Login</a>
                 <a href="{{ url_for('verify_page')}}">Register</a>
             </div>
@@ -26,10 +27,15 @@
 
         <div class="searchBackground">
             <div class="searchBar">
-                <input class="input1" type="text" placeholder="Expertise">
+                <!-- <input class="input1" type="text" placeholder="Expertise">
                 <input type="date">
                 <input class="input2" type="text" placeholder="Location">
-                <button class="searchButton">Search</button>
+                <button class="searchButton">Search</button> -->
+                <form id="searchForm" method="POST" action="/search_input">
+                    <input type="text" id="searchInput" placeholder="Enter search query"
+                        required>
+                    <button type="button" id="searchButton">Search</button>
+                </form>
             </div>
         </div>
 
@@ -111,7 +117,9 @@
                 </div>
                 <div class="mainInfo">
                     <h3>About</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                    <!-- This is where the search results will be displayed -->
+                    <div id="searchResults"></div>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing
                         elit.</p>
                     <h3>Hospital Information</h3>
                     <div class="hospDetails">
@@ -122,7 +130,7 @@
                         <h4>Address: </h4>
                         <address>123 Nina Street, Seoul Forest,
                             Seoul</address>
-                    </div>
+                    </div> -->
                     <div class="buttonWrap">
                         <button id="apptBook">Book an appointment</button>
                     </div>

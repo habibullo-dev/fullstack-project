@@ -6,39 +6,37 @@
 {% endblock %}
 
 {% block content %}
-<head>
-    <main>
-        <nav class="navbar">
-            <div class="logo">MediKorea</div>
-            <div class="buttons">
-                <a href="{{ url_for('login')}}">Login</a>
-                <a href="{{ url_for('verify_page')}}">Register</a>
-            </div>
-        </nav>
-        <!-- Section 1 - Navigation bar with Picture and Introduction -->
-        <div class="container-1">
-            <!-- https://www.pexels.com/video/drugs-pill-meds-3922881/ -->
-            <a href="#!"
-                alt="Video by cottonbro studio: Taking Medicine From Its Packaging">
-                <video class="video-1" width="500px" autoplay muted
-                    loop>
-                    <source src="../static/video/medicine.mp4" type="video/mp4">
-                    <source src="../static/video/medicine2.webm"
-                        type="video/webm">
-                    Your browser does not support the video tag.
-                </video>
-            </a>
-            <!-- Text overlay -->
-            <div class="text-overlay">
-                <p>Welcome!</p>
-            </div>
-        </head>
+<main>
+    <nav class="navbar">
+        <div class="logo">MedKorea</div>
+        <div class="buttons">
+            <a href="{{ url_for('search_page')}}">Search</a>
+            <a href="{{ url_for('login')}}">Login</a>
+            <a href="{{ url_for('verify_page')}}">Register</a>
+        </div>
+    </nav>
+    <!-- Section 1 - Navigation bar with Picture and Introduction -->
+    <div class="container-1">
+        <!-- https://www.pexels.com/video/drugs-pill-meds-3922881/ -->
+        <a href="#!"
+            alt="Video by cottonbro studio: Taking Medicine From Its Packaging">
+            <video class="video-1" width="500px" autoplay muted
+                loop>
+                <source src="../static/video/medicine.mp4" type="video/mp4">
+                <source src="../static/video/medicine2.webm"
+                    type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+        </a>
+        <div class="text-overlay">
+            <p>Welcome!</p>
+        </div>
     </div>
     <!-- End Section 1 -->
     <div class="bg-image">
         <div class="text one">
             <!--Photo by Artem Podrez: https://www.pexels.com/photo/a-close-up-view-of-a-covid-19-vaccine-vial-on-blue-background-5878501/ -->
-            <span class="label">MediKorea</span>
+            <span class="label">MedKorea</span>
         </div>
     </div>
     <!-- Section 2  - Website Information -->
@@ -69,15 +67,19 @@
     </div>
     <div class="bg-image-2">
         <div class="text two">
-            <span class="label">MediKorea</span>
+            <span class="label">MedKorea</span>
         </div>
     </div>
-    <div class="container-3">
+    <div class="carousel">
         <h3>Learn more about Korea</h3>
+        <img src alt>
+        <img src alt>
+        <img src alt>
+        <img src alt>
     </div>
     <div class="bg-image-3">
         <div class="text three">
-            <span class="label">MediKorea</span>
+            <span class="label">MedKorea</span>
         </div>
     </div>
     <!-- Section 4 - Learn more about Korea -->
@@ -88,7 +90,7 @@
             your health journey!
         </p>
         <!-- Social media icons below the footer -->
-        <div class="footer-icons">
+        <div class="footer-icons" style="margin-top: 0px;">
             <a href="https://www.facebook.com" target="_blank"><i
                     class="fab fa-facebook-f"></i></a>
             <a href="https://www.twitter.com" target="_blank"><i
@@ -100,7 +102,7 @@
             <a href="https://linkedin.com" target="_blank"><i
                     class="fab fa-linkedin"></i></a>
         </div>
-        <p class="copy">&copy; 2024 MediKorea. All right
+        <p class="copy">&copy; 2024 MedKorea. All right
             reserved.</p>
     </footer>
 </main>

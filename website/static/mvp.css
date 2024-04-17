@@ -196,7 +196,7 @@ btn,
     align-items: center;
 }
 
-.searchBar {
+/* .searchBar {
     display: flex;
     width: 90vw;
     border: none;
@@ -205,6 +205,19 @@ btn,
     height: 60px;
     border-radius: 12px;
     justify-content: center;
+} */
+
+/* Updated search Form styles */
+#searchForm {
+    display: flex;
+    width: 50vw;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    border-radius: 12px;
+    justify-content: center;
+    gap: 0.2rem;
 }
 
 .input1 {
@@ -216,12 +229,45 @@ input {
     padding-left: 8px;
 }
 
-.searchButton {
-    border-radius: 0px 8px 8px 0px;
-    border: none;
-    width: 90px;
+#searchButton {
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid var(--color-light);
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: all 0.5s ease-out;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
+#searchButton:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* .navbar .buttons a {
+    color: var(--color-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid var(--color-light);
+    margin-left: 1rem;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+    text-decoration: none;
+}
+
+.navbar .buttons a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    transform: scale(1.1);
+    cursor: pointer;
+} */
+/* updated search form styles end */
 
 .cards {
     margin: 20px;
