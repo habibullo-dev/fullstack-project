@@ -18,7 +18,7 @@
         <main>
             <nav class="navbar">
                 <div class="logo">MedKorea
-                    <img src="#" alt="">
+                    <img src="#" alt>
                 </div>
                 <div class="buttons">
                     <a href="{{ url_for('home')}}">Home</a>
@@ -32,20 +32,20 @@
                     <!-- New Form for the search input-->
                     <form id="searchForm" method="POST" action="/search_input">
                         <select name="city" id="citySelect">
-                            <option value="">Select a city</option>
+                            <option value>Select a city</option>
                             <option value="seoul">Seoul</option>
                             <option value="busan">Busan</option>
                             <!-- Add more city options as needed -->
                         </select>
                         <select name="expertise" id="expertSelect">
-                            <option value="">Select an expertise</option>
+                            <option value>Select an expertise</option>
                             <option value="general">General practice</option>
                             <option value="dentist">Dentistry</option>
                             <option value="other">Others</option>
                             <!-- Add more expertise options as needed -->
                         </select>
                         <select name="type" id="typeSelect">
-                            <option value="">Facility Type</option>
+                            <option value>Facility Type</option>
                             <option value="general">Hospital</option>
                             <option value="dentist">Clinic</option>
                             <!-- Add more expertise options as needed -->
@@ -57,144 +57,145 @@
                 </div>
             </div>
 
-                <div class="container">
-                    <div class="cards">
-                        <div class="card">
-                            <div class="left">
-                                <div class="hospL">
-                                    <img class="hospLogo" src="#"
-                                        alt="Hospital Logo">
-                                </div>
-                                <div class="rating">
-                                    <p class="rating">3.5/5</p>
-                                    <img src="#" alt="Star for rating">
-                                </div>
+            <div class="container">
+                <div class="cards">
+                    <div class="card">
+                        <div class="left">
+                            <div class="hospL">
+                                <img class="hospLogo" src="#"
+                                    alt="Hospital Logo">
                             </div>
-                            <div class="middle">
-                                <h2>Dr. Nina</h2>
-                                <div class="hospInfo">
-                                    <p class="hospName">Nina Hospital</p>
-                                    <p class="hospLocation">Seoul Forest,
-                                        Seoul</p>
-                                </div>
-                                <div class="blurb">
-                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.</p>
-                                </div>
+                            <div class="rating">
+                                <p class="rating">3.5/5</p>
+                                <img src="#" alt="Star for rating">
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="left">
-                                <div class="hospL">
-                                    <img class="hospLogo" src
-                                        alt="Hospital Logo">
-                                </div>
-                                <div class="rating">
-                                    <p class="rating">3.5/5</p>
-                                    <img src="#" alt="Star for rating">
-                                </div>
+                        <div class="middle">
+                            <h2>Dr. Nina</h2>
+                            <div class="hospInfo">
+                                <p class="hospName">Nina Hospital</p>
+                                <p class="hospLocation">Seoul Forest,
+                                    Seoul</p>
                             </div>
-                            <div class="middle">
-                                <h2>Dr. Nina</h2>
-                                <div class="hospInfo">
-                                    <p class="hospName">Nina Hospital</p>
-                                    <p class="hospLocation">Seoul Forest,
-                                        Seoul</p>
-                                </div>
-                                <div class="blurb">
-                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.</p>
-                                </div>
+                            <div class="blurb">
+                                <p>Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit.</p>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="left">
-                                <div class="hospL">
-                                    <img class="hospLogo" src="#"
-                                        alt="Hospital Logo">
-                                </div>
-                                <div class="rating">
-                                    <p class="rating">3.5/5</p>
-                                    <img src="#" alt="Star for rating">
-                                </div>
-                            </div>
-                            <div class="middle">
-                                <h2>Dr. Nina</h2>
-                                <div class="hospInfo">
-                                    <p class="hospName">Nina Hospital</p>
-                                    <p class="hospLocation">Seoul Forest,
-                                        Seoul</p>
-                                </div>
-                                <div class="blurb">
-                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add more cards here if needed -->
                     </div>
-
-                    <div class="selectedCard">
-                        <div class="top">
-                            <h1 class="drName">Dr. Nina</h1>
-                            <img class="drImg" src alt="Doctor image">
+                    <div class="card">
+                        <div class="left">
+                            <div class="hospL">
+                                <img class="hospLogo" src
+                                    alt="Hospital Logo">
+                            </div>
+                            <div class="rating">
+                                <p class="rating">3.5/5</p>
+                                <img src="#" alt="Star for rating">
+                            </div>
                         </div>
-                        <div class="mainInfo">
-                            <h3>About</h3>
-
-                            <!-- This is where the search results will be displayed -->
-                            <div id="searchResults"></div>
-                            <!-- The div above is connected to the search input form -->
-
-                            <p>Lorem ipsum dolor sit amet consectetur
-                                adipisicing
-                                elit.</p>
-                            <h3>Hospital Information</h3>
-                            <div class="hospDetails">z
-                                <h4>Hospital Name: </h4>
-                                <p>Hospital Nina</p>
-                                <h4>Phone Number: </h4>
-                                <p>021 345 6789</p>
-                                <h4>Address: </h4>
-                                <address>123 Nina Street, Seoul Forest,
-                                    Seoul</address>
+                        <div class="middle">
+                            <h2>Dr. Nina</h2>
+                            <div class="hospInfo">
+                                <p class="hospName">Nina Hospital</p>
+                                <p class="hospLocation">Seoul Forest,
+                                    Seoul</p>
                             </div>
-                            <div class="buttonWrap">
-                                <button id="apptBook">Book an
-                                    appointment</button>
+                            <div class="blurb">
+                                <p>Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit.</p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="left">
+                            <div class="hospL">
+                                <img class="hospLogo" src="#"
+                                    alt="Hospital Logo">
+                            </div>
+                            <div class="rating">
+                                <p class="rating">3.5/5</p>
+                                <img src="#" alt="Star for rating">
+                            </div>
+                        </div>
+                        <div class="middle">
+                            <h2>Dr. Nina</h2>
+                            <div class="hospInfo">
+                                <p class="hospName">Nina Hospital</p>
+                                <p class="hospLocation">Seoul Forest,
+                                    Seoul</p>
+                            </div>
+                            <div class="blurb">
+                                <p>Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more cards here if needed -->
+                </div>
+
+                <div class="selectedCard">
+                    <div class="top">
+                        <h1 class="drName">Dr. Nina</h1>
+                        <img class="drImg" src alt="Doctor image">
+                    </div>
+                    <div class="mainInfo">
+                        <h3>About</h3>
+
+                        <!-- This is where the search results will be displayed -->
+                        <div id="searchResults"></div>
+                        <!-- The div above is connected to the search input form -->
+
+                        <p>Lorem ipsum dolor sit amet consectetur
+                            adipisicing
+                            elit.</p>
+                        <h3>Hospital Information</h3>
+                        <div class="hospDetails">z
+                            <h4>Hospital Name: </h4>
+                            <p>Hospital Nina</p>
+                            <h4>Phone Number: </h4>
+                            <p>021 345 6789</p>
+                            <h4>Address: </h4>
+                            <address>123 Nina Street, Seoul Forest,
+                                Seoul</address>
+                        </div>
+                        <div class="buttonWrap">
+                            <button id="apptBook">Book an
+                                appointment</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <footer class="footer">
-                    <p class="explore-text">Feel free to explore our resources and reach
-                        out if you have any questions. We're dedicated to supporting
-                        your health journey!
-                    </p>
-                    <!-- Social media icons below the footer -->
-                    <div class="footer-icons">
-                        <a href="https://www.facebook.com" target="_blank"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.twitter.com" target="_blank"><i
-                                class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com" target="_blank"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="https://tiktok.com" target="_blank"><i
-                                class="fa-brands fa-tiktok"></i></a>
-                        <a href="https://youtube.com" target="_blank"><i
-                                class="fa-brands fa-youtube"></i></a>
-                        <a href="https://linkedin.com" target="_blank"><i
-                                class="fab fa-linkedin"></i></a>
-                    </div>
-                    <p class="copy">&copy; 2024 Website name. All right
-                        reserved.</p>
-                </footer>
-            </main>
+            <footer class="footer">
+                <p class="explore-text">Feel free to explore our resources and
+                    reach
+                    out if you have any questions. We're dedicated to supporting
+                    your health journey!
+                </p>
+                <!-- Social media icons below the footer -->
+                <div class="footer-icons">
+                    <a href="https://www.facebook.com" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank"><i
+                            class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i
+                            class="fa-brands fa-youtube"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="copy">&copy; 2024 Website name. All right
+                    reserved.</p>
+            </footer>
+        </main>
 
-            <script src="../static/server.js"></script>
-        </body>
-
-    </html>
-
+        <script src="../static/server.js"></script>
+        <script>
+            
+        </script>
+    </body>
 </html>
