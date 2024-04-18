@@ -68,6 +68,18 @@ a:hover {
     color: white;
 }
 
+.siteLogo {
+    height: 50px;
+    width: 50px;
+    margin-right: 1rem;
+}
+
+.navLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .navbar .logo {
     font-size: 24px;
     font-weight: bold;
@@ -125,6 +137,7 @@ a:hover {
 .footer .footer-icons a:hover {
     color: var(--color-secondary);
 }
+
 .copy {
     margin-top: 1rem;
 }
@@ -132,19 +145,23 @@ a:hover {
 .footer .explore-text {
     margin: 0.8rem 0;
 }
+
 /* Start Container-1 styles */
 
 /* Style for the text overlay */
 .text-overlay {
     position: absolute;
-    top: 30%; /* Center vertically */
-    left: 20%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center using translate */
+    top: 30%;
+    /* Center vertically */
+    left: 20%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Center using translate */
     color: var(--color-primary);
     background-color: transparent;
     padding: 10px;
-    border-radius: 5px; 
-    text-align: center; 
+    border-radius: 5px;
+    text-align: center;
     font-size: 3rem;
     letter-spacing: 1.2rem;
 }
@@ -178,7 +195,9 @@ video {
     min-height: 500px;
 }
 
-.bg-image, .bg-image-2, .bg-image-3 {
+.bg-image,
+.bg-image-2,
+.bg-image-3 {
     position: relative;
     background-attachment: fixed;
     background-position: center;
@@ -188,13 +207,15 @@ video {
 
 .text.one {
     position: absolute;
-    top: 40%; /* Center vertically */
+    top: 40%;
+    /* Center vertically */
     left: 5%;
 }
 
 .text.two {
     position: absolute;
-    top: 30%; /* Center vertically */
+    top: 30%;
+    /* Center vertically */
     /* left: -40%; */
     left: 68%;
 }
@@ -233,36 +254,40 @@ video {
 
 .image-card {
     position: relative;
-    width: 100%; 
+    width: 100%;
 }
 
 .image-card img {
-    width: 100%; 
-    height: auto; 
+    width: 100%;
+    height: auto;
 }
 
 .text-overlay-2 {
     position: absolute;
-    top: 55%; /* Center vertically */
-    left: 45%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center using translate */
+    top: 55%;
+    /* Center vertically */
+    left: 45%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Center using translate */
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     color: var(--color-tertiary);
     background-color: transparent;
-    text-align: center; 
+    text-align: center;
     font-size: 1.2rem;
 }
 
 .welcome-text {
-   margin-bottom: 5rem;
+    margin-bottom: 5rem;
 }
 
 .kr-text.one {
     margin-top: 15rem;
 }
+
 .kr-text.two {
     margin-bottom: 10rem;
 }
@@ -310,4 +335,3 @@ video {
 
 
 /* End icons */
-

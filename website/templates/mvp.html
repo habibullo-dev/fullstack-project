@@ -15,9 +15,12 @@
 <body>
     <main>
         <nav class="navbar">
-            <img class="siteLogo" src="../static/images/logoInWhite.png" alt="">
-            <div class="logo">MediKorea</div>
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png" alt="">
+                <div class="logo">MedKorea</div>
+            </div>
             <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
                 <a href="{{ url_for('login')}}">Login</a>
                 <a href="{{ url_for('verify_page')}}">Register</a>
             </div>
@@ -60,10 +63,7 @@
                         <div class="hospL">
                             <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
                         </div>
-                        <div class="rating">
-                            <p class="rating">3.5/5</p>
-                            <img src="#" alt="Star for rating">
-                        </div>
+                        <p class="rating">3.5/5</p>
                     </div>
                     <div class="middle">
                         <h2>Dr. Nina</h2>
@@ -82,10 +82,7 @@
                         <div class="hospL">
                             <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
                         </div>
-                        <div class="rating">
-                            <p class="rating">3.5/5</p>
-                            <img src="#" alt="Star for rating">
-                        </div>
+                        <p class="rating">3.5/5</p>
                     </div>
                     <div class="middle">
                         <h2>Dr. Nik</h2>
@@ -105,16 +102,32 @@
                         <div class="hospL">
                             <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
                         </div>
-                        <div class="rating">
-                            <p class="rating">3.5/5</p>
-                            <img src="#" alt="Star for rating">
-                        </div>
+                        <p class="rating">3.5/5</p>
                     </div>
                     <div class="middle">
                         <h2>Dr. Eden</h2>
                         <div class="hospInfo">
                             <p class="hospName">Eden Hospital</p>
                             <p class="hospLocation">Yangju, Seoul</p>
+                        </div>
+                        <div class="blurb">
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
+                        </div>
+                        <p class="rating">3.5/5</p>
+                    </div>
+                    <div class="middle">
+                        <h2>Dr. Habi</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">Habi Hospital</p>
+                            <p class="hospLocation">Incheon, Seoul</p>
                         </div>
                         <div class="blurb">
                             <p>Lorem ipsum dolor sit amet, consectetur
