@@ -7,6 +7,26 @@
 }
 
 /* styles for navbar */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+main {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    /* width: 100vw; */
+}
+
+/* css for navbar start*/
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -14,7 +34,13 @@
     background-color: var(--color-primary);
     padding: 0.8rem;
     color: white;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
+}
+
+.siteLogo {
+    border: 4px solid yellow;
+    height: 50px;
+    width: 50px;
 }
 
 .navbar .logo {
@@ -44,148 +70,7 @@
     cursor: pointer;
 }
 
-/* end styles for navbar */
-
-/* styles for the footer */
-.footer {
-    background-color: #f5f5f5;
-    padding: 1rem;
-    text-align: center;
-    bottom: 0;
-    background-color: var(--color-primary);
-    color: #f5f5f5;
-    margin-top: 1rem;
-}
-
-.footer .footer-icons {
-    margin: 2rem;
-    transition: all 0.5s ease-out;
-}
-
-.footer .footer-icons:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-.footer .footer-icons a {
-    margin: 0 1rem;
-    color: #f5f5f5;
-    text-decoration: none;
-}
-
-.footer .footer-icons a:hover {
-    color: #333;
-}
-
-.copy {
-    margin-top: 2rem;
-}
-
-/* end styles for footer */
-
-.selectedCard {
-    /* display: none; */
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    margin: 10px;
-    background-color: #b5c4da;
-    padding: 18px;
-    align-items: center;
-    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
-}
-
-.top {
-    display: flex;
-    flex-direction: row-reverse;
-    padding: none;
-    margin-bottom: 8px;
-}
-
-h3 {
-    background-color: #FFFF;
-    padding: 4px;
-    border-radius: 8px;
-}
-
-.mainInfo {
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.buttonWrap {
-    display: flex;
-    justify-content: center;
-}
-
-#apptBook {
-    width: 150px;
-    height: 60px;
-    font-size: 16px;
-    font-weight: 600px;
-    padding: 12px;
-    border: 2px solid #3e6196;
-    border-radius: 8px;
-    background-color: #4d78b8;
-    color: white;
-    margin: 40px;
-    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-main {
-    background-color: whitesmoke;
-    /* display: ; */
-    /* width: 100vw; */
-}
-
-nav {
-    background-color: #80A1D4;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.siteLogo {
-    height: 100px;
-    width: 100px;
-}
-
-btn,
-#Login,
-#Register {
-    width: 100px;
-    height: 60px;
-    font-size: 18px;
-    font-weight: 600px;
-}
-
-#Login {
-    background-color: #75C9C8;
-    color: white;
-    border-radius: 20px;
-    border-color: #75C9C8;
-}
-
-#Register {
-    border-color: 2px solid #75C9C8;
-    color: #75C9C8;
-    border-radius: 20px;
-    background-color: white;
-}
+/* css for navbar end */
 
 .searchBackground {
     background-color: #75C9C8;
@@ -194,6 +79,7 @@ btn,
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 0;
 }
 
 .searchBar {
@@ -240,12 +126,17 @@ input {
     border-radius: 20px;
     background-color: #DED9E2;
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
 
+.card:hover {
+    box-shadow: 0px 5px 8px var(--color-primary);
+    transform: translateY(-5px)
 }
 
 .hospLogo {
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     border-radius: 20px;
 }
 
@@ -255,18 +146,11 @@ input {
     padding: 20px;
 }
 
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-}
-
 .middle {
     display: flex;
     width: 435px;
     flex-direction: column;
+    margin-top: 12px;
 }
 
 h2 {
@@ -298,17 +182,109 @@ h2 {
     border-radius: 8px;
 }
 
-footer {
-    background-color: #80A1D4;
-    width: 100vw;
+.selectedCard {
+    /* display: none; */
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: #b5c4da;
+    padding: 18px;
     align-items: center;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
 }
+
+.selectedCard img {
+    width: 100px;
+    height: 100px;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: none;
+    margin-bottom: 8px;
+    /* border: 1px solid yellow; */
+}
+
+h3 {
+    background-color: #FFFF;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.mainInfo {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.buttonWrap {
+    display: flex;
+    justify-content: center;
+}
+
+#apptBook {
+    width: 150px;
+    height: 60px;
+    font-size: 16px;
+    font-weight: 600px;
+    padding: 12px;
+    border: 2px solid #3e6196;
+    border-radius: 8px;
+    background-color: #4d78b8;
+    color: white;
+    margin: 40px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* styles for the footer */
 
 .linksGroup {
     width: 60vw;
     display: flex;
     justify-content: space-evenly;
 }
+
+.footer {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    bottom: 0;
+    background-color: var(--color-primary);
+    color: #f5f5f5;
+    margin-top: 1rem;
+}
+
+.footer .footer-icons {
+    margin: 2rem;
+    transition: all 0.5s ease-out;
+}
+
+.footer .footer-icons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.footer .footer-icons a {
+    margin: 0 1rem;
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+.footer .footer-icons a:hover {
+    color: #333;
+}
+
+.copy {
+    margin-top: 2rem;
+}
+
+/* end styles for footer */
