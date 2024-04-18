@@ -25,10 +25,31 @@
 
         <div class="searchBackground">
             <div class="searchBar">
-                <input class="input1" type="text" placeholder="Expertise">
-                <input type="date">
-                <input class="input2" type="text" placeholder="Location">
-                <button class="searchButton">Search</button>
+                <!-- New Form for the search input-->
+                <form id="searchForm" method="POST" action="/search_input">
+                    <select name="city" id="citySelect">
+                        <option value="">Select a city</option>
+                        <option value="seoul">Seoul</option>
+                        <option value="busan">Busan</option>
+                        <!-- Add more city options as needed -->
+                    </select>
+                    <select name="expertise" id="expertSelect">
+                        <option value="">Select an expertise</option>
+                        <option value="general">General practice</option>
+                        <option value="dentist">Dentistry</option>
+                        <option value="other">Others</option>
+                        <!-- Add more expertise options as needed -->
+                    </select>
+                    <select name="type" id="typeSelect">
+                        <option value="">Facility Type</option>
+                        <option value="general">Hospital</option>
+                        <option value="dentist">Clinic</option>
+                        <!-- Add more expertise options as needed -->
+                    </select>
+                    <!-- <input type="text" id="searchInput" placeholder="Find a doctor now..." required /> -->
+                    <button type="button" id="searchButton">Search</button>
+                </form>
+                <div id="textField"></div>
             </div>
         </div>
 
@@ -129,36 +150,18 @@
             </div>
         </div>
 
-        <!-- <div class="socials">
-                <footer>
-                <h4>Follow us at:</h4>
-                <div class="socialIcons">
-                    <img src="#" alt="LinkedIn">
-                    <img src="#" alt="Facebook">
-                    <img src="#" alt="Instagram">
-                    <img src="#" alt="Twitter">
-                </div>
-            </div>
-            <div class="extraLinks">
-                <div class="linksGroup">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-                <div class="linksGroup">
-                    <a href="#">Link 4</a>
-                    <a href="#">Link 5</a>
-                    <a href="#">Link 6</a>
-                </div>
-            </div> og footer -->
-
         <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
             <!-- Social media icons below the footer -->
             <div class="footer-icons">
                 <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
             <p class="copy">&copy; 2024 Website name. All right

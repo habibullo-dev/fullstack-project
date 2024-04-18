@@ -23,10 +23,21 @@
 </style>
     <body>
         <div class="container">
+
+            <!-- Loop to display flash messages -->
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+            <!-- form content -->
             <div class="card-left">
                 <div class="card-box">
                     <span class="lineBorder"></span>
-                    <form method="POST" action="/form" id="registerForm"
+                    <form method="POST" action="/register" id="registerForm"
                         class="inputForm">
                         <h1>Create account</h1>
                         <input type="text" class="username" name="username"

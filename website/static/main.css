@@ -1,0 +1,313 @@
+/*Styling for the index.html or the landing page */
+
+/* Oswald Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+/* css variables */
+:root {
+    --color-primary: #4d78b8;
+    --color-secondary: #75C9C8;
+    --color-tertiary: #144e8b;
+    --color-dark: #2A2C24;
+    --color-light: whitesmoke;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+}
+
+.container-1 {
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+}
+
+h1 {
+    color: #0056b3;
+}
+
+h2 {
+    color: #007acc;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* styles for navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primary);
+    padding: 0.8rem;
+    color: white;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .buttons {
+    display: flex;
+}
+
+.navbar .buttons a {
+    color: var(--color-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid var(--color-light);
+    margin-left: 1rem;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+    text-decoration: none;
+}
+
+.navbar .buttons a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+/* styles for the footer */
+.footer {
+    background-color: #f5f5f5;
+    padding: 0.3rem;
+    text-align: center;
+    bottom: 0;
+    background-color: var(--color-primary);
+    color: #f5f5f5;
+}
+
+.footer .footer-icons {
+    margin: 1rem;
+    transition: all 0.5s ease-out;
+}
+
+.footer .footer-icons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.footer .footer-icons a {
+    margin: 0 1rem;
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+.footer .footer-icons a:hover {
+    color: var(--color-secondary);
+}
+.copy {
+    margin-top: 1rem;
+}
+
+.footer .explore-text {
+    margin: 0.8rem 0;
+}
+/* Start Container-1 styles */
+
+/* Style for the text overlay */
+.text-overlay {
+    position: absolute;
+    top: 30%; /* Center vertically */
+    left: 20%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center using translate */
+    color: var(--color-primary);
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px; 
+    text-align: center; 
+    font-size: 3rem;
+    letter-spacing: 1.2rem;
+}
+
+/* start video mp4 styles */
+video {
+    width: 100%;
+    height: auto;
+    opacity: 0.8;
+}
+
+/* end video mp4 styles */
+
+/* end for container-1 styles */
+
+/* background image styles  */
+
+.bg-image {
+    background-image: url('../static/images/pexels-artem-podrez-5878501.jpg');
+    min-height: 100vh;
+}
+
+
+.bg-image-2 {
+    background-image: url('../static/images/pexels-artem-podrez-5878504.jpg');
+    min-height: 500px;
+}
+
+.bg-image-3 {
+    background-image: url('../static/images/pexels-artem-podrez-5878503.jpg');
+    min-height: 500px;
+}
+
+.bg-image, .bg-image-2, .bg-image-3 {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text.one {
+    position: absolute;
+    top: 40%; /* Center vertically */
+    left: 5%;
+}
+
+.text.two {
+    position: absolute;
+    top: 30%; /* Center vertically */
+    /* left: -40%; */
+    left: 68%;
+}
+
+.text.three {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+}
+
+
+.text .label {
+    background-color: transparent;
+    color: #002965;
+    font-size: 5rem;
+    letter-spacing: 0.3rem;
+}
+
+/* end background image styles */
+
+/* Start container-2 styles */
+.container-2 {
+    max-height: 100vh;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-card {
+    position: relative;
+    width: 100%; 
+}
+
+.image-card img {
+    width: 100%; 
+    height: auto; 
+}
+
+.text-overlay-2 {
+    position: absolute;
+    top: 55%; /* Center vertically */
+    left: 45%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center using translate */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    color: var(--color-tertiary);
+    background-color: transparent;
+    text-align: center; 
+    font-size: 1.2rem;
+}
+
+.welcome-text {
+   margin-bottom: 5rem;
+}
+
+.kr-text.one {
+    margin-top: 15rem;
+}
+.kr-text.two {
+    margin-bottom: 10rem;
+}
+
+/* .mission-text.two {
+    margin-bottom: 10rem;
+} */
+/* end container-2 */
+
+
+/* Start icons */
+.carousel {
+    min-height: 5vh;
+    background-color: #5078b4;
+    overflow: hidden;
+    margin: auto;
+}
+
+.wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 7.5rem;
+    justify-items: stretch;
+    animation: scroll 8s linear infinite;
+}
+
+.icons {
+    display: flex;
+    padding: 2rem;
+    width: 200%;
+}
+
+.icons .item {
+    font-size: 2rem;
+    margin-right: 2rem;
+    color: var(--color-light);
+    filter: drop-shadow(2px 2px 4px #92d0cfd0);
+}
+
+@keyframes scroll {
+    to {
+        translate: calc(-3 * 7.5rem);
+    }
+}
+
+
+/* End icons */
+
