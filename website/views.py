@@ -1,33 +1,46 @@
-from flask import Flask, flash, render_template, request, redirect, url_for, jsonify
+from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 import json
 import hashlib
 from sqlalchemy.sql import text
 from website import app, engine
 
 
-
+# route for the home page
 @app.route('/')
 def home():
     return render_template("index.html")
 
+# route for the user page (in session or logged in)
+
+@app.route('/users')
+def user_page():
+    if 'username' in session: # If username in sessions, if yes (user is logged in)
+        return render_template('users.html', username=session['username'])
+    else: 
+        return render_template('users.html') # User not logged in, just pass users page
+    
 # contains the register page with a link to take user into login page
-@app.route('/register')
+@app.route('/verify')
 def verify_page():
-    return render_template("verify.html")
+    return render_template('verify.html')
 
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     message = ''
+#     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+#         return
+    
+#  To Display Database Project with TABLES Doctors and Facilities
+@app.route('/db_data')
+def db_data():
+    # Fetch data from the database
+    with engine.connect() as conn:
+        doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
+        facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
 
+    # Render HTML template with fetched data
+    return render_template('db_info.html', doctors=doctors, facilities=facilities)
 
-
-
-@app.route('/forms')
-def valid():
-    title = "Thank you!"
-    message = f"""
-    <p>Go back to <strong><a href="{url_for('home')}">Home</a></strong> page or go to <strong><a href="{url_for('login')}">Login</a></strong> page.
-    </p>
-    """
-
-    return render_template('form.html', title=title, message=message)
 
 
 # The function below, (hash_password) takes a password, encodes it into UTF-8
@@ -84,7 +97,6 @@ def register():
         # Redirect the user to the home page or another page
         return redirect(url_for('valid'))
 
-
 # route for the login page
 @app.route('/login')
 def login():
@@ -96,16 +108,11 @@ def login():
     return render_template('login.html', go_back=go_back)
 
 
+
+# Route to take you to the mvp page
 @app.route('/mvp')
 def search_page():
     return render_template('mvp.html')
-
-# Route to take you to the search page 
-@app.route('/search')
-def show_data():
-    title = "Search Input"
-    return render_template('search.html', title=title)
-
 
 # Load data from the database and convert it to JSON format
 def load_data():
@@ -123,8 +130,21 @@ def load_data():
     conn.close()
     
     # Convert data to dictionaries
-    doctors_dict = [{'Name': doctor[0], 'Expertise': doctor[1], 'Company': doctor[2], 'Address': doctor[3], 'Phone': doctor[4]} for doctor in doctors_data]
-    facilities_dict = [{'Name': facility[0], 'Speaker': facility[1], 'Type': facility[2], 'Address': facility[3], 'Phone': facility[4], 'Emergency': facility[5], 'Services': facility[6]} for facility in facilities_data]
+    doctors_dict = [
+        {'Name': doctor[0], 
+         'Expertise': doctor[1], 
+         'Company': doctor[2], 
+         'Address': doctor[3], 
+         'Phone': doctor[4]} for doctor in doctors_data]
+    
+    facilities_dict = [
+        {'Name': facility[0], 
+         'Speaker': facility[1], 
+         'Type': facility[2], 
+         'Address': facility[3], 
+         'Phone': facility[4], 
+         'Emergency': facility[5], 
+         'Services': facility[6]} for facility in facilities_data]
     
     # Combine the data into a dictionary
     data = {
@@ -137,38 +157,63 @@ def load_data():
 # Load data once when the application starts
 data = load_data()
 
-# Define a search endpoint
-@app.route('/search_input', methods=['POST'])
-def search_input():
-    search_input = request.json.get('search_input')
-    
-    if not search_input:
-        return jsonify({'error': 'Invalid input'}), 400
-    
-    # Filter data based on the search input
-    filtered_doctors = [doctor for doctor in data['Doctors'] if search_input.lower() in doctor['Name'].lower() or search_input.lower() in doctor['Expertise'].lower()]
-    filtered_facilities = [facility for facility in data['Facilities'] if search_input.lower() in facility['Name'].lower() or search_input.lower() in facility['Type'].lower()]
-    
-    # Return filtered results
-    return jsonify({
+# Function to filter data based on the search query or provided criteria
+def filter_data(data, search_input, city, expert):
+    # Convert inputs to lowercase for case-insensitive comparison
+    search_input_lower = search_input.lower()
+    city_lower = city.lower()
+    expert_lower = expert.lower()
+
+    # Combine all relevant fields into a single string and Join all values in the dictionary to create a combined string for each item
+    # filter_data = [item for item in data if search_input in " ".join(str(value).lower() for value in item.values())]
+
+    # Filter doctors based on search criteria
+    filtered_doctors = [
+        doctor for doctor in data['Doctors']
+        if search_input_lower in doctor['Name'].lower() or
+           search_input_lower in doctor['Expertise'].lower() or
+           city_lower in doctor['Address'].lower() and
+           expert_lower in doctor['Expertise'].lower()
+    ]
+
+    # Filter facilities based on search criteria
+    filtered_facilities = [
+        facility for facility in data['Facilities']
+        if search_input_lower in facility['Name'].lower() or
+           city_lower in facility['Address'].lower() and
+           expert_lower in facility['Type'].lower()
+    ]
+
+    return {
         'Doctors': filtered_doctors,
         'Facilities': filtered_facilities
-    })
+    }
 
 
+# Define the '/search_input' endpoint
+@app.route('/search_input', methods=['POST'])
+def search_input():
+    # Parse the JSON request data
+    data_request = request.json
 
-#  To Display Database Project with TABLES Doctors and Facilities
-@app.route('/db_data')
-def db_data():
-    # Fetch data from the database
-    with engine.connect() as conn:
-        doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
-        facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
+    # Get the search criteria from the request
+    search_input = ''
+    type_input = data_request.get('type', '')
+    city_input = data_request.get('city', '')
+    expert_input = data_request.get('expert', '')
 
-    # Render HTML template with fetched data
-    return render_template('db_info.html', doctors=doctors, facilities=facilities)
+    # Validate inputs
+    if not type_input or not city_input or not expert_input:
+        return jsonify({'error': 'Invalid input'}), 400
+
+    # Filter the data based on the search criteria
+    filtered_results = filter_data(data, search_input, city_input, expert_input)
+
+    # Return the filtered results as JSON
+    return jsonify(filtered_results)
 
 
+# About page route
 @app.route('/about')
 def about_us():
     intro = """

@@ -30,10 +30,11 @@ CREATE TABLE IF NOT EXISTS Facilities (
 );
 
 CREATE TABLE IF NOT EXISTS Users (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL
+    email VARCHAR(255) NOT NULL,
+    join_date DATE NOT NULL
 );
 
 -- Second batch of data for the Facilities Table in the Database Project

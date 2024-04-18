@@ -250,6 +250,34 @@ input {
     cursor: pointer;
 }
 
+/* start label and select styles */
+label {
+    font-size: 1rem;
+    padding: 0.5rem;
+    text-transform: uppercase;
+}
+
+select {
+    font-size: 0.9rem;
+    padding: 0.3rem 1.6rem;
+    border-radius: 5px;
+}
+
+input[type="text"] {
+    border-radius: 5px;
+}
+
+/* end label and select styles */
+
+
+#textField {
+    text-align: center;
+    margin-top: 1.4rem;
+    letter-spacing: 0.1rem;
+    color: var(--color-dark);
+}
+
+
 /* .navbar .buttons a {
     color: var(--color-light);
     text-decoration: none;

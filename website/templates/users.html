@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<style>
+    .main {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="main">
+    <nav class="navbar">
+        <div class="logo">MedKorea</div>
+        <div class="buttons">
+            <a href="{{ url_for('search_page')}}">Search</a>
+            <a href="{{ url_for('login')}}">Login</a>
+            <a href="{{ url_for('verify_page')}}">Register</a>
+        </div>
+    </nav>
+    <h1>User Page</h1>
+    {% if username %}
+    <p>Hello, {{ username }} You are already logged in.</p>
+    <a href>Logout</a>
+    {% else %}
+    <p>You are not logged in. Please <a href="{{ url_for('login')}}">login</a>
+        to
+        access the user page.</p>
+    {% endif %}
+
+    <div class="container-4"></div>
+    <footer class="footer">
+        <p class="explore-text">Feel free to explore our resources and reach
+            out if you have any questions. We're dedicated to supporting
+            your health journey!
+        </p>
+        <!-- Social media icons below the footer -->
+        <div class="footer-icons" style="margin-top: 0px;">
+            <a href="https://www.facebook.com" target="_blank"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i
+                    class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://github.com" target="_blank"><i
+                    class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="copy">&copy; 2024 MedKorea. All right
+            reserved. Uicons by <a
+                href="https://www.flaticon.com/uicons">Flaticon</a></p>
+    </footer>
+</main>
+
+{% endblock %}
