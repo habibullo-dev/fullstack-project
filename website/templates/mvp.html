@@ -16,35 +16,35 @@
     <main>
         <nav class="navbar">
             <div class="navLogo">
-                <img class="siteLogo" src="../static/images/logoInWhite.png" alt="">
+                <img class="siteLogo" src="../static/images/logoInWhite.png" alt>
                 <div class="logo">MedKorea</div>
             </div>
             <div class="buttons">
                 <a href="{{ url_for('home')}}">Home</a>
                 <a href="{{ url_for('login')}}">Login</a>
                 <a href="{{ url_for('verify_page')}}">Register</a>
+                <a href="{{ url_for('about_us')}}">About</a>
             </div>
         </nav>
-
         <div class="searchBackground">
             <div class="searchBar">
                 <!-- New Form for the search input-->
                 <form id="searchForm" method="POST" action="/search_input">
                     <select name="city" id="citySelect">
-                        <option value="">Select a city</option>
+                        <option value>Select a city</option>
                         <option value="seoul">Seoul</option>
                         <option value="busan">Busan</option>
                         <!-- Add more city options as needed -->
                     </select>
                     <select name="expertise" id="expertSelect">
-                        <option value="">Select an expertise</option>
+                        <option value>Select an expertise</option>
                         <option value="general">General practice</option>
                         <option value="dentist">Dentistry</option>
                         <option value="other">Others</option>
                         <!-- Add more expertise options as needed -->
                     </select>
                     <select name="type" id="typeSelect">
-                        <option value="">Facility Type</option>
+                        <option value>Facility Type</option>
                         <option value="general">Hospital</option>
                         <option value="dentist">Clinic</option>
                         <!-- Add more expertise options as needed -->
@@ -58,18 +58,37 @@
 
         <div class="container">
             <div class="cards">
-                <div class="card">
+                <div class="doctor card">
                     <div class="left">
                         <div class="hospL">
                             <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
                         </div>
+                        <p class="rating">3.5/5</p>
                     </div>
-                    <div class="facility card">
-                        <div class="left">
-                            <div class="hospL">
-                                <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
-                            </div>
-                            <p class="rating">3.5/5</p>
+                    <div class="middle">
+                        <h2 class="nameElem">Dr. Name</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">Expertise</p>
+                            <p class="hospLocation">Hospital Name</p>
+                        </div>
+                        <div class="blurb">
+                            <p>Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="doctor card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
+                        </div>
+                        <p class="rating">3.5/5</p>
+                    </div>
+                    <div class="middle">
+                        <h2 class="nameElem">Dr. Name</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">Expertise</p>
+                            <p class="hospLocation">Hospital Name</p>
                         </div>
                         <div class="blurb">
                             <p>Lorem ipsum dolor sit amet, consectetur
@@ -78,7 +97,7 @@
                     </div>
                     <!-- Add more cards here if needed -->
                 </div>
-                <div class="card">
+                <div class="doctor card">
                     <div class="left">
                         <div class="hospL">
                             <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
@@ -86,18 +105,19 @@
                         <p class="rating">3.5/5</p>
                     </div>
                     <div class="middle">
-                        <h2>Dr. Eden</h2>
+                        <h2 class="nameElem">Dr. Name</h2>
                         <div class="hospInfo">
-                            <p class="hospName">Eden Hospital</p>
-                            <p class="hospLocation">Yangju, Seoul</p>
+                            <p class="hospName">Expertise</p>
+                            <p class="hospLocation">Hospital Name</p>
                         </div>
                         <div class="blurb">
                             <p>Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit.</p>
                         </div>
                     </div>
+                    <p class="rating">3.5/5</p>
                 </div>
-                <div class="card">
+                <div class="facility card">
                     <div class="left">
                         <div class="hospL">
                             <img class="hospLogo" src="../static/images/logoInBlue.png" alt="Hospital Logo">
@@ -105,10 +125,10 @@
                         <p class="rating">3.5/5</p>
                     </div>
                     <div class="middle">
-                        <h2>Dr. Habi</h2>
+                        <h2 class="nameElem" style="font-size: 1.8rem;">Facility Name</h2>
                         <div class="hospInfo">
-                            <p class="hospName">Habi Hospital</p>
-                            <p class="hospLocation">Incheon, Seoul</p>
+                            <p class="hospAddress">Address</p>
+                            <p class="hospPhone">Phone Number</p>
                         </div>
                         <div class="blurb">
                             <p>Lorem ipsum dolor sit amet, consectetur
@@ -116,28 +136,29 @@
                         </div>
                     </div>
                 </div>
-                <!-- Add more cards here if needed -->
             </div>
-
             <div class="selectedCard">
                 <div class="top">
                     <h1 class="drName">Dr. Nina</h1>
                     <img class="drImg" src="../static/images/drnina.jpg" alt="Doctor image">
                 </div>
-                <div id="searchResults"></div>
+                <!-- Comment out search results -->
+                <div id="searchResults" style="display: none;"></div>
+                <!-- coment out search Result -->
                 <div class="mainInfo">
                     <h3>About</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing
                         elit.</p>
                     <h3>Hospital Information</h3>
                     <div class="hospDetails">
-                        <h4>Hospital Name: </h4>
-                        <p>Hospital Nina</p>
-                        <h4>Phone Number: </h4>
-                        <p>021 345 6789</p>
-                        <h4>Address: </h4>
-                        <address>123 Nina Street, Seoul Forest,
-                            Seoul</address>
+                        <h4>Hospital Name:</h4>
+                        <p class="hospName"></p>
+                        <h4>Specialization:</h4>
+                        <p class="hospExpert"></p>
+                        <h4>Address:</h4>
+                        <p class="hospAddress"></p>
+                        <h4>Phone:</h4>
+                        <p class="hospPhone"></p>
                     </div>
                     <div class="buttonWrap">
                         <button id="apptBook">Book an appointment</button>
@@ -147,7 +168,8 @@
         </div>
 
         <footer class="footer">
-            <p class="explore-text">Feel free to explore our resources and reach
+            <p class="explore-text">Feel free to explore our resources and
+                reach
                 out if you have any questions. We're dedicated to supporting
                 your health journey!
             </p>
@@ -164,7 +186,6 @@
                 reserved.</p>
         </footer>
     </main>
-
     <script src="../static/server.js"></script>
 </body>
 

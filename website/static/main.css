@@ -298,7 +298,6 @@ video {
 } */
 /* end container-2 */
 
-<<<<<<< HEAD
 
 /* Container-3 */
 .container-3 {
@@ -313,11 +312,11 @@ video {
 }
 
 .subscribe-card {
-    width: 100%; 
+    width: 100%;
 }
 
 .subscribe-content {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 2.3rem 0;
@@ -329,8 +328,10 @@ video {
 }
 
 
-.subscribe-newsletter, .subscribe-form {
-    flex-basis: 50%; /* Each takes up half the width */
+.subscribe-newsletter,
+.subscribe-form {
+    flex-basis: 50%;
+    /* Each takes up half the width */
     padding: 10px;
 }
 
@@ -352,10 +353,12 @@ video {
 }
 
 input[type="text"] {
-    margin-left: 12rem;
-    width: 60%; 
-    padding: 10px; /* Adjust padding */
-    border-radius: 15px; /* Optional: adjust border radius */
+    margin-left: 15rem;
+    width: 60%;
+    padding: 10px;
+    /* Adjust padding */
+    border-radius: 15px;
+    /* Optional: adjust border radius */
     background-color: transparent;
     border: 2px solid var(--color-light);
 }
@@ -369,15 +372,17 @@ input[type="text"]::placeholder {
 
 .btn-subscribe {
     position: absolute;
-    right: 35px; /* Position the button to the right of the input */
+    right: 35px;
+    /* Position the button to the right of the input */
     top: 50%;
-    transform: translateY(-50%); /* Vertically center the button */
-    padding: 8px 12px; 
+    transform: translateY(-50%);
+    /* Vertically center the button */
+    padding: 8px 12px;
     border: none;
     background-color: var(--color-light);
     color: #002965;
-    border-radius: 15px; 
-    cursor: pointer; 
+    border-radius: 15px;
+    cursor: pointer;
     text-transform: uppercase;
 }
 
@@ -387,6 +392,3 @@ input[type="text"]::placeholder {
 }
 
 /* container-3 */
-=======
-/* End icons */
->>>>>>> c3c9ef591bd0f1c10b9f2b323cc9e1acb45de554
