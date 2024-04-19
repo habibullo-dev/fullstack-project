@@ -109,9 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Function to populate the cards on the left side
                 function populateCards(data) {
-                    // Identify the card elements
+                    // Identify the card elements for the left side
                     const doctorCards = document.querySelectorAll('.doctor.card');
                     const facilityCard = document.querySelector('.facility.card');
+
 
                     // Populate doctor cards
                     if (data.Doctors && data.Doctors.length > 0) {
@@ -135,6 +136,12 @@ document.addEventListener('DOMContentLoaded', function () {
                             // and appearing on the cover of a book or in an advertisement.
 
                             card.querySelector('.blurb').textContent = `This is the official information of '${doctor.Name}'. Please click the card for additional inquiry!`;
+
+                            // Add click event listener for each card
+                            card.addEventListener('click', () => {
+                                // Call function to populate the right card with full data of the selected doctor
+                                updateRightCard(doctor);
+                            })
                         }
                     }
 
@@ -149,13 +156,28 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
 
+                // Function to populate the right card with full data of the selected doctor
+                function updateRightCard(doctor) {
+                    const selectedCard = document.querySelector('.selectedCard'); // Right card
+
+                    // Populate the right card with the doctor's information
+                    selectedCard.querySelector('.drName').textContent = doctor.Name;
+                    selectedCard.querySelector('.hospCompany').textContent = doctor.Company;
+                    selectedCard.querySelector('.hospExpertise').textContent = doctor.Expertise;
+                    selectedCard.querySelector('.hospAddresses').textContent = `Address: ${doctor.Address}`;
+                    selectedCard.querySelector('.hospPhones').textContent = `Phone: ${doctor.Phone}`;
+                    selectedCard.querySelector('.blurbs').innerHTML = `
+                        This is the official information of '${doctor.Name}'. 
+                        For more information, please contact the provided email or ${doctor.Phone}.
+                    `;
+                }
+
                 // After receiving the response data from the server
                 // Call the function to populate cards
                 populateCards(data);
 
 
                 //Add event listener for the cards on the left and when click it will populate the data on the card on right side (.selectedCard)
-
 
 
                 // We do not need this code, we keep it only because the code might not work
@@ -225,117 +247,3 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener to the form submission
     searchForm.addEventListener('submit', performSearch);
 });
-
-
-// Old function to fetch all data -> Goes inside the DOMContentLoaded
-
-// // Function to handle the search action
-// function performSearch(e) {
-//     e.preventDefault();
-
-//     // Get input values
-//     const typeValue = typeInput.value.trim();
-//     const cityValue = cityInput.value.trim();
-//     const expertValue = expertInput.value.trim();
-
-//     // Validate inputs
-//     if (!typeValue || !cityValue || !expertValue) {
-//         // searchResults.innerHTML = '<p>Please provide type, city, and expertise.</p>';
-//         textField.innerHTML = '<p>Please provide type, city, and expertise.</p>';
-//         return;
-//     }
-
-//     // Prepare request payload
-//     const requestData = {
-//         type: typeValue,
-//         city: cityValue,
-//         expert: expertValue,
-//     };
-
-//     // Send POST request to the backend
-//     fetch('/search_input', {
-//         method: 'POST',
-//         body: JSON.stringify(requestData),
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     })
-//         .then(response => {
-//             if (!response.ok) {
-//                 console.error(`Network response was not ok: ${ response.status } ${ response.statusText } `);
-//                 // searchResults.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
-//                 textField.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
-//                 return;
-//             }
-//             return response.json();  // Parse JSON response
-//         })
-//         .then(data => {
-//             if (!data) {
-//                 // searchResults.innerHTML = '<p>There was an error processing the response.</p>';
-//                 textField.innerHTML = '<p>There was an error processing the response.</p>';
-//                 return;
-//             }
-
-//             // Clear previous search results
-//             searchResults.innerHTML = '';
-//             textField.innerHTML = '';
-
-//             // Display search results
-//             // searchResults.innerHTML += `< p > Search results for: type: <strong>${typeValue}</strong> in city: <strong>${cityValue}</strong> with expertise: <strong>${expertValue}</strong></ > `;
-//             textField.innerHTML = `< p > Search results for: (Type): <strong>${typeValue}</strong> in (City): <strong>${cityValue}</strong> with (Expertise): <strong>${expertValue}</strong></ > `;
-
-//             // Display doctor results
-//             if (data.Doctors && data.Doctors.length > 0) {
-//                 const doctorsSection = document.createElement('div');
-//                 doctorsSection.innerHTML = '<h3>Doctors:</h3>';
-//                 data.Doctors.forEach(doctor => {
-//                     const doctorDiv = document.createElement('div');
-//                     doctorDiv.innerHTML = `
-//                     Name: ${doctor.Name},
-//                     Expertise: ${doctor.Expertise},
-//                     Company: ${doctor.Company},
-//                     Address: ${doctor.Address},
-//                     Phone: ${doctor.Phone}
-//                 `;
-//                     doctorDiv.style.margin = '1.5rem';
-//                     doctorsSection.appendChild(doctorDiv);
-//                 });
-//                 searchResults.appendChild(doctorsSection);
-//             } else {
-//                 searchResults.innerHTML += '<p>No doctors found matching your criteria.</p>';
-//             }
-
-//             // Display facilities results
-//             if (data.Facilities && data.Facilities.length > 0) {
-//                 const facilitiesSection = document.createElement('div');
-//                 facilitiesSection.innerHTML = '<h3>Facilities:</h3>';
-//                 data.Facilities.forEach(facility => {
-//                     const facilityDiv = document.createElement('div');
-//                     facilityDiv.innerHTML = `
-//                     Name: ${facility.Name},
-//                     Type: ${facility.Type},
-//                     Address: ${facility.Address},
-//                     Phone: ${facility.Phone},
-//                     Emergency: ${facility.Emergency},
-//                     Services: ${facility.Services}
-//                 `;
-//                     facilityDiv.style.margin = '1.5rem';
-//                     facilitiesSection.appendChild(facilityDiv);
-//                 });
-//                 searchResults.appendChild(facilitiesSection);
-//             } else {
-//                 searchResults.innerHTML += '<p>No facilities found matching your criteria.</p>';
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//             // searchResults.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
-//             textField.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
-//         });
-// }
-
-// // Add event listener to the search button
-// searchBtn.addEventListener('click', performSearch);
-
-// // Add event listener to the form submission
-// searchForm.addEventListener('submit', performSearch);

@@ -223,5 +223,5 @@ engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Projec
 #     db.execute(
 #         text("ALTER TABLE Facilities DROP COLUMN ratings")
 #     )
-#     db.commit()
+#     db.commit()  
 #     db.close()

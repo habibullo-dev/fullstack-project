@@ -213,6 +213,11 @@ def search_input():
     return jsonify(filtered_results)
 
 
+# Book an appointment rout
+@app.route('/booking')
+def meeting():
+    return render_template('book.html')
+
 # About page route
 @app.route('/about')
 def about_us():

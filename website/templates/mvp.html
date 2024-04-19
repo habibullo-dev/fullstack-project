@@ -29,7 +29,6 @@
                     <a href="{{ url_for('about_us')}}">About</a>
                 </div>
             </nav>
-            <h1>Hello</h1>
             <div class="searchBackground">
                 <div class="searchBar">
                     <!-- New Form for the search input-->
@@ -62,7 +61,7 @@
 
             <div class="container">
                 <div class="cards">
-                    <div class="doctor card">
+                    <div id="docOne" class="doctor card">
                         <div class="left">
                             <div class="hospL">
                                 <img class="hospLogo"
@@ -83,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="doctor card">
+                    <div id="docTwo" class="doctor card">
                         <div class="left">
                             <div class="hospL">
                                 <img class="hospLogo"
@@ -105,7 +104,7 @@
                         </div>
                         <!-- Add more cards here if needed -->
                     </div>
-                    <div class="doctor card">
+                    <div id="docThree" class="doctor card">
                         <div class="left">
                             <div class="hospL">
                                 <img class="hospLogo"
@@ -149,6 +148,7 @@
                         </div>
                     </div>
                     <!-- Add more cards here if needed -->
+                    <div id="searchResults" style="display: none"></div>
                 </div>
                 <div class="selectedCard">
                     <div class="top">
@@ -156,23 +156,26 @@
                         <img class="drImg" src="../static/images/drnina.jpg"
                             alt="Doctor image">
                     </div>
-                    <!-- Comment out search results -->
-                    <div id="searchResults" style="display: none;"></div>
-                    <!-- coment out search Result -->
                     <div class="mainInfo">
                         <h3>About</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing
                             elit.</p>
                         <h3>Hospital Information</h3>
                         <div class="hospDetails">
+                            <br>
                             <h4>Hospital Name:</h4>
-                            <p class="hospName"></p>
+                            <p class="hospCompany"></p>
+                            <br>
                             <h4>Specialization:</h4>
-                            <p class="hospExpert"></p>
+                            <p class="hospExpertise"></p>
+                            <br>
                             <h4>Address:</h4>
-                            <p class="hospAddress"></p>
+                            <p class="hospAddresses"></p>
+                            <br>
                             <h4>Phone:</h4>
-                            <p class="hospPhone"></p>
+                            <p class="hospPhones"></p>
+                            <br>
+                            <p class="blurbs"></p>
                         </div>
                         <div class="buttonWrap">
                             <button id="apptBook">Book an appointment</button>

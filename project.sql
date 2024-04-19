@@ -70,7 +70,7 @@ SET name = 'Dong-A University Hospital',
 WHERE id = 7;
 
 -- Update the table column for extra stuff
-ALTER TABLE Facilities
+ALTER TABLE Doctors
 ADD ratings VARCHAR(20) NOT NULL;
 
  
