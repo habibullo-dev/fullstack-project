@@ -218,3 +218,10 @@ engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Projec
         # conn.commit()
         # conn.close()
 
+# Delete the ratings column in the Facilities table
+# with engine.begin() as db:
+#     db.execute(
+#         text("ALTER TABLE Facilities DROP COLUMN ratings")
+#     )
+#     db.commit()
+#     db.close()
