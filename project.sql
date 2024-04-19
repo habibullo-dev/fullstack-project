@@ -69,5 +69,9 @@ SET name = 'Dong-A University Hospital',
     emergency = '240-5580'
 WHERE id = 7;
 
+-- Update the table column for extra stuff
+ALTER TABLE Facilities
+ADD ratings VARCHAR(20) NOT NULL;
+
  
 
