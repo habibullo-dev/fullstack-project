@@ -9,6 +9,36 @@ selectDoctor.forEach(function (h2) {
     });
 });
 
+// code to populate info into selected card (on right)
+
+// js for styling clicked listings //
+
+const cards = document.querySelectorAll('.card');
+
+const rootStyles = getComputedStyle(document.documentElement);
+const primaryColor = rootStyles.getPropertyValue('--color-primary').trim();
+const secondaryColor = rootStyles.getPropertyValue('--color-secondary').trim();
+
+let selectedCard = null;
+let originalBorderColor = `3px solid ${primaryColor}`;
+
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        if (!originalBorderColor) {
+            originalBorderColor = getComputedStyle(card).borderColor;
+        }
+
+        if (selectedCard && selectedCard !== card) {
+            selectedCard.style.border = originalBorderColor;
+        }
+
+        card.style.border = `4px solid ${secondaryColor}`;
+        selectedCard = card;
+    });
+});
+
+// js for styling clicked listings end//
+
 
 // code for the search input and fetch data from the backend(Python) with database(MariaDB)
 
