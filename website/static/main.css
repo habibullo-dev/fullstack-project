@@ -26,7 +26,7 @@ body {
 }
 
 .container-1 {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     margin: 0 auto;
     padding: 0;
 }
@@ -143,6 +143,7 @@ a:hover {
 }
 
 .footer .explore-text {
+    padding: 1.2rem;
     margin: 0.8rem 0;
 }
 
@@ -298,40 +299,90 @@ video {
 /* end container-2 */
 
 
-/* Start icons */
-.carousel {
-    min-height: 5vh;
-    background-color: #5078b4;
-    overflow: hidden;
-    margin: auto;
-}
-
-.wrapper {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 7.5rem;
-    justify-items: stretch;
-    animation: scroll 8s linear infinite;
-}
-
-.icons {
+/* Container-3 */
+.container-3 {
     display: flex;
-    padding: 2rem;
-    width: 200%;
+    justify-content: center;
+    background-image: url(../static/images/pexels-artem-podrez-5878504.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
 }
 
-.icons .item {
-    font-size: 2rem;
-    margin-right: 2rem;
+.subscribe-card {
+    width: 100%; 
+}
+
+.subscribe-content {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    margin: 2.3rem 0;
+    padding: 2.1rem 0;
+    text-align: left;
+    border: transparent;
+    border-radius: 20px;
+    color: #002965;
+}
+
+
+.subscribe-newsletter, .subscribe-form {
+    flex-basis: 50%; /* Each takes up half the width */
+    padding: 10px;
+}
+
+.subscribe-newsletter span {
+    font-size: 1.8rem;
+    letter-spacing: 0.2rem;
+}
+
+.subscribe-newsletter h4 {
+    font-size: 2.3rem;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input[type="text"] {
     color: var(--color-light);
-    filter: drop-shadow(2px 2px 4px #92d0cfd0);
 }
 
-@keyframes scroll {
-    to {
-        translate: calc(-3 * 7.5rem);
-    }
+input[type="text"] {
+    margin-left: 12rem;
+    width: 60%; 
+    padding: 10px; /* Adjust padding */
+    border-radius: 15px; /* Optional: adjust border radius */
+    background-color: transparent;
+    border: 2px solid var(--color-light);
+}
+
+input[type="text"]::placeholder {
+    color: var(--color-dark);
+    letter-spacing: 0.2rem;
+    font-weight: 800;
 }
 
 
-/* End icons */
+.btn-subscribe {
+    position: absolute;
+    right: 35px; /* Position the button to the right of the input */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center the button */
+    padding: 8px 12px; 
+    border: none;
+    background-color: var(--color-light);
+    color: #002965;
+    border-radius: 15px; 
+    cursor: pointer; 
+    text-transform: uppercase;
+}
+
+.btn-subscribe:hover {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+
+/* container-3 */

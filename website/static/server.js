@@ -77,6 +77,58 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Display search results
                 textField.innerHTML = `<p>Search results for: (Type): <strong>${typeValue}</strong> in (City): <strong>${cityValue}</strong> with (Expertise): <strong>${expertValue}</strong></p>`;
 
+                // Function to populate the cards on the left side
+                function populateCards(data) {
+                    // Identify the card elements
+                    const doctorCards = document.querySelectorAll('.doctor.card');
+                    const facilityCard = document.querySelector('.facility.card');
+
+                    // Populate doctor cards
+                    if (data.Doctors && data.Doctors.length > 0) {
+                        for (let idx = 0; idx < doctorCards.length; idx++) {
+                            if (idx >= data.Doctors.length) {
+                                break; // Stop if there are no more doctors to display
+                            }
+
+                            const doctor = data.Doctors[idx];
+                            const card = doctorCards[idx];
+
+                            // Populate card with doctor information
+                            card.querySelector('.nameElem').textContent = doctor.Name;
+                            // card.querySelector('.hospName').textContent = doctor.Company;
+                            card.querySelector('.hospInfo').innerHTML = `
+                                <p>Expertise: ${doctor.Expertise}</p>
+                                <p>Hospital: ${doctor.Company}</p>
+                            `;
+
+                            // Blurb => is a kiwi thing and a short description of a book, movie, or other product written for promotional purposes 
+                            // and appearing on the cover of a book or in an advertisement.
+
+                            card.querySelector('.blurb').textContent = `This is the official information of '${doctor.Name}'. Please click the card for additional inquiry!`;
+                        }
+                    }
+
+                    // Populate facility card
+                    if (data.Facilities && data.Facilities.length > 0 && facilityCard) {
+                        const facility = data.Facilities[0]; // Take the first info in the Facility data
+                        // Populate card with facility information
+                        facilityCard.querySelector('.nameElem').textContent = facility.Name;
+                        facilityCard.querySelector('.hospAddress').textContent = `Address: ${facility.Address} `;
+                        facilityCard.querySelector('.hospPhone').textContent = `Phone: ${facility.Phone} `;
+                        facilityCard.querySelector('.blurb').textContent = `This the official data of the '${facility.Name}'. Please select the card for more additional information`;
+                    }
+                }
+
+                // After receiving the response data from the server
+                // Call the function to populate cards
+                populateCards(data);
+
+
+                //Add event listener for the cards on the left and when click it will populate the data on the card on right side (.selectedCard)
+
+
+
+                // We do not need this code, we keep it only because the code might not work
                 // Display doctor results (first 3)
                 if (data.Doctors && data.Doctors.length > 0) {
                     const doctorsSection = document.createElement('div');
@@ -88,12 +140,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (doctorCount >= 3) break;
                         const doctorDiv = document.createElement('div');
                         doctorDiv.innerHTML = `
-                    Name: ${doctor.Name},
-                    Expertise: ${doctor.Expertise},
-                    Company: ${doctor.Company},
-                    Address: ${doctor.Address},
-                    Phone: ${doctor.Phone}
-                `;
+                            Name: ${doctor.Name},
+                            Expertise: ${doctor.Expertise},
+                            Company: ${doctor.Company},
+                            Address: ${doctor.Address},
+                            Phone: ${doctor.Phone}
+                            `;
                         doctorDiv.style.margin = '1.5rem';
                         doctorsSection.appendChild(doctorDiv);
                         doctorCount++;
@@ -115,18 +167,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (facilityCount >= 3) break;
                         const facilityDiv = document.createElement('div');
                         facilityDiv.innerHTML = `
-                    Name: ${facility.Name},
-                    Type: ${facility.Type},
-                    Address: ${facility.Address},
-                    Phone: ${facility.Phone},
-                    Emergency: ${facility.Emergency},
-                    Services: ${facility.Services}
-                `;
+                            Name: ${facility.Name},
+                            Type: ${facility.Type},
+                            Address: ${facility.Address},
+                            Phone: ${facility.Phone},
+                            Emergency: ${facility.Emergency},
+                            Services: ${facility.Services}
+                            `;
                         facilityDiv.style.margin = '1.5rem';
                         facilitiesSection.appendChild(facilityDiv);
                         facilityCount++;
                     }
-
                     searchResults.appendChild(facilitiesSection);
                 } else {
                     searchResults.innerHTML += '<p>No facilities found matching your criteria.</p>';
@@ -137,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 textField.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
             });
     }
+
     // Add event listener to the search button
     searchBtn.addEventListener('click', performSearch);
 
@@ -180,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //     })
 //         .then(response => {
 //             if (!response.ok) {
-//                 console.error(`Network response was not ok: ${response.status} ${response.statusText}`);
+//                 console.error(`Network response was not ok: ${ response.status } ${ response.statusText } `);
 //                 // searchResults.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
 //                 textField.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
 //                 return;
@@ -199,8 +251,8 @@ document.addEventListener('DOMContentLoaded', function () {
 //             textField.innerHTML = '';
 
 //             // Display search results
-//             // searchResults.innerHTML += `<p>Search results for: type: <strong>${typeValue}</strong> in city: <strong>${cityValue}</strong> with expertise: <strong>${expertValue}</strong></p>`;
-//             textField.innerHTML = `<p>Search results for: (Type): <strong>${typeValue}</strong> in (City): <strong>${cityValue}</strong> with (Expertise): <strong>${expertValue}</strong></p>`;
+//             // searchResults.innerHTML += `< p > Search results for: type: <strong>${typeValue}</strong> in city: <strong>${cityValue}</strong> with expertise: <strong>${expertValue}</strong></ > `;
+//             textField.innerHTML = `< p > Search results for: (Type): <strong>${typeValue}</strong> in (City): <strong>${cityValue}</strong> with (Expertise): <strong>${expertValue}</strong></ > `;
 
 //             // Display doctor results
 //             if (data.Doctors && data.Doctors.length > 0) {

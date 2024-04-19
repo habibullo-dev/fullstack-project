@@ -48,3 +48,26 @@ INSERT INTO Facilities (id, name, speaker, type, address, phone, emergency, serv
 (15, 'Cha General Hospital', 'Unknown', 'Hospital', '650-9 Yeoksam-dong, Gangnam-gu, Seoul', '02-3465-3127', '010-4707-9179', '24_hours'),
 (16, 'Gangbuk Samsung Hospital', 'Unknown', 'Hospital', '108 Pyeong-dong, Jonggu-gu, Seoul', '02-2001-1101', '2001-1000', '24_hours'),
 (17, 'Samsung Cheil General Hospital', 'Unknown', 'Hospital', '1-19 Mukjeong-dong, Jung-gu, Seoul', '2000-7000', '02-2000-7062', '24_hours');
+
+
+-- Update table rows for testing purposes
+UPDATE Facilities
+SET name = 'Kang Internal Medicine Clinic',
+    speaker = 'Dr. Kang, Pil-joong',
+    type = 'Clinic',
+    address = '245-3, Bujeon 2-dong, Jin-Ku, Busan',
+    phone = 'Unknown',
+    emergency = '817-2334'
+WHERE id = 1;
+
+UPDATE Facilities
+SET name = 'Dong-A University Hospital',
+    speaker = 'Ms. Kim, Sung-Ah',
+    type = 'Hospital',
+    address = '1, Dongdaesin-dong 3-ga, Seo-gu',
+    phone = '240-2415',
+    emergency = '240-5580'
+WHERE id = 7;
+
+ 
+

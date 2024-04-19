@@ -9,20 +9,23 @@
 <main>
     <nav class="navbar">
         <div class="navLogo">
-            <img class="siteLogo" src="../static/images/logoInWhite.png" alt="">
+            <img class="siteLogo" src="../static/images/logoInWhite.png" alt>
             <div class="logo">MedKorea</div>
         </div>
         <div class="buttons">
             <a href="{{ url_for('search_page')}}">Search</a>
             <a href="{{ url_for('login')}}">Login</a>
             <a href="{{ url_for('verify_page')}}">Register</a>
+            <a href="{{ url_for('about_us')}}">About</a>
         </div>
     </nav>
     <!-- Section 1 - Navigation bar with Picture and Introduction -->
     <div class="container-1">
         <!-- https://www.pexels.com/video/drugs-pill-meds-3922881/ -->
-        <a href="#!" alt="Video by cottonbro studio: Taking Medicine From Its Packaging">
-            <video class="video-1" width="500px" autoplay muted loop>
+        <a href="#!"
+            alt="Video by cottonbro studio: Taking Medicine From Its Packaging">
+            <video class="video-1" width="1200px" height="1200px" autoplay muted
+                loop>
                 <source src="../static/video/medicine.mp4" type="video/mp4">
                 <source src="../static/video/medicine2.webm" type="video/webm">
                 Your browser does not support the video tag.
@@ -45,7 +48,8 @@
         <div class="image-container">
             <div class="image-card">
                 <!-- https://www.pexels.com/photo/3683115/ -->
-                <img src="../static/images/pexels-anna-shvets-3683115.jpg" alt="Medication Pills: Photo by Anna Shvets">
+                <img src="../static/images/pexels-anna-shvets-3683115.jpg"
+                    alt="Medication Pills: Photo by Anna Shvets">
                 <div class="text-overlay-2">
                     <p class="welcome-text">We're thrilled to have you here.</p>
                     <p class="mission-text">Our mission is to connect you with
@@ -69,28 +73,30 @@
             <span class="label">MedKorea</span>
         </div>
     </div>
-    <div class="carousel">
-        <div class="wrapper">
-            <img src="../static/images/pexels-artem-podrez-5878501.jpg" alt="...">
-            <img src="../static/images/pexels-artem-podrez-5878503.jpg" alt="...">
-            <img src="../static/images/pexels-artem-podrez-5878504.jpg" alt="...">
-            <img src="../static/images/pexels-artem-podrez-5878501.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878503.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878504.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878501.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878503.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878504.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878501.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878503.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878504.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878501.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878503.jpg" alt>
-            <img src="../static/images/pexels-artem-podrez-5878504.jpg" alt>
-        </div>
-    </div>
     <div class="bg-image-3">
         <div class="text three">
             <span class="label">MedKorea</span>
+        </div>
+    </div>
+    <div class="container-3">
+        <div class="subscribe-card">
+            <div class="subscribe-content">
+                <div class="subscribe-newsletter">
+                    <span>Our newsletter</span>
+                    <h4>Subscribe now to get</h4>
+                    <h4>more future updates</h4>
+                </div>
+                <div class="subscribe-form">
+                    <form id="subscription">
+                        <div class="input-wrapper">
+                            <input type="text" name="email-fake"
+                                placeholder="Your email address">
+                            <button class="btn-subscribe"
+                                type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Section 4 - Learn more about Korea -->
@@ -102,14 +108,19 @@
         </p>
         <!-- Social media icons below the footer -->
         <div class="footer-icons" style="margin-top: 0px;">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i
+                    class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://github.com" target="_blank"><i
+                    class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
         </div>
         <p class="copy">&copy; 2024 MedKorea. All right
-            reserved. Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></p>
+            reserved.</p>
     </footer>
 </main>
 {% endblock %}
