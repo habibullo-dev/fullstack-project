@@ -35,20 +35,6 @@ nav {
     width: 100px;
 }
 
-/* code for burgermenu */
-.burger-menu {
-    display: none;
-    cursor: pointer;
-}
-
-.line {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
-}
-
-/* end of burgermenu */
 
 btn,
 #Login,
@@ -178,84 +164,6 @@ footer {
     align-items: center;
 }
 
-/* responsiveness for mvp */
-/* MVP - Tablet */
-@media screen and (max-width: 765px) {
-    .cards {
-        width: 300px;
-    }
-
-    h2 {
-        width: 150px;
-        font-size: 30px;
-    }
-
-    .hospLogo {
-        width: 35px;
-        height: 35px;
-    }
-
-    .hospInfo {
-        width: 150px;
-        font-size: 8px;
-    }
-
-    .blurb {
-        width: 180px;
-        margin-top: 20px;
-
-    }
-}
-
-/* MVP - Mobile */
-
-@media screen and (max-width: 600px) {
-
-    .selectedCard {
-        display: none;
-    }
-
-    .burger-menu {
-        display: block;
-    }
-
-    .buttons {
-        display: none;
-    }
-
-    .cards {
-        width: 500px;
-    }
-
-    h2 {
-        width: 300px;
-    }
-
-    .hospInfo {
-        width: 300px;
-    }
-
-    .hospLogo {
-        width: 60px;
-        height: 60px;
-    }
-
-    .blurb {
-        width: 300px;
-    }
-
-    #searchForm {
-        display: flex;
-        flex-direction: column;
-        margin: 50px 0px;
-    }
-
-    footer {
-        font-size: 12px;
-    }
-}
-
-/* End of responsiveness for MVP */
 /* End of CSS for MVP */
 
 /* For landing page */
