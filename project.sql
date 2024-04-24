@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS Users (
     gender VARCHAR(20),
     phone VARCHAR(20),
     allergy VARCHAR (255),
-    condition VARCHAR(255),
+    `condition` VARCHAR(255),
     join_date DATE NOT NULL
 );
 
@@ -79,6 +79,10 @@ WHERE id = 7;
 -- Update the table column for extra stuff
 ALTER TABLE Doctors
 ADD ratings VARCHAR(20) NOT NULL;
+
+ 
+ALTER TABLE Doctors
+ADD availability DATE NOT NULL;
 
  
 
