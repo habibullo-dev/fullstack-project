@@ -205,12 +205,12 @@ def load_data():
          'Services': facility[6]} for facility in facilities_data]
     
     # Combine the data into a dictionary
-    data = {
+    db_data = {
         'Doctors': doctors_dict,
         'Facilities': facilities_dict
     }
     
-    return data
+    return db_data
 
 # Load data once when the application starts
 data = load_data()
@@ -230,6 +230,7 @@ def filter_data(data, search_input, city, expert):
         doctor for doctor in data['Doctors']
         if search_input_lower in doctor['Name'].lower() or
            search_input_lower in doctor['Expertise'].lower() or
+           search_input_lower in doctor['Phone'].lower() or
            city_lower in doctor['Address'].lower() and
            expert_lower in doctor['Expertise'].lower()
     ]
@@ -238,6 +239,9 @@ def filter_data(data, search_input, city, expert):
     filtered_facilities = [
         facility for facility in data['Facilities']
         if search_input_lower in facility['Name'].lower() or
+           search_input_lower in facility['speaker'].lower() or
+           search_input_lower in facility['phone'].lower() or
+           search_input_lower in facility['emergency'].lower() or
            city_lower in facility['Address'].lower() and
            expert_lower in facility['Type'].lower()
     ]
@@ -256,12 +260,11 @@ def search_input():
 
     # Get the search criteria from the request
     search_input = ''
-    type_input = data_request.get('type', '')
     city_input = data_request.get('city', '')
     expert_input = data_request.get('expert', '')
 
     # Validate inputs
-    if not type_input or not city_input or not expert_input:
+    if not city_input or not expert_input:
         return jsonify({'error': 'Invalid input'}), 400
 
     # Filter the data based on the search criteria

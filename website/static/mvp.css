@@ -343,6 +343,30 @@ h3 {
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* book appointment word is wrapped by anchor tag */
+#apptBook a {
+    color:var(--color-light);
+    text-decoration: none;
+}
+
+.showMore {
+    border-radius: 10px;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 0.5rem 0.2rem;
+    margin: 0.8rem auto;
+    width: 150px;
+    font-size: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.showMore:hover {
+    cursor: pointer;
+    box-shadow: #75C9C8 0px 5px 8px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
 
 
 
