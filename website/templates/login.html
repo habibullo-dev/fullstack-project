@@ -3,171 +3,99 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign In Form</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet">
-        <style>
-            :root {
-                --color-primary: #6591d2;
-                --color-secondary: #75C9C8;
-                --color-tertiary: #007bff;
-                --color-dark: #2A2C24;
-                --color-light: whitesmoke;
-            }
-            * {
-                box-sizing: border-box;
-            }
-            body {
-                margin: 0;
-                padding: 0;
-                font-family: "Raleway", sans-serif;
-                overflow: hidden;
-            }
-            .container {
-                min-height: 100vh;
-                display: flex;
-            }
-            .card-left {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 3rem;
-            }
-            #login-form {
-                display: flex;
-                width: 70%;
-                flex-direction: column;
-                text-align: center;
-                margin: 4rem;
-                padding: 5rem;
-                color: var(--color-primary);
-                font-weight: 900;
-            }
-
-            #login-form h1 {
-                font-size: 2.3rem;
-                letter-spacing: 0.6rem;
-            }
-
-            input[type="text"] {
-                padding: 0.8rem 2.5rem;
-                margin: 0.4rem;
-            }
-
-            input[type="text"]::placeholder {
-                font-size: 1.2rem;
-            }
-
-            .remember {
-                margin: 1.2rem;
-                font-size: 1.3rem;
-            }
-
-            p {
-                font-size: 1.4rem;
-            }
-
-            .header {
-                text-align: center;
-            }
-            
-            .card-right {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center;
-                background: var(--color-primary);
-                border: 2px solid var(--color-primary);
-                width: 50%;
-                color: whitesmoke;
-            }
-
-            .btn {
-                background-color: var(--color-primary);
-                padding: 0.5rem 1.5rem;
-                border: 1px solid whitesmoke;
-                border-radius: 10px;
-                color: whitesmoke;
-                text-transform: uppercase;
-                margin-top: 1.3rem;
-            }
-
-            .btn, .btn.btn-1 {
-                transition: all 0.5s ease-out;
-                color: var(--color-light);
-            }
-
-            .btn:hover {
-                transform: scale(1.1);
-                cursor: pointer;
-                background-color: var(--color-secondary);
-                color: var(--color-light);
-            }
-
-            .btn.btn-1:hover {
-                transform: scale(1.1);
-                cursor: pointer;
-                background-color: var(--color-secondary);
-                color: var(--color-light); 
-            }
-
-            .btn-div {
-                margin: 3rem;
-            }
-            .return {
-                color: var(--color-light);
-            }
-            .return a {
-                text-decoration: none;
-            }
-            .header h2 {
-                font-size: 3rem;
-                letter-spacing: 0.6rem;
-            }
-            .header p {
-                font-size: 1.2rem;
-            }
-            .header a {
-                text-decoration: none;
-                color: #2A2C24;
-            }
-            .header {
-                gap: 3rem;
-            }
-            input[type="text"]::placeholder {
-                color: var(--color-primary);
-            }
-        </style>
+        <title>Login Page</title>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../static/index.css">
     </head>
     <body>
+        <!-- Navigation bar -->
+        <div class="nav-div">
+            <nav class="navbar">
+                <div class="navLogo">
+                    <img class="siteLogo" src="../static/images/logoInWhite.png"
+                        alt>
+                    <div class="logo">MedKorea</div>
+                </div>
+                <div class="buttons">
+                    <a href="{{ url_for('home')}}">Home</a>
+                    <a href="{{ url_for('search_page')}}">Search</a>
+                    <a href="{{ url_for('about_us')}}">About</a>
+                </div>
+            </nav>
+        </div>
         <div class="container">
-            <div class="card-left">
-                <form action id="login-form">
-                    <h1>Welcome back!</h1>
-                    <input type="text" class="login" name="login"
-                        placeholder="Login">
-                    <input type="text" class="password" name="password"
-                        placeholder="Password">
+            <!-- Flashed messages -->
+            <div class="messages">
+                {% with messages =
+                get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <ul class="flash-messages">
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">
+                        <span class="message-text">{{ message }}</span>
+                        <button style="cursor: pointer;"
+                            class="dismiss-btn">&times;</button>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div id="login-div">
+                <form action="/login" id="loginForm" method="POST">
+                    <h1>Welcome!</h1>
+                    <div class="user-input">
+                        <label for="username">Username:</label>
+                        <input type="text" class="username" name="username"
+                            placeholder="Username">
+                    </div>
+                    <div class="pass-input">
+                        <label for="password">Password:</label>
+                        <input type="password" class="password" name="password"
+                            placeholder="Password">
+                    </div>
                     <div class="btn-div">
-                        <button class="btn" type="submit">Login</button>
+                        <button class="btn" type="submit">Login</button><br>
                     </div>
                 </form>
             </div>
-            <div class="card-right">
-                <div class="header">
-                    <h2 class="hello">Hello, there!</h2>
-                    <p class="message1">Not a member yet? Sign up
-                        now!</p><br><br>
-                    <a href="{{url_for('verify_page')}}"
-                        class="btn btn-1">Register</a><br><br><br>
-                    <p class="return">{{ go_back | safe }}</p><br>
-                </div>
+            <div class="header">
+                <p class="message1">Not a member yet? <a
+                        href="{{url_for('register')}}"
+                        class="btn btn-1">Register</a>
+                    now!</p>
+                <p class="return">{{ go_back | safe }}</p>
             </div>
         </div>
+
+        <div class="footer-div">
+            <!-- Footer -->
+            <footer class="footer">
+                <p class="explore-text">Feel free to explore our resources and
+                    reach
+                    out if you have any questions. We're dedicated to supporting
+                    your health journey!
+                </p>
+                <!-- Social media icons below the footer -->
+                <div class="footer-icons" style="margin-top: 0px;">
+                    <a href="https://www.facebook.com" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://github.com" target="_blank"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="copy">&copy; 2024 MedKorea. All right
+                    reserved.</p>
+            </footer>
+        </div>
+        <script src="../static/server.js"></script>
     </body>
 </html>

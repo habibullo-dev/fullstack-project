@@ -34,6 +34,13 @@ CREATE TABLE IF NOT EXISTS Users (
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    birth_date DATE, 
+    gender VARCHAR(20),
+    phone VARCHAR(20),
+    allergy VARCHAR (255),
+    condition VARCHAR(255),
     join_date DATE NOT NULL
 );
 

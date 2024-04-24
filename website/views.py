@@ -1,6 +1,7 @@
 from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 import json
 import hashlib
+import datetime
 from sqlalchemy.sql import text
 from website import app, engine
 
@@ -10,26 +11,6 @@ from website import app, engine
 def home():
     return render_template("index.html")
 
-# route for the user page (in session or logged in)
-
-@app.route('/users')
-def user_page():
-    if 'username' in session: # If username in sessions, if yes (user is logged in)
-        return render_template('users.html', username=session['username'])
-    else: 
-        return render_template('users.html') # User not logged in, just pass users page
-    
-# contains the register page with a link to take user into login page
-@app.route('/verify')
-def verify_page():
-    return render_template('verify.html')
-
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     message = ''
-#     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-#         return
-    
 #  To Display Database Project with TABLES Doctors and Facilities
 @app.route('/db_data')
 def db_data():
@@ -42,71 +23,148 @@ def db_data():
     return render_template('db_info.html', doctors=doctors, facilities=facilities)
 
 
-
 # The function below, (hash_password) takes a password, encodes it into UTF-8
 # hashes it using the SHA-256 algorithm from the hashlib library,
 # then returns the hash as a hexadecimal string.
 
+# Hash password for security purposes
 def hash_password(password):
     """Hash a password using SHA-256."""
     hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
     return hashed_password
 
-@app.route('/form', methods=['POST'])
-def register():
-    # Get user input from the form
-    username = request.form.get('username', '')
-    password = request.form.get('password', '')
-    email = request.form.get('email', '')
 
-    # Check if any field is empty
-    if not username or not password or not email:
-        # Determine which fields are missing
-        missing_fields = []
-        if not username:
-            missing_fields.append('Username')
-        if not password:
-            missing_fields.append('Password')
-        if not email:
-            missing_fields.append('Email')
-        
-        # Flash an error message with the list of missing fields
-        flash(f"Missing fields: {', '.join(missing_fields)}", "error")
+def verify_password(input_password, hashed_password):
+    """Verify if the input password matches the stored hashed password."""
+    # Hash the input password provided during login
+    hashed_input_password = hashlib.sha256(input_password.encode('utf-8')).hexdigest()
 
-        # Redirect the user back to the form page
-        return redirect(url_for('verify_page'))
-        # return redirect(url_for('home'))
-    
-    # statement  below that calls hash_password(password) hashes the provided password
-    # stores the result in the hashed_password variable for later use 
-    #           (saving to a database or checking against stored passwords during login)
+    # For debugging, print the hashed passwords
+    # print("Input Password Hash:", hashed_input_password)
+    # print("Stored Password Hash:", hashed_password)
 
-    # Hash the password using SHA-256
-    hashed_password = hash_password(password)
-    
-    # To-Do: Save the user data to the database or perform any other actions
+    return hashed_input_password == hashed_password
+
+
+# Add user to the database
+def add_user(username, hashed_password, email, first_name, last_name, birth_date, gender, phone, allergy, condition):
+    # Get the current date and time
+    join_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # Start a new connection with database
     with engine.begin() as conn:
-        conn.execute(
-            text("INSERT INTO Users(username, password, email) VALUES (:username, :password, :email)"), 
-            {"username": username, "password": hashed_password, "email": email}
+        # Execute the INSERT statement using parameterized query
+        res = conn.execute(
+        text("INSERT INTO Users(username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, join_date) VALUES (:username, :password, :email, :first_name, :last_name, :birth_date, :gender, :phone, :allergy, :condition, :join_date)"),
+        {"username": username, "password": hashed_password, "email": email, "first_name": first_name, "last_name": last_name, "birth_date": birth_date, "gender": gender, "phone": phone, "allergy": allergy, "condition": condition, "join_date": join_date}
+    )
+        # Check if the data is inserted
+        # If the 'rowcount' is greater than 0, we have a successful insertion of the data from register page
+        return res.rowcount > 0
+
+# Retrieve user info from the database
+def get_user(username):
+    with engine.connect() as conn:
+        res = conn.execute(
+            text("SELECT * FROM Users WHERE username = :username"),
+            {"username": username}
         )
-
-        # Flash a success message
-        flash("Registration successful!", "success")
-
-        # Redirect the user to the home page or another page
-        return redirect(url_for('valid'))
+        return res.fetchone() # fetch one row from db
 
 # route for the login page
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    # params = {
-    #     'user': request.form.get('username', ''),
-    #     'pass': request.form.get('password', '')
-    # }
-    go_back = f'<p>Or <strong><a href="{url_for("home")}">click here</a></strong> to go back to home page</p>'
+    if request.method == 'POST':
+        username = request.form.get('username', '')
+        password = request.form.get('password', '')
+
+        user = get_user(username)
+        # breakpoint() #stop the code (debugger)
+
+        if user:
+            stored_password = user[2] #user['password'] // coming in as tuple
+            if verify_password(password, stored_password):
+                session['username'] = username
+                # app.logger.info(f"User '{username}' logged in successfully.")
+                flash('Login Successful!', category='success')
+                return redirect(url_for('user_page'))
+            else:
+                # app.logger.warning(f"Failed login attempt for user '{username}' - Incorrect password {password}.")
+                flash('Incorrect username or password. Please try again!', category='error')
+        else:
+            # app.logger.warning(f"Failed login attempt - User '{username}' does not exist and Password does not exist {password}.")
+            flash('User does not exist. Please go to the registration page to create an account.', category='error')
+
+    go_back = f'<p>Or <strong><a href="{url_for("home")}">click here</a></strong> to go back to the home page</p>'
     return render_template('login.html', go_back=go_back)
 
+
+# contains the register page with a link to take user into login page
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+
+    # Handle registration
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
+        birth_date = request.form.get('birth_date')
+        gender = request.form.get('gender')
+        allergy = request.form.get('allergy')
+        condition = request.form.get('condition')
+
+        # Check if email already exists
+        registered_email = get_user(email)
+        if registered_email:
+            flash('Email is already registered. Please use a different email address.', category='error')
+        
+        #Validate form  inputs
+        if len(email) < 4:
+            flash('Email must be greater than 4 characters.', category='error')
+        elif len(username) < 5:
+            flash('Username must be at least 5 characters long.', category='error')
+        elif len(first_name) < 2:
+            flash('First name must be at least 2 characters long.', category='error')
+        elif len(last_name) < 2:
+            flash('Last_name must be at least 2 characters long.', category='error')
+        elif len(phone) < 9:
+            flash('Phone number must be at least 9 characters long.', category='error')
+        elif len(password) < 5:
+            flash('Password must be greater than 5 characters long.', category='error')
+        else:
+            # Hash the password using SHA-256
+            hashed_password = hash_password(password)
+
+             # Add the new user to the database
+            result = add_user(username, hashed_password, email, first_name, last_name, birth_date, gender, phone, allergy, condition)
+            if result:
+                flash('Registration is successful. Account is created!', category='success')
+                return redirect(url_for('register')) # This will redirect the user to the booking page after registration
+            else:
+                flash('Registration failed. Please continue trying.', category='error')
+            
+    return render_template('register.html')
+
+# route for the user page (accessible only if user is logged in)
+@app.route('/users')
+def user_page():
+    # Render the user page. 
+    if 'username' in session: # If username in sessions, if yes (user is logged in)
+        return render_template('users.html', username=session['username'])
+    else: 
+         return redirect(url_for('home'))  # User not logged in, redirect to home page
+        # return render_template('users.html') # User not logged in, just pass users page
+
+
+# route for the logout page
+@app.route('/logout')
+def logout():
+    session.clear()  # Clear the session data
+    session.pop('username', None) # remove the username from the session if it is there
+    flash('You have been logged out.', category='success') # Flash a message for logging out
+    return render_template('logout.html')
 
 
 # Route to take you to the mvp page
@@ -212,11 +270,6 @@ def search_input():
     # Return the filtered results as JSON
     return jsonify(filtered_results)
 
-
-# Book an appointment rout
-@app.route('/booking')
-def meeting():
-    return render_template('book.html')
 
 # About page route
 @app.route('/about')

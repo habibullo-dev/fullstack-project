@@ -97,7 +97,7 @@ body {
     padding: 2rem; 
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], input[type="password"] {
     padding: 0.8rem 2.5rem;
     margin: 0.4rem;
     background: var(--color-light);
@@ -107,7 +107,7 @@ input[type="text"], input[type="email"] {
     border: none;
 }
 
-input[type="text"]::placeholder, input[type="email"]::placeholder {
+input[type="text"]::placeholder, input[type="email"]::placeholder, input[type="password"]::placeholder {
     color: var(--color-primary);
     position: relative;
     font-size: 1.2rem;

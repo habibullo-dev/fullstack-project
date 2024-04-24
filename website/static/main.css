@@ -58,6 +58,26 @@ a:hover {
     text-decoration: underline;
 }
 
+/* styles for login page */
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.btn {
+    font-size: 1.3rem;
+    width: 250px;
+}
+
 /* styles for navbar */
 .navbar {
     display: flex;
@@ -353,7 +373,7 @@ video {
 }
 
 input[type="text"] {
-    margin-left: 15rem;
+    margin-left: 18rem;
     width: 60%;
     padding: 10px;
     /* Adjust padding */
@@ -372,16 +392,16 @@ input[type="text"]::placeholder {
 
 .btn-subscribe {
     position: absolute;
-    right: 35px;
+    right: 40px;
     /* Position the button to the right of the input */
     top: 50%;
     transform: translateY(-50%);
     /* Vertically center the button */
-    padding: 8px 12px;
+    padding: 10px;
     border: none;
     background-color: var(--color-light);
     color: #002965;
-    border-radius: 15px;
+    border-radius: 12px;
     cursor: pointer;
     text-transform: uppercase;
 }

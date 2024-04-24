@@ -1,0 +1,289 @@
+/*Styling for the index.html or the landing page */
+
+/* Oswald Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+/* css variables */
+:root {
+    --color-primary: #4d78b8;
+    --color-secondary: #75C9C8;
+    --color-tertiary: #144e8b;
+    --color-dark: #2A2C24;
+    --color-light: whitesmoke;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+}
+
+.container-1 {
+    /* min-height: 100vh; */
+    margin: 0 auto;
+    padding: 0;
+}
+
+h1 {
+    color: #0056b3;
+}
+
+h2 {
+    color: #007acc;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* styles for login page */
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.btn {
+    font-size: 1.3rem;
+    width: 250px;
+}
+
+/* styles for navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primary);
+    padding: 0.8rem;
+    color: white;
+}
+
+.siteLogo {
+    height: 50px;
+    width: 50px;
+    margin-right: 1rem;
+}
+
+.navLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .buttons {
+    display: flex;
+}
+
+.navbar .buttons a {
+    color: var(--color-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid var(--color-light);
+    margin-left: 1rem;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+    text-decoration: none;
+}
+
+.navbar .buttons a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+/* styles for the footer */
+.footer {
+    background-color: #f5f5f5;
+    padding: 0.3rem;
+    text-align: center;
+    bottom: 0;
+    background-color: var(--color-primary);
+    color: #f5f5f5;
+}
+
+.footer .footer-icons {
+    margin: 1rem;
+    transition: all 0.5s ease-out;
+}
+
+.footer .footer-icons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.footer .footer-icons a {
+    margin: 0 1rem;
+    color: #f5f5f5;
+    text-decoration: none;
+}
+
+.footer .footer-icons a:hover {
+    color: var(--color-secondary);
+}
+
+.copy {
+    margin-top: 1rem;
+}
+
+.footer .explore-text {
+    padding: 1.2rem;
+    margin: 0.8rem 0;
+}
+
+/* styles for flash messages */
+.flash-messages {
+    list-style: none;
+    padding: 0;
+}
+
+.flash-messages li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.flash-messages .success {
+    /* background-color: #d4edda; */
+    color: #155724;
+    font-size: 1.5rem;
+}
+
+.flash-messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.message-text {
+    margin-right: 10px;
+}
+
+.dismiss-btn {
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* register page container / wrapper */
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.btn {
+    font-size: 1.3rem;
+    width: 250px;
+}
+
+/* container for login page */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add styles for Logout page */
+
+/* User dashboard page */
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.message {
+    font-size: 3rem;
+}
+
+.message:hover {
+    cursor: pointer;
+}
+
+/* input[type="submit"] {
+    font-size: 1.4rem;
+    bottom: 2px solid #000;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+} */
+#logOut {
+    display: inline; /* Display the form inline */
+}
+
+#logOut input[type="submit"] {
+    background-color: #0056b3; 
+    border: none; 
+    color: white; 
+    padding: 10px 20px; 
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    transition-duration: 0.4s; 
+}
+
+#logOut input[type="submit"]:hover {
+    background-color: #45a049; 
+    cursor: pointer;
+}
+
+
+/* About page styles */
+.container-1 {
+    min-height: 100vh;
+    margin: 0 auto;
+    margin: 4rem;
+    overflow: hidden;
+}

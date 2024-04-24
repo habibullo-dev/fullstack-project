@@ -9,6 +9,31 @@ selectDoctor.forEach(function (h2) {
     });
 });
 
+// This code is for handling flash messages (error or success) for flask 
+
+// Add event listener to the parent element to handle clicks on dismiss buttons
+document.addEventListener('DOMContentLoaded', function () {
+    let flashMsg = document.querySelector('.flash-messages');
+
+    // Function to hide the flash message after a delay
+    function hideFlashMessage(msgElem) {
+        setTimeout(function () {
+            msgElem.style.display = 'none';
+        }, 3000); // Adjust the time delay as needed (in milliseconds)
+    }
+
+    flashMsg.addEventListener('click', function (evt) {
+        let msgElem = evt.target.parentElement;
+        msgElem.style.display = 'none';
+    });
+
+    // Hide flash messages automatically after a delay
+    let flashMessages = document.querySelectorAll('.flash-messages li');
+    flashMessages.forEach(function (msgElem) {
+        hideFlashMessage(msgElem);
+    });
+});
+
 // code to populate info into selected card (on right)
 
 // js for styling clicked listings //
@@ -164,8 +189,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     selectedCard.querySelector('.drName').textContent = doctor.Name;
                     selectedCard.querySelector('.hospCompany').textContent = doctor.Company;
                     selectedCard.querySelector('.hospExpertise').textContent = doctor.Expertise;
-                    selectedCard.querySelector('.hospAddresses').textContent = `Address: ${doctor.Address}`;
-                    selectedCard.querySelector('.hospPhones').textContent = `Phone: ${doctor.Phone}`;
+                    selectedCard.querySelector('.hospAddresses').textContent = `${doctor.Address}`;
+                    selectedCard.querySelector('.hospPhones').textContent = `${doctor.Phone}`;
                     selectedCard.querySelector('.blurbs').innerHTML = `
                         This is the official information of '${doctor.Name}'. 
                         For more information, please contact the provided email or ${doctor.Phone}.

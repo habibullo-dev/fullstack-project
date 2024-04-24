@@ -5,8 +5,139 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Register & Login Form</title>
         <link rel="stylesheet" href="../static/styles.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <style>
+        :root {
+                --color-primary: #4d78b8;
+                --color-secondary: #75C9C8;
+                --color-tertiary: #007bff;
+                --color-dark: #2A2C24;
+                --color-light: whitesmoke;
+            }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #0056b3;
+        }
+
+        h2 {
+            color: var(--color-light);
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* styles for navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--color-primary);
+            padding: 0.8rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navLogo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .siteLogo {
+            height: 50px;
+            width: 50px;
+            margin-right: 1rem;
+        }
+
+        .navbar .buttons {
+            display: flex;
+        }
+
+        .navbar .buttons a {
+            color: var(--color-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid var(--color-light);
+            margin-left: 1rem;
+            border-radius: 5px;
+            transition: all 0.5s ease-out;
+            text-decoration: none;
+        }
+
+        .navbar .buttons a:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+
+        /* styles for the footer */
+        .footer {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            text-align: center;
+            bottom: 0;
+            background-color: var(--color-primary);
+            color: #f5f5f5;
+            margin-top: 1rem;
+        }
+
+        .footer .footer-icons {
+            margin: 2rem;
+            transition: all 0.5s ease-out;
+        }
+
+        .footer .footer-icons:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .footer .footer-icons a {
+            margin: 0 1rem;
+            color: #f5f5f5;
+            text-decoration: none;
+        }
+
+        .footer .footer-icons a:hover {
+            color: #333;
+        }
+        .copy {
+            margin-top: 2rem;
+        }
         .btn {
             transition: all 0.5s ease-out;
             text-decoration: none;
@@ -20,21 +151,76 @@
         .link {
             color: #2A2C24;
         }
+        /* Flashed messages styles */
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .flash-messages {
+            list-style-type: none;
+            padding: 10px;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .flash-messages li {
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .flash-messages .error {
+             color: #d9534f;
+        }
+
+        .flash-messages .success {
+            color: #5cb85c;
+        }
+
+        .card-left {
+            display: flex;
+            flex-direction: column;
+        }
+        .wrapper-1 {
+            margin:0;
+            padding: 0;
+            overflow: hidden;
+        }
 </style>
     <body>
-        <div class="container">
-
-            <!-- Loop to display flash messages -->
-            {% with messages = get_flashed_messages(with_categories=True) %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                {{ message }}
+    </nav>
+    <div class="wrapper-1">
+        <!-- Navigation bar -->
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png"
+                    alt>
+                <div class="logo">MedKorea</div>
             </div>
-            {% endfor %}
-            {% endwith %}
-
-            <!-- form content -->
-            <div class="card-left">
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('user_page')}}">Account</a>
+                <a href="{{ url_for('verify_page')}}">About</a>
+            </div>
+        </div>
+        <div class="container">
+                <!-- Flashed messages -->
+                <div class="messages">
+                    {% with messages =
+                    get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <ul class="flash-messages">
+                        {% for category, message in messages %}
+                        <li class="{{ category }}">
+                            <span class="message-text">{{ message }}</span>
+                            <button style="cursor: pointer;"
+                                class="dismiss-btn">&times;</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <!-- form content -->
                 <div class="card-box">
                     <span class="lineBorder"></span>
                     <form method="POST" action="/register" id="registerForm"
@@ -42,10 +228,12 @@
                         <h1>Create account</h1>
                         <input type="text" class="username" name="username"
                             placeholder="Username" required>
-                        <input type="text" class="password" name="password"
+                        <input type="password" class="password" name="password"
                             placeholder="Password" required>
                         <input placeholder="Email" name="email" class="email"
                             type="email" required>
+                        <input type="text" class="phone" name="phone"
+                            placeholder="Phone number">
                         <div class="btn-div">
                             <button class="btn register"
                                 type="submit">Register</button>
@@ -72,6 +260,55 @@
                 </div>
             </div>
         </div>
+        <div class="wrapper-2">
+            <!-- Footer -->
+            <footer class="footer">
+                <p class="explore-text">Feel free to explore our resources and
+                    reach
+                    out if you have any questions. We're dedicated to supporting
+                    your health journey!
+                </p>
+                <!-- Social media icons below the footer -->
+                <div class="footer-icons" style="margin-top: 0px;">
+                    <a href="https://www.facebook.com" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://github.com" target="_blank"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="copy">&copy; 2024 MedKorea. All right
+                    reserved.</p>
+            </footer>
+        </div>
     </body>
-    <link rel="stylesheet" href="../static/server.js">
+    <script src="../static/server.js"></script>
+    <script>
+    // Add event listener to the parent element to handle clicks on dismiss buttons
+    document.addEventListener('DOMContentLoaded', function () {
+        let flashMsg = document.querySelector('.flash-messages');
+
+        // Function to hide the flash message after a delay
+        function hideFlashMessage(msgElem) {
+            setTimeout(function() {
+                msgElem.style.display = 'none';
+            }, 3000); // Adjust the time delay as needed (in milliseconds)
+        }
+
+        flashMsg.addEventListener('click', function(evt) {
+            let msgElem = evt.target.parentElement;
+            msgElem.style.display = 'none';
+        });
+
+        // Hide flash messages automatically after a delay
+        let flashMessages = document.querySelectorAll('.flash-messages li');
+        flashMessages.forEach(function(msgElem) {
+            hideFlashMessage(msgElem);
+        });
+    });
+    </script>
 </html>

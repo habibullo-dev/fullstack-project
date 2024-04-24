@@ -9,163 +9,26 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
             integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-        :root {
-                --color-primary: #4d78b8;
-                --color-secondary: #75C9C8;
-                --color-tertiary: #007bff;
-                --color-dark: #2A2C24;
-                --color-light: whitesmoke;
-            }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
-        }
-
-        .container {
-            min-height: 100vh;
-            margin: 0 auto;
-            gap: 2.5rem;
-            border: 2px solid tomato;
-            overflow: hidden;
-        }
-
-        h1 {
-            color: #0056b3;
-        }
-
-        h2 {
-            color: #007acc;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* styles for navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--color-primary);
-            padding: 0.8rem;
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .navLogo {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .siteLogo {
-            height: 50px;
-            width: 50px;
-            margin-right: 1rem;
-        }
-
-        .navbar .buttons {
-            display: flex;
-        }
-
-        .navbar .buttons a {
-            color: var(--color-light);
-            text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid var(--color-light);
-            margin-left: 1rem;
-            border-radius: 5px;
-            transition: all 0.5s ease-out;
-            text-decoration: none;
-        }
-
-        .navbar .buttons a:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-light);
-            transform: scale(1.1);
-            cursor: pointer;
-        }
-
-        /* styles for the footer */
-        .footer {
-            background-color: #f5f5f5;
-            padding: 1rem;
-            text-align: center;
-            bottom: 0;
-            background-color: var(--color-primary);
-            color: #f5f5f5;
-            margin-top: 1rem;
-        }
-
-        .footer .footer-icons {
-            margin: 2rem;
-            transition: all 0.5s ease-out;
-        }
-
-        .footer .footer-icons:hover {
-            transform: scale(1.1);
-            cursor: pointer;
-        }
-
-        .footer .footer-icons a {
-            margin: 0 1rem;
-            color: #f5f5f5;
-            text-decoration: none;
-        }
-
-        .footer .footer-icons a:hover {
-            color: #333;
-        }
-        .copy {
-            margin-top: 2rem;
-        }
-        </style>
+        <link rel="stylesheet" href="../static/index.css">
     </head>
     <body>
-        <div class="container">
-            <!-- Navigation bar -->
-            <nav class="navbar">
-                <div class="navLogo">
-                    <img class="siteLogo" src="../static/images/logoInWhite.png"
-                        alt>
-                    <div class="logo">MedKorea</div>
-                </div>
-                <div class="buttons">
-                    <a href="{{ url_for('search_page')}}">Search</a>
-                    <a href="{{ url_for('login')}}">Login</a>
-                    <a href="{{ url_for('verify_page')}}">Register</a>
-                    <a href="{{ url_for('home')}}">Home</a>
-                </div>
-            </nav>
-
+        <!-- Navigation bar -->
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png"
+                    alt>
+                <div class="logo">MedKorea</div>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('user_page')}}">Account</a>
+                <a href="{{ url_for('register')}}">Register</a>
+            </div>
+        </nav>
+        <div class="container-1">
             <!-- Content body here -->
             <h1>About Us</h1>
-            <p>Welcome to 'website_name'!</p>
+            <p style="font-size: 1.4rem;">Welcome to MedKorea!</p>
             <p>{{ intro}}</p>
 
             <h2>Our Mission</h2>
@@ -179,31 +42,36 @@
             <h2>Contact Us</h2>
             <p>We value your feedback and are here to assist you. If you have
                 any questions or concerns, please don't hesitate to contact us
-                at <a href="mailto:contact@example.com">contact@example.com</a>.
-                Let us know how we can better serve you.</p>
+                at <a
+                    href="mailto:contact@medkorea.com">contact@medkorea.com</a></p>
 
-            <p>Thank you for choosing 'website_name' for your healthcare needs
+            <p>Thank you for choosing <strong>MedKorea</strong> for your
+                healthcare needs
                 in
                 South Korea!</p>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <!-- Social media icons below the footer -->
-                <div class="footer-icons">
-                    <a href="https://www.facebook.com" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.twitter.com" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://github.com" target="_blank"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                </div>
-                <p class="copy">&copy; 2024 Website name. All right
-                    reserved.</p>
-            </footer>
         </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons" style="margin-top: 0px;">
+                <a href="https://www.facebook.com" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 MedKorea. All right
+                reserved.</p>
+        </footer>
     </body>
 </html>
