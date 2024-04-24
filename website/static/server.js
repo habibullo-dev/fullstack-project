@@ -272,3 +272,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener to the form submission
     searchForm.addEventListener('submit', performSearch);
 });
+
+// function for burgermenu//
+function toggleMenu() {
+    const menu = document.querySelector('.buttons');
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 600) {
+        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    }
+}
+// burgermenu function END//
