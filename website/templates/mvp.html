@@ -132,7 +132,6 @@
                                     src="../static/images/logoInBlue.png"
                                     alt="Hospital Logo">
                             </div>
-                            <p class="rating">3.5/5</p>
                         </div>
                         <div class="middle">
                             <h2 class="nameElem"
@@ -173,13 +172,23 @@
                             <h4>Phone:</h4>
                             <p class="hospPhones"></p>
                             <br>
+                            <h4>Rating:</h4>
+                            <p class="hospRating"></p>
+                            <br>
                             <p class="blurbs"></p>
                         </div>
                         <div class="buttonWrap">
+                            {% if 'username' in session %}
                             <button id="apptBook"><a
-                                    href="{{url_for('register')}}">Book an
+                                    href="{{ url_for('user_page') }}">Book an
                                     appointment</a></button>
+                            {% else %}
+                            <button id="apptBook"><a
+                                    href="{{ url_for('login') }}">Book an
+                                    appointment</a></button>
+                            {% endif %}
                         </div>
+
                     </div>
                 </div>
             </div>

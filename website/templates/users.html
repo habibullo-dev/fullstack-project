@@ -13,14 +13,18 @@
     <body>
         <main class="main">
             <nav class="navbar">
-                <div class="logo">MedKorea</div>
+                <div class="navLogo">
+                    <img class="siteLogo" src="../static/images/logoInWhite.png"
+                        alt>
+                    <div class="logo">MedKorea</div>
+                </div>
                 <div class="buttons">
                     <a href="{{ url_for('home')}}">Home</a>
                     <a href="{{ url_for('search_page')}}">Search</a>
                     <a href="{{ url_for('about_us')}}">About</a>
                 </div>
             </nav>
-            <h1>Welcome to your dashboard</h1>
+            <h1>My Account</h1>
             <!-- flash messages -->
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -36,7 +40,13 @@
 
             <!-- regular Jinja template  -->
             {% if username %}
-            <p class="message">Hello {{ username }}, You are logged in.</p>
+            <p class="message">Welcome, {{ username }}. <span
+                    class="msg-span">You are logged
+                    in.</span></p>
+            <p class="message" style="font-size: 1.9rem;"><i
+                    class="fa-solid fa-envelope"></i> {{
+                email
+                }}</p>
             <form id="logOut" action="/logout" method="GET">
                 <input type="submit" value="Logout">
             </form>
@@ -71,6 +81,6 @@
                     reserved</p>
             </footer>
         </main>
-        <script src="../static/server.js"></script>
+        <script src="../static/index.js"></script>
     </body>
 </html>

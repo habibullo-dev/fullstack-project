@@ -1,207 +1,208 @@
-// code for the search input and fetch data from the backend(Python) with database(MariaDB)
+// Code for the mvp page without the button to click and create new div cards
 
+// code for the search input and fetch data from the backend(Python) with database(MariaDB)
 document.addEventListener('DOMContentLoaded', function () {
-    const searchForm = document.querySelector('#searchForm');
-    const typeInput = document.querySelector('#typeSelect');
-    const cityInput = document.querySelector('#citySelect');
     const expertInput = document.querySelector('#expertSelect');
+    const cityInput = document.querySelector('#citySelect');
     const searchBtn = document.querySelector('#searchButton');
-    const searchResults = document.querySelector('#searchResults');
     const textField = document.querySelector('#textField');
 
-    if (!searchForm || !typeInput || !cityInput || !expertInput || !searchBtn || !searchResults) {
-        console.error('One or more required elements were not found in the document.');
+    if (!expertInput || !cityInput || !searchBtn) {
+        console.error('One or more required elements were not found in the document.')
         return;
     }
 
-    // New function to fetch at least first 3 data
-    function performSearch(e) {
-        e.preventDefault();
+    // Function to fetch data from the backend
+    function performSearch(evt) {
+        evt.preventDefault();
 
         // Get input values
-        const typeValue = typeInput.value.trim();
-        const cityValue = cityInput.value.trim();
         const expertValue = expertInput.value.trim();
+        const cityValue = cityInput.value.trim();
 
         // Validate inputs
-        if (!typeValue || !cityValue || !expertValue) {
-            textField.innerHTML = '<p>Please provide type, city, and expertise.</p>';
+        if (!cityValue || !expertValue) {
+            textField.innerHTML = '<p>Please provide city and expertise.</p>';
             return;
         }
 
-        // Prepare request payload
+        // Prepare the request payload
         const requestData = {
-            type: typeValue,
             city: cityValue,
-            expert: expertValue,
+            expert: expertValue
         };
 
-        // Send POST request to the backend
+        // Send a POST request to the backend using fetch
         fetch('/search_input', {
             method: 'POST',
             body: JSON.stringify(requestData),
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
         })
             .then(response => {
                 if (!response.ok) {
                     console.error(`Network response was not ok: ${response.status} ${response.statusText}`);
-                    textField.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
-                    return;
                 }
-                return response.json();  // Parse JSON response
+                return response.json();
             })
             .then(data => {
                 if (!data) {
-                    textField.innerHTML = '<p>There was an error processing the response.</p>';
-                    return;
+                    console.error('Empty response received from the server.');
                 }
-
-                // Clear previous search results
-                searchResults.innerHTML = '';
-                textField.innerHTML = '';
 
                 // Display search results
-                textField.innerHTML = `<p>Search results for: (Type): <strong>${typeValue}</strong> in (City): <strong>${cityValue}</strong> with (Expertise): <strong>${expertValue}</strong></p>`;
+                textField.innerHTML = `<p>Search results for: (Type): <strong>${expertValue}</strong> in (City): <strong>${cityValue}</strong></p>`;
 
-                // Function to populate the cards on the left side
-                function populateCards(data) {
-                    // Identify the card elements for the left side
-                    const doctorCards = document.querySelectorAll('.doctor.card');
-                    const facilityCard = document.querySelector('.facility.card');
+                // Clear Previous search results after 3 seconds
+                setTimeout(() => {
+                    textField.innerHTML = '';
+                }, 3000)
 
-
-                    // Populate doctor cards
-                    if (data.Doctors && data.Doctors.length > 0) {
-                        for (let idx = 0; idx < doctorCards.length; idx++) {
-                            if (idx >= data.Doctors.length) {
-                                break; // Stop if there are no more doctors to display
-                            }
-
-                            const doctor = data.Doctors[idx];
-                            const card = doctorCards[idx];
-
-                            // Populate card with doctor information
-                            card.querySelector('.nameElem').textContent = doctor.Name;
-                            // card.querySelector('.hospName').textContent = doctor.Company;
-                            card.querySelector('.hospInfo').innerHTML = `
-                                <p>Expertise: ${doctor.Expertise}</p>
-                                <p>Hospital: ${doctor.Company}</p>
-                            `;
-
-                            // Blurb => is a kiwi thing and a short description of a book, movie, or other product written for promotional purposes 
-                            // and appearing on the cover of a book or in an advertisement.
-
-                            card.querySelector('.blurb').textContent = `This is the official information of '${doctor.Name}'. Please click the card for additional inquiry!`;
-
-                            // Add click event listener for each card
-                            card.addEventListener('click', () => {
-                                // Call function to populate the right card with full data of the selected doctor
-                                updateRightCard(doctor);
-                            })
-                        }
-                    }
-
-                    // Populate facility card
-                    if (data.Facilities && data.Facilities.length > 0 && facilityCard) {
-                        const facility = data.Facilities[0]; // Take the first info in the Facility data
-                        // Populate card with facility information
-                        facilityCard.querySelector('.nameElem').textContent = facility.Name;
-                        facilityCard.querySelector('.hospAddress').textContent = `Address: ${facility.Address} `;
-                        facilityCard.querySelector('.hospPhone').textContent = `Phone: ${facility.Phone} `;
-                        facilityCard.querySelector('.blurb').textContent = `This the official data of the '${facility.Name}'. Please select the card for more additional information`;
-                    }
-                }
-
-                // Function to populate the right card with full data of the selected doctor
-                function updateRightCard(doctor) {
-                    const selectedCard = document.querySelector('.selectedCard'); // Right card
-
-                    // Populate the right card with the doctor's information
-                    selectedCard.querySelector('.drName').textContent = doctor.Name;
-                    selectedCard.querySelector('.hospCompany').textContent = doctor.Company;
-                    selectedCard.querySelector('.hospExpertise').textContent = doctor.Expertise;
-                    selectedCard.querySelector('.hospAddresses').textContent = `${doctor.Address}`;
-                    selectedCard.querySelector('.hospPhones').textContent = `${doctor.Phone}`;
-                    selectedCard.querySelector('.blurbs').innerHTML = `
-                        This is the official information of '${doctor.Name}'. 
-                        For more information, please contact the provided email or ${doctor.Phone}.
-                    `;
-                }
-
-                // After receiving the response data from the server
-                // Call the function to populate cards
+                // Populate cards
                 populateCards(data);
 
-
-                //Add event listener for the cards on the left and when click it will populate the data on the card on right side (.selectedCard)
-
-
-                // We do not need this code, we keep it only because the code might not work
-                // Display doctor results (first 3)
-                if (data.Doctors && data.Doctors.length > 0) {
-                    const doctorsSection = document.createElement('div');
-                    doctorsSection.innerHTML = '<h3>Doctors:</h3>';
-
-                    // Display up to 3 doctors
-                    let doctorCount = 0;
-                    for (const doctor of data.Doctors) {
-                        if (doctorCount >= 3) break;
-                        const doctorDiv = document.createElement('div');
-                        doctorDiv.innerHTML = `
-                            Name: ${doctor.Name},
-                            Expertise: ${doctor.Expertise},
-                            Company: ${doctor.Company},
-                            Address: ${doctor.Address},
-                            Phone: ${doctor.Phone}
-                            `;
-                        doctorDiv.style.margin = '1.5rem';
-                        doctorsSection.appendChild(doctorDiv);
-                        doctorCount++;
-                    }
-
-                    searchResults.appendChild(doctorsSection);
-                } else {
-                    searchResults.innerHTML += '<p>No doctors found matching your criteria.</p>';
-                }
-
-                // Display facilities results (first 3)
-                if (data.Facilities && data.Facilities.length > 0) {
-                    const facilitiesSection = document.createElement('div');
-                    facilitiesSection.innerHTML = '<h3>Facilities:</h3>';
-
-                    // Display up to 3 facilities
-                    let facilityCount = 0;
-                    for (const facility of data.Facilities) {
-                        if (facilityCount >= 3) break;
-                        const facilityDiv = document.createElement('div');
-                        facilityDiv.innerHTML = `
-                            Name: ${facility.Name},
-                            Type: ${facility.Type},
-                            Address: ${facility.Address},
-                            Phone: ${facility.Phone},
-                            Emergency: ${facility.Emergency},
-                            Services: ${facility.Services}
-                            `;
-                        facilityDiv.style.margin = '1.5rem';
-                        facilitiesSection.appendChild(facilityDiv);
-                        facilityCount++;
-                    }
-                    searchResults.appendChild(facilitiesSection);
-                } else {
-                    searchResults.innerHTML += '<p>No facilities found matching your criteria.</p>';
-                }
+                // Create more cards
+                createCard(data);
             })
             .catch(error => {
-                console.error('Error:', error);
-                textField.innerHTML = '<p>There was an error fetching the data. Please try again later.</p>';
+                console.error('Error fetching or processing data:', error);
+                textField.innerHTML = `<p>${error.message}</p>`;
+                setTimeout(() => {
+                    textField.innerHTML = '';
+                }, 3000);
             });
     }
+
+    // Function to populate cards
+    function populateCards(data) {
+        const doctorCards = document.querySelectorAll('.doctor.card');
+        const facilityCard = document.querySelector('.facility.card');
+
+        // Populate doctor cards
+        if (data.Doctors && data.Doctors.length > 0) {
+            for (let idx = 0; idx < doctorCards.length && idx < data.Doctors.length; idx++) {
+                const doctor = data.Doctors[idx];
+                const card = doctorCards[idx];
+
+                // Populate card with doctor information
+                card.querySelector('.nameElem').textContent = doctor.Name;
+                card.querySelector('.hospInfo').innerHTML = `
+                    <p>Expertise: ${doctor.Expertise}</p>
+                    <p>Hospital Name: ${doctor.Company}</p>
+                `;
+                card.querySelector('.blurb').textContent = `This is the official information of '${doctor.Name}'. Please click the card for additional inquiry!`;
+
+                // Add click event listener for each card
+                card.addEventListener('click', () => {
+                    // Call function to populate the right card with full data of the selected doctor
+                    updateRightCard(doctor);
+                });
+            }
+        }
+
+        // Populate facility card
+        if (data.Facilities && data.Facilities.length > 0 && facilityCard) {
+            const facility = data.Facilities[0];
+            // Populate card with facility information
+            facilityCard.querySelector('.nameElem').textContent = facility.Name;
+            facilityCard.querySelector('.hospAddress').textContent = `Address: ${facility.Address}`;
+            facilityCard.querySelector('.hospPhone').textContent = `Phone: ${facility.Phone}`;
+            facilityCard.querySelector('.blurb').textContent = `This the official data of the '${facility.Name}'. Please select the card for more additional information`;
+        }
+    }
+
+    // Function to populate the right card with full data of the selected doctor
+    function updateRightCard(doctor) {
+        const selectedCard = document.querySelector('.selectedCard');
+        // Populate the right card with the doctor's information
+        selectedCard.querySelector('.drName').textContent = doctor.Name;
+        selectedCard.querySelector('.hospCompany').textContent = doctor.Company;
+        selectedCard.querySelector('.hospExpertise').textContent = doctor.Expertise;
+        selectedCard.querySelector('.hospAddresses').textContent = `${doctor.Address}`;
+        selectedCard.querySelector('.hospPhones').textContent = `${doctor.Phone}`;
+        selectedCard.querySelector('.blurbs').innerHTML = `
+            This is the official information of '${doctor.Name}'. 
+            For more information, please contact the provided email or ${doctor.Phone}.
+        `;
+    }
+
+    // Function to create more Div / Cards for doctors(3) and facility(1)
+    function createCard(data) {
+        const cardsContainer = document.querySelector('.cards');
+
+        // Create doctor cards
+        if (data.Doctors && data.Doctors.length > 0) {
+            for (let idx = 0; idx < data.Doctors.length; idx++) {
+                const doctor = data.Doctors[idx];
+                const doctorCard = document.createElement('div');
+                doctorCard.classList.add('doctor', 'card');
+                doctorCard.innerHTML = `
+                <div class='left'>
+                    <div class='hospL'>
+                        <img class='hospLogo' src='../static/images/logoInBlue.png' alt='Hospital Logo'>
+                    </div>
+                    <p class='rating'>3.5/5</p>
+                </div>
+                <div class='middle'>
+                    <h2 class='nameElem'>${doctor.Name}</h2>
+                    <div class='hospInfo'>
+                        <p class='hospName'>Expertise: ${doctor.Expertise}</p>
+                        <p class='hospLocation'>Hospital: ${doctor.Address}</p>
+                    </div>
+                    <div class='blurb'>
+                        <p>This is the official information of ${doctor.Name}. Please click the card for additional inquiry!</p>
+                    </div>
+                </div>
+                `;
+
+                // Add click event listener for each card
+                doctorCard.addEventListener('click', () => {
+                    updateRightCard(doctor);
+                });
+                cardsContainer.appendChild(doctorCard);
+            }
+        }
+
+        // Create Facility Card
+        if (data.Facilities && data.Facilities.length > 0) {
+            const facility = data.Facilities[0]; // facility 
+            console.log(facility);
+            const facilityCard = document.createElement('div');
+            facilityCard.classList.add('facility', 'card');
+            facilityCard.innerHTML = `
+                <div class='left'>
+                    <div class='hospL'>
+                        <img class='hospLogo' src='../static/images/logoInBlue.png' alt='Hospital Logo'>
+                    </div>
+                    <p class='rating'>3.5/5</p>
+                </div>
+                <div class='middle'>
+                    <h2 class='nameElem' style='font-size:1.8rem;'>${facility.Name}</h2>
+                    <div class='hospInfo'>
+                        <p class='hospAddress'>Address: ${facility.Address}</p>
+                        <p class='hospPhone'>Phone: ${facility.Phone}</p>
+                    </div>
+                    <div class='blurb'>
+                        <p>This is the official data of the ${facility.Name}. Please select the card for more additional information</p>
+                    </div>
+                </div>
+            `;
+            cardsContainer.appendChild(facilityCard);
+        }
+    }
+    // Perform the search again to fetch more data
+    // Call the function to fetch and create new cards
+    const showBtn = document.querySelector('.showMore');
+    // Add event listener to the 'More' Button
+    showBtn.addEventListener('click', performSearch);
 
     // Add event listener to the search button
     searchBtn.addEventListener('click', performSearch);
 
     // Add event listener to the form submission
     searchForm.addEventListener('submit', performSearch);
+
+    // Scroll to the bottom of the page when it loads
+    window.scrollTo(0, document.body.scrollHeight);
 });

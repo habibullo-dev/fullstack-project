@@ -29,15 +29,16 @@
             border: 2px solid black;
             padding: 10px;
         }
-        .tr-1 th, .tr-2 th {
+        .tr-1 th, .tr-2 th, .tr-3 th {
             background-color: #0C0C0C;
             color: #EEEEEE;
             border-right: 2px solid #EEEEEE;
         }
-        .tr-1 th:last-child, .tr-2 th:last-child {
+        .tr-1 th:last-child, .tr-2 th:last-child, 
+        .tr-3 th:last-child {
             border-right: 2px solid #0C0C0C;
         }
-        .doc, .facil {
+        .doc, .facil, .user {
             text-align: center;
             letter-spacing: 0.3rem;
             text-transform: uppercase;
@@ -55,6 +56,8 @@
                     <th>Company</th>
                     <th>Address</th>
                     <th>Phone</th>
+                    <th>Ratings</th>
+                    <th>Availability</th>
                 </tr>
                 {% for doctor in doctors %}
                 <tr>
@@ -63,6 +66,8 @@
                     <td>{{ doctor[2] }}</td>
                     <td>{{ doctor[3] }}</td>
                     <td>{{ doctor[4] }}</td>
+                    <td>{{ doctor[5] }}</td>
+                    <td>{{ doctor[6] }}</td>
                 </tr>
                 {% endfor %}
             </table>
@@ -89,7 +94,38 @@
                     <td>{{ facility[6] }}</td>
                 </tr>
                 {% endfor %}
-            </table>
-        </div>
-    </body>
-</html>
+
+                <table>
+                    <h2 class="user">Users</h2>
+                    <tr class="tr-3">
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Birth Date</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                        <th>Allergy</th>
+                        <th>Condition</th>
+                        <th>Date Joined</th>
+                    </tr>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                        <td>{{ user[2] }}</td>
+                        <td>{{ user[3] }}</td>
+                        <td>{{ user[4] }}</td>
+                        <td>{{ user[5] }}</td>
+                        <td>{{ user[6] }}</td>
+                        <td>{{ user[7] }}</td>
+                        <td>{{ user[8] }}</td>
+                        <td>{{ user[9] }}</td>
+                        <td>{{ user[10] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </body>
+    </html>
