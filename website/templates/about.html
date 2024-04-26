@@ -1,77 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>About Us</title>
-        <!-- Font Awesome CDN for icons -->
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="../static/index.css">
-    </head>
-    <body>
-        <!-- Navigation bar -->
-        <nav class="navbar">
-            <div class="navLogo">
-                <img class="siteLogo" src="../static/images/logoInWhite.png"
-                    alt>
-                <div class="logo">MedKorea</div>
-            </div>
-            <div class="buttons">
-                <a href="{{ url_for('home')}}">Home</a>
-                <a href="{{ url_for('user_page')}}">Account</a>
-                <a href="{{ url_for('register')}}">Register</a>
-            </div>
-        </nav>
-        <div class="container-1">
-            <!-- Content body here -->
-            <h1>About Us</h1>
-            <p style="font-size: 1.4rem;">Welcome to MedKorea!</p>
-            <p>{{ intro}}</p>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/index.css">
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="navLogo">
+            <img class="siteLogo" src="../static/images/logoInWhite.png" alt>
+            <div class="logo">MedKorea</div>
+        </div>
+        <div class="buttons">
+            <a href="{{ url_for('home')}}">Home</a>
+            <a href="{{ url_for('user_page')}}">Account</a>
+            <a href="{{ url_for('register')}}">Register</a>
+        </div>
+    </nav>
+    <div class="container-1">
+        <!-- Content body here -->
+        <div class="about1">
+            <h1>About Us</h1>
+            <p style="font-size: 1.6rem;">Welcome to MedKorea!</p>
+            <p>{{ intro}}</p>
+        </div>
+
+        <div class="about2">
             <h2>Our Mission</h2>
             <p>{{ mission }}</p>
+        </div>
 
+        <div class="about3">
             <h2>Our Commitment</h2>
             <p>{{ commit }}</p>
+        </div>
 
+        <div class="about4">
             <h2>What We Offer</h2>
+        </div>
 
+        <div class="about5">
             <h2>Contact Us</h2>
             <p>We value your feedback and are here to assist you. If you have
                 any questions or concerns, please don't hesitate to contact us
-                at <a
-                    href="mailto:contact@medkorea.com">contact@medkorea.com</a></p>
+                at <a href="mailto:contact@medkorea.com">contact@medkorea.com</a></p>
+        </div>
 
+        <div class="about6">
             <p>Thank you for choosing <strong>MedKorea</strong> for your
                 healthcare needs
                 in
                 South Korea!</p>
         </div>
-        <!-- Footer -->
-        <footer class="footer">
-            <p class="explore-text">Feel free to explore our resources and
-                reach
-                out if you have any questions. We're dedicated to supporting
-                your health journey!
-            </p>
-            <!-- Social media icons below the footer -->
-            <div class="footer-icons" style="margin-top: 0px;">
-                <a href="https://www.facebook.com" target="_blank"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i
-                        class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="https://github.com" target="_blank"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-            </div>
-            <p class="copy">&copy; 2024 MedKorea. All right
-                reserved.</p>
-        </footer>
-    </body>
+
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="explore-text">Feel free to explore our resources and
+            reach
+            out if you have any questions. We're dedicated to supporting
+            your health journey!
+        </p>
+        <!-- Social media icons below the footer -->
+        <div class="footer-icons" style="margin-top: 0px;">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="copy">&copy; 2024 MedKorea. All right
+            reserved.</p>
+    </footer>
+</body>
+
 </html>

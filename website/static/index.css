@@ -208,8 +208,8 @@ a:hover {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 #loginForm {
@@ -230,6 +230,116 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* register.html styling */
+
+.inputForm {
+    margin: 0 auto;
+    background-color: var(--color-primary);
+    padding: 30px;
+    border-radius: 20px;
+    width: 500px;
+
+}
+
+/* .inputForm input[type='text'],
+.inputForm input[type='password'],
+.inputForm input[type='email'],
+.inputForm input[type='date'],
+.inputForm input[type='tel'] {
+    margin-left: 5rem;
+} */
+
+label {
+    color: var(--color-light);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.username-input,
+.password-input,
+.email-input,
+.first-input,
+.last-input,
+.radio-input,
+.dob-input,
+.phone-input,
+.allergies-input,
+.conditions {
+    margin: 0px 4px;
+    padding: 0px 4px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+
+#username,
+#password,
+#email,
+#birthDate,
+#phone,
+.firstName,
+.lastName,
+.allergy,
+.condition {
+    width: 250px;
+    border: 1.5px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 8px 4px;
+    margin-left: auto;
+}
+
+fieldset {
+    width: 250px;
+    border: var(--color-primary);
+    border-radius: 10px;
+}
+
+legend {
+    color: var(--color-light);
+}
+
+.gLabel input[type="radio"] {
+    margin: 0 0.5rem;
+}
+
+/* .radio-input {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5.4rem;
+    flex-direction: row;
+    justify-content: flex-start;
+} */
+
+/* #genderLabel { */
+/* margin-: 3rem; */
+/* text-align: left;
+    letter-spacing: 0.2rem; */
+/* border: 2px solid red; */
+/* Adjust the value as needed */
+/* } */
+
+.btn.register {
+    padding: 8px 12px;
+    border: 1.5px solid var(--color-light);
+    border-radius: 5px;
+    margin: 2rem;
+    background-color: var(--color-primary);
+    font-family: "Oswald", sans-serif;
+    color: var(--color-light);
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.5s ease-out;
+    text-decoration: none;
+}
+
+.btn.register:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 /* Add styles for Logout page */
@@ -282,9 +392,111 @@ a:hover {
 
 
 /* About page styles */
+
+
+
 .container-1 {
     min-height: 100vh;
-    margin: 0 auto;
-    margin: 4rem;
+    /* margin: 0 auto; */
     overflow: hidden;
+    background-color: var(--color-light);
 }
+
+.container-1 h2 {
+    font-size: 30px;
+}
+
+.container-1 p {
+    margin: 20px 150px;
+    font-size: 1.1rem;
+}
+
+.about1 h1 {
+    font-size: 45px;
+    margin-top: 0px;
+}
+
+.about5 h2 {
+    border: #0056b3 3px solid;
+    width: auto;
+    text-align: left;
+    padding-left: 10rem;
+}
+
+.about1 {
+    padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border: 2px solid red;
+    width: 100%;
+    height: 600px;
+    background-image: url('./images/stethDesk.jpg');
+    background-size: cover;
+    background-position: center;
+    /* Center the background image */
+    /* background-image: #; */
+    /* background-color: var(--color-primary); */
+}
+
+.about2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border: 2px solid blue;
+    /* background-image: #; */
+    /* background-color: var(--color-primary); */
+}
+
+.about3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border: 2px solid orange;
+    width: 100%;
+    height: 600px;
+    background-image: url('./images/bandage.jpg');
+    background-size: cover;
+    background-position: center;
+    /* background-image: #; */
+    /* background-color: var(--color-primary); */
+}
+
+.about4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border: 2px solid green;
+    width: 100%;
+    height: 600px;
+    background-image: url('./images/medicalBlocks.jpg');
+    background-size: cover;
+    background-position: center;
+    /* background-image: #; */
+    /* background-color: var(--color-primary); */
+}
+
+.about5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border: 2px solid purple;
+    /* background-image: #; */
+    /* background-color: var(--color-primary); */
+}
+
+.about6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border: 2px solid cyan;
+    width: 100%;
+    height: 600px;
+    background-image: url('./images/stethBlue.jpg');
+    background-size: 100%;
+    background-position: center;
+    /* background-image: #; */
+    /* background-color: var(--color-primary); */
+}
+
+/* styling for about.html END */

@@ -1,21 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-    /* --color-primary: #00ADB5;
+  /* --color-primary: #00ADB5;
     --color-secondary: #42bac1;
     --color-tertiary: #028466; */
-    /* --color-extra: #007bff; */
-    --color-primary: #547ab3;
-    --color-secondary: #75C9C8;
-    --color-tertiary: #007bff;
-    --color-dark: #2A2C24;
-    --color-light: whitesmoke;
+  /* --color-extra: #007bff; */
+  --color-primary: #547ab3;
+  --color-secondary: #75C9C8;
+  --color-tertiary: #007bff;
+  --color-dark: #2A2C24;
+  --color-light: whitesmoke;
 }
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
+
 body {
-    margin: 0;
-    font-family: "Raleway", sans-serif;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
 }
 
 /* Styling for the custom error pages */
@@ -33,7 +36,9 @@ body {
   font-size: 3rem;
 }
 
-.error-title, .error-message, .error-parag {
+.error-title,
+.error-message,
+.error-parag {
   color: var(--color-primary);
   letter-spacing: 0.2rem;
 }
@@ -47,132 +52,137 @@ body {
 
 
 .container {
-    min-height: 100vh;
-    display: flex;
+  min-height: 100vh;
+  display: flex;
 }
 
 .card-left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.2rem;
-    background-color: var(--color-light);
-    border: 1px solid var(--color-primary);
-    width: 50%;
-    color: var(--color-light);
-} 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  background-color: var(--color-light);
+  border: 1px solid var(--color-primary);
+  width: 50%;
+  color: var(--color-light);
+}
 
 
 .card-box {
-    position: relative;
-    background-color: var(--color-primary);
-    color: var(--color-light);
-    border: 2px solid var(--color-light);
-    border-radius: 8px;
-    height: 420px;
-    width: 380px;
-    overflow: hidden; 
+  position: relative;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border: 2px solid var(--color-light);
+  border-radius: 8px;
+  height: 420px;
+  width: 380px;
+  overflow: hidden;
 }
 
 .card-right {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--color-primary);
-    color: var(--color-light);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-primary);
+  color: var(--color-light);
 }
 
 
 #registerForm {
-    position: absolute;
-    inset: 4px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin: auto; 
-    padding: 2rem; 
+  position: absolute;
+  inset: 4px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  padding: 2rem;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
-    padding: 0.8rem 2.5rem;
-    margin: 0.4rem;
-    background: var(--color-light);
-    width: 100%; 
-    position: relative;
-    border-radius: 5px;
-    border: none;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.8rem 2.5rem;
+  margin: 0.4rem;
+  background: var(--color-light);
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+  border: none;
 }
 
-input[type="text"]::placeholder, input[type="email"]::placeholder, input[type="password"]::placeholder {
-    color: var(--color-primary);
-    position: relative;
-    font-size: 1.2rem;
-    background: transparent;
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: var(--color-primary);
+  position: relative;
+  font-size: 1.2rem;
+  background: transparent;
 }
 
 .card-box input[type="text"]:focus {
-  border-color: 2px solid #007bff; 
-  transition: border-color 0.3s ease-in-out; 
+  border-color: 2px solid #007bff;
+  transition: border-color 0.3s ease-in-out;
 }
 
 .card-box input[type="text"] {
   border: 1px solid #ccc;
-  transition: border-color 0.3s ease-in-out; 
+  transition: border-color 0.3s ease-in-out;
 }
 
 
 .btn {
-    background-color: var(--color-light);
-    padding: 0.5rem 1.5rem;
-    border: 1px solid var(--color-primary);
-    border-radius: 10px;
-    color: var(--color-primary);
-    text-transform: uppercase;
-    cursor: pointer;
+  background-color: var(--color-light);
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .btn:hover {
-    background-color: var(--color-primary);
-    color: var(--color-light);
-    border: 2px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border: 2px solid var(--color-secondary);
 }
 
 .btn.login {
-    margin: 1.3rem 0;
+  margin: 1.3rem 0;
 }
 
-h1, h2 {
-    color: var(--color-light);
-    text-align: center;
+h1,
+h2 {
+  color: var(--color-light);
+  text-align: center;
 }
 
 .welcome {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.3rem;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.3rem;
 }
 
 p {
-    font-size: 0.9rem;
-    letter-spacing: 0.125rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.125rem;
 }
 
 .header {
-    text-align: center;
+  text-align: center;
 }
 
 .btn.register {
-    margin-top: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .link {
-    text-decoration: none;
-    color: var(--color-dark);
-    font-weight: 800;
+  text-decoration: none;
+  color: var(--color-dark);
+  font-weight: 800;
 }
 
 /* Media Queries for Responsiveness */
@@ -181,13 +191,14 @@ p {
   .container {
     flex-direction: column;
   }
-  
-  .card-left, .card-right {
-    width: 100%; 
+
+  .card-left,
+  .card-right {
+    width: 100%;
   }
-  
+
   #registerForm {
-    padding: 3rem; 
+    padding: 3rem;
   }
 }
 
@@ -196,14 +207,18 @@ p {
     flex-direction: column;
     justify-content: space-between;
   }
-  input[type="text"], input[type="email"] {
+
+  input[type="text"],
+  input[type="email"] {
     font-size: 0.9rem;
   }
+
   .btn {
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
   }
-  .card-left, .card-right {
-    width: 100%; 
+
+  .card-left,
+  .card-right {
+    width: 100%;
   }
 }
-
