@@ -9,31 +9,6 @@ selectDoctor.forEach(function (h2) {
     });
 });
 
-// This code is for handling flash messages (error or success) for flask 
-
-// Add event listener to the parent element to handle clicks on dismiss buttons
-document.addEventListener('DOMContentLoaded', function () {
-    let flashMsg = document.querySelector('.flash-messages');
-
-    // Function to hide the flash message after a delay
-    function hideFlashMessage(msgElem) {
-        setTimeout(function () {
-            msgElem.style.display = 'none';
-        }, 3000); // Adjust the time delay as needed (in milliseconds)
-    }
-
-    flashMsg.addEventListener('click', function (evt) {
-        let msgElem = evt.target.parentElement;
-        msgElem.style.display = 'none';
-    });
-
-    // Hide flash messages automatically after a delay
-    let flashMessages = document.querySelectorAll('.flash-messages li');
-    flashMessages.forEach(function (msgElem) {
-        hideFlashMessage(msgElem);
-    });
-});
-
 // code to populate info into selected card (on right)
 
 // js for styling clicked listings //
@@ -64,30 +39,42 @@ cards.forEach(card => {
 
 // js for styling clicked listings end//
 
-// code for the search input and fetch data from the backend(Python) with database(MariaDB)
+// code for the search input and fetch data from the backend python and database Mariadb
+
+// Execute the code when the DOM Content is loaded
 document.addEventListener('DOMContentLoaded', function () {
-    const searchForm = document.querySelector('#searchForm');
+    // Select the necessary DOM elements
     const expertInput = document.querySelector('#expertSelect');
     const cityInput = document.querySelector('#citySelect');
     const searchBtn = document.querySelector('#searchButton');
     const textField = document.querySelector('#textField');
+    const showBtn = document.querySelector('.showMore');
 
-    if (!searchForm || !expertInput || !cityInput || !searchBtn) {
+    // Initialize a variable(searchData) as an empty object to store fetched data
+    let searchData = {}; // incoming data from the backend is JSON 
+
+    // Check if all require DOM elements are presents
+    // If not, program will not run or start
+    if (!searchBtn || !expertInput || !cityInput || !showBtn) {
         console.error('One or more required elements were not found in the document.')
         return;
     }
 
-    // Function to fetch data from the backend
+    // Function to fetch data from the backend 
     function performSearch(evt) {
-        evt.preventDefault();
+        evt.preventDefault(); // prevent form submission
 
         // Get input values
-        const expertValue = expertInput.value.trim();
+        const expertValue = expertInput.value.trim() // remove whitespace
         const cityValue = cityInput.value.trim();
 
-        // Validate inputs
+        // Validate input values
         if (!cityValue || !expertValue) {
-            textField.innerHTML = '<p>Please provide city and expertise.</p>';
+            textField.innerHTML = 'Please provide city and expertise.</p>';
+            // set timeout to clear textField innerHtml
+            setTimeout(() => {
+                textField.innerHTML = '';
+            });
             return;
         }
 
@@ -97,79 +84,125 @@ document.addEventListener('DOMContentLoaded', function () {
             expert: expertValue
         };
 
-        // Send a POST request to the backend using fetch
+        // Send a POST request to the backend using fetch 
         fetch('/search_input', {
             method: 'POST',
-            body: JSON.stringify(requestData),
+            body: JSON.stringify(requestData), // JS value is converted to a JSON string
             headers: {
                 'Content-Type': 'application/json'
             },
         })
             .then(response => {
+                // Handle network errors
                 if (!response.ok) {
-                    console.error(`Network response was not ok: ${response.status} ${response.statusText}`);
+                    console.error(`Network response was not ok: ${response.status} - ${response.statusText}`);
+                } else {
+                    return response.json(); // Parse response JSON
                 }
-                return response.json();
             })
             .then(data => {
+                // Handle empty response
                 if (!data) {
-                    console.error('Empty response received from the server.');
+                    console.error('Empty response received from the server.')
                 }
-                // Clear Previous search results
-                textField.innerHTML = '';
 
-                // Display search results
-                textField.innerHTML = `<p>Search results for: (Type): <strong>${expertValue}</strong> in (City): <strong>${cityValue}</strong></p>`;
+                // Save and store fetched data into a variable
+                searchData = data;
 
-                // Populate cards
-                populateCards(data);
+                // Display search results message
+                textField.innerHTML = `<p>Search results for (Expertise):  <strong>${expertValue}</strong> in (City): <strong>${cityValue}</strong></p>`;
 
+                // Clear previous search results after 3 seconds
                 setTimeout(() => {
                     textField.innerHTML = '';
                 }, 3000);
+
+                // Populate initial cards (left side) with fetched data
+                populateLeftCards(data);
             })
             .catch(error => {
-                console.error('Error fetching or processing data:', error.message);
-                textField.innerHTML = `<p>${error.message}</p>`;
+                // Handle fetch or processing errors
+                console.error('Error fetching or processing data:', error);
+                textField.innerHTML = `<p>${error}</p>`;
+                setTimeout(() => {
+                    textField.innerHTML = '';
+                }, 3000);
             });
     }
 
-    // Function to populate cards
-    function populateCards(data) {
-        const doctorCards = document.querySelectorAll('.doctor.card');
-        const facilityCard = document.querySelector('.facility.card');
+    // Function to populate initial cards on the left side (3 doctor cards and 1 facility card)
+    function populateLeftCards(data) {
+        const cardsContainer = document.querySelector('.cards');
+        cardsContainer.innerHTML = ''; // Clear previous cards
 
-        // Populate doctor cards
+        // Create doctor cards if data.Doctors exists
         if (data.Doctors && data.Doctors.length > 0) {
-            for (let idx = 0; idx < doctorCards.length && idx < data.Doctors.length; idx++) {
+            for (let idx = 0; idx < 3 && idx < data.Doctors.length; idx++) {
                 const doctor = data.Doctors[idx];
-                const card = doctorCards[idx];
-
-                // Populate card with doctor information
-                card.querySelector('.nameElem').textContent = doctor.Name;
-                card.querySelector('.hospInfo').innerHTML = `
-                    <p>Expertise: ${doctor.Expertise}</p>
-                    <p>Hospital: ${doctor.Company}</p>
-                `;
-                card.querySelector('.blurb').textContent = `This is the official information of '${doctor.Name}'. Please click the card for additional inquiry!`;
-
-                // Add click event listener for each card
-                card.addEventListener('click', () => {
-                    // Call function to populate the right card with full data of the selected doctor
-                    updateRightCard(doctor);
-                });
+                createDoctorCard(doctor, cardsContainer);
             }
         }
 
-        // Populate facility card
-        if (data.Facilities && data.Facilities.length > 0 && facilityCard) {
-            const facility = data.Facilities[0];
-            // Populate card with facility information
-            facilityCard.querySelector('.nameElem').textContent = facility.Name;
-            facilityCard.querySelector('.hospAddress').textContent = `Address: ${facility.Address}`;
-            facilityCard.querySelector('.hospPhone').textContent = `Phone: ${facility.Phone}`;
-            facilityCard.querySelector('.blurb').textContent = `This the official data of the '${facility.Name}'. Please select the card for more additional information`;
+        // Create facility card if data.Facilities exists
+        if (data.Facilities && data.Facilities.length > 0) {
+            const facility = data.Facilities[0]; // access first element of the array Facilities within object(data)
+            createFacilityCard(facility, cardsContainer);
         }
+    }
+
+    // Function to create doctor card
+    function createDoctorCard(doctor, container) {
+        const doctorCard = document.createElement('div');
+        doctorCard.classList.add('doctor', 'card');
+        doctorCard.innerHTML = `
+            <div class='left'>
+                <div class='hospL'>
+                    <img class='hospLogo' src='../static/images/logoInBlue.png' alt='Hospital Logo'>
+                </div>
+                <p class='rating'>${doctor.Ratings}/5</p>
+            </div>
+            <div class='middle'>
+                <h2 class='nameElem'>${doctor.Name}</h2>
+                <div class='hospInfo'>
+                    <p class='hospName'>Expertise: ${doctor.Expertise}</p>
+                    <p class='hospLocation'>Hospital: ${doctor.Address}</p>
+                </div>
+                <div class='blurb'>
+                    <p>This is official information of ${doctor.Name}. Please click the card for additional inquiry!</p>
+                </div>
+            </div>
+        `;
+        // Add click event listener for each card
+        doctorCard.addEventListener('click', () => {
+            // Call function to populate the right card with full data of the selected doctor card
+            updateRightCard(doctor);
+        });
+        container.appendChild(doctorCard);
+    }
+
+    // Function to create facility card
+    function createFacilityCard(facility, container) {
+        const facilityCard = document.createElement('div');
+        facilityCard.classList.add('facility', 'card');
+        facilityCard.innerHTML = `
+            <div class='left'>
+                <div class='hospL'>
+                    <img class='hospLogo' src='../static/images/logoInBlue.png' alt='Hospital Logo'>
+                </div>
+                <p class='rating'>3.5/5</p>
+            </div>
+            <div class='middle'>
+                <h2 class='nameElem' style='font-size:1.8rem;'>${facility.Name}</h2>
+                <div class='hospInfo'>
+                    <p class='hospAddress'>Address: ${facility.Address}</p>
+                    <p class='hospPhone'>Phone: ${facility.Phone}</p>
+                </div>
+                <div class='blurb'>
+                    <p>This is the official data of the ${facility.Name}. Please select the card for more additional information</p>
+                </div>
+            </div>
+        `;
+        container.appendChild(facilityCard);
     }
 
     // Function to populate the right card with full data of the selected doctor
@@ -181,18 +214,55 @@ document.addEventListener('DOMContentLoaded', function () {
         selectedCard.querySelector('.hospExpertise').textContent = doctor.Expertise;
         selectedCard.querySelector('.hospAddresses').textContent = `${doctor.Address}`;
         selectedCard.querySelector('.hospPhones').textContent = `${doctor.Phone}`;
+        selectedCard.querySelector('.hospRating').textContent = `${doctor.Ratings}`
         selectedCard.querySelector('.blurbs').innerHTML = `
-            This is the official information of '${doctor.Name}'. 
-            For more information, please contact the provided email or ${doctor.Phone}.
+            This is the official information of '${doctor.Name}'.
+            For more information, please contact the provided email or doctor ${doctor.Phone}.
         `;
+    }
+
+    // Define a global variable to keep track of the current facility index
+    let facilityIdx = 0;
+
+    // Function to handle 'Show More' button click
+    function handleButtonClick() {
+        // Check if searchData is not null
+        if (searchData) {
+            const cardsContainer = document.querySelector('.cards');
+
+            // Create more doctor cards
+            if (searchData.Doctors && searchData.Doctors.length > 0) {
+                const doctorIdx = cardsContainer.querySelectorAll('.doctor.card').length;
+                for (let idx = doctorIdx; idx < doctorIdx + 3 && idx < searchData.Doctors.length; idx++) {
+                    const doctor = searchData.Doctors[idx];
+                    createDoctorCard(doctor, cardsContainer);
+                }
+            }
+
+            // Create one more facility card
+            if (searchData.Facilities && searchData.Facilities.length > 1) {
+                // Use the current facility index to select the facility 
+                const facility = searchData.Facilities[facilityIdx];
+                createFacilityCard(facility, cardsContainer);
+
+                // Increment the facility index for the next card creation
+                // facilityIdx will be incremented by 1,
+                // If it is equal or greater than searchData.Facilities.length, reset facilityIdx to 0
+                // this makes sure that facilityIdx cycles through the available facility data.
+                facilityIdx = (facilityIdx + 1 >= searchData.Facilities.length) ? 0 : facilityIdx + 1;
+            }
+        }
     }
 
     // Add event listener to the search button
     searchBtn.addEventListener('click', performSearch);
 
-    // Add event listener to the form submission
-    searchForm.addEventListener('submit', performSearch);
-});
+    // Add event listener to the 'Show More' button
+    showBtn.addEventListener('click', handleButtonClick);
+})
+
+
+// End of the js code for the mvp search input and result
 
 
 // function for burgermenu//

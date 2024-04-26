@@ -16,11 +16,12 @@ def home():
 def db_data():
     # Fetch data from the database
     with engine.connect() as conn:
-        doctors = conn.execute(text("SELECT name, expertise, company, address, phone FROM Doctors")).fetchall()
+        doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability FROM Doctors")).fetchall()
         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
+        users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, join_date FROM Users")).fetchall()
 
     # Render HTML template with fetched data
-    return render_template('db_info.html', doctors=doctors, facilities=facilities)
+    return render_template('db_info.html', doctors=doctors, facilities=facilities, users=users)
 
 
 # The function below, (hash_password) takes a password, encodes it into UTF-8
@@ -84,9 +85,10 @@ def login():
             stored_password = user[2] #user['password'] // coming in as tuple
             if verify_password(password, stored_password):
                 session['username'] = username
+                email = user[3]  # (new) Extract email from the user data
                 # app.logger.info(f"User '{username}' logged in successfully.")
                 flash('Login Successful!', category='success')
-                return redirect(url_for('user_page'))
+                return redirect(url_for('user_page', email=email)) # Pass email to user_page route
             else:
                 # app.logger.warning(f"Failed login attempt for user '{username}' - Incorrect password {password}.")
                 flash('Incorrect username or password. Please try again!', category='error')
@@ -129,8 +131,6 @@ def register():
             flash('First name must be at least 2 characters long.', category='error')
         elif len(last_name) < 2:
             flash('Last_name must be at least 2 characters long.', category='error')
-        elif len(phone) < 9:
-            flash('Phone number must be at least 9 characters long.', category='error')
         elif len(password) < 5:
             flash('Password must be greater than 5 characters long.', category='error')
         else:
@@ -141,7 +141,7 @@ def register():
             result = add_user(username, hashed_password, email, first_name, last_name, birth_date, gender, phone, allergy, condition)
             if result:
                 flash('Registration is successful. Account is created!', category='success')
-                return redirect(url_for('register')) # This will redirect the user to the booking page after registration
+                return redirect(url_for('login')) # This will redirect the user to the booking page after registration
             else:
                 flash('Registration failed. Please continue trying.', category='error')
             
@@ -151,13 +151,14 @@ def register():
 @app.route('/users')
 def user_page():
     # Render the user page. 
-    if 'username' in session: # If username in sessions, if yes (user is logged in)
-        return render_template('users.html', username=session['username'])
+    if 'username' in session: # If username in sessions, (user is logged in) pass to user page
+        email = request.args.get('email')  #(new) Retrieve email from the query parameters
+        return render_template('users.html', username=session['username'], email=email)
     else: 
          return redirect(url_for('home'))  # User not logged in, redirect to home page
-        # return render_template('users.html') # User not logged in, just pass users page
 
 
+# pops up the 'username' session variable. Therefore, the ' /' URL displays the start page again.
 # route for the logout page
 @app.route('/logout')
 def logout():
@@ -177,7 +178,7 @@ def load_data():
     conn = engine.connect()
     
     # Fetch data from the 'Doctors' table
-    doctors_statement = text("SELECT name, expertise, company, address, phone FROM Doctors")
+    doctors_statement = text("SELECT name, expertise, company, address, phone, ratings FROM Doctors")
     doctors_data = conn.execute(doctors_statement).fetchall()
 
     # Fetch data from the 'Facilities' table
@@ -193,7 +194,8 @@ def load_data():
          'Expertise': doctor[1], 
          'Company': doctor[2], 
          'Address': doctor[3], 
-         'Phone': doctor[4]} for doctor in doctors_data]
+         'Phone': doctor[4], 
+         'Ratings': doctor[5]} for doctor in doctors_data]
     
     facilities_dict = [
         {'Name': facility[0], 
@@ -231,6 +233,7 @@ def filter_data(data, search_input, city, expert):
         if search_input_lower in doctor['Name'].lower() or
            search_input_lower in doctor['Expertise'].lower() or
            search_input_lower in doctor['Phone'].lower() or
+           search_input_lower in doctor['Ratings'].lower() or
            city_lower in doctor['Address'].lower() and
            expert_lower in doctor['Expertise'].lower()
     ]
@@ -272,6 +275,7 @@ def search_input():
 
     # Return the filtered results as JSON
     return jsonify(filtered_results)
+    # This turns the JSON output into a Response object with the application/json mimetype.
 
 
 # About page route
@@ -281,7 +285,7 @@ def about_us():
 We are dedicated to providing reliable and comprehensive information about English-speaking medical professionals and facilities in South Korea. 
 Our platform is designed to make healthcare more accessible and less stressful for foreigners visiting or living in South Korea. 
 Whether you are a tourist, student, or expat, finding quality healthcare in a new country can be challenging, especially if there is a language barrier. 
-We’re here to help bridge that gap.
+We are here to help bridge that gap.
 """
     mission = """
 Our mission is to connect non-Korean speakers with medical services that can cater to their language and cultural needs.

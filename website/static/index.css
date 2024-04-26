@@ -203,6 +203,34 @@ a:hover {
 }
 
 
+/* Register Flash message button to redirect to login */
+.link {
+    font-display: inline-block;
+    border: 2px solid var(--color-light);
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    text-decoration: none; 
+    font-weight: bold;
+    padding: 0.5rem 1.3rem;
+    transition: all 0.5s ease-out;
+}
+
+.link a {
+    color: var(--color-light);
+    width: 150px;
+    text-decoration: none;
+}
+
+.link:hover {
+    background-color: var(--color-secondary); 
+    cursor: pointer;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+
+
+
+
 /* register page container / wrapper */
 .wrapper {
     min-height: 100vh;

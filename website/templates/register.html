@@ -33,8 +33,6 @@
                     {% for category, message in messages %}
                     <li class="{{ category }}">
                         <span class="message-text">{{ message }}</span>
-                        <button style="cursor: pointer;"
-                            class="dismiss-btn">&times;</button>
                     </li>
                     {% endfor %}
                 </ul>
@@ -105,7 +103,7 @@
                     <div class="phone-input">
                         <label for="phone">Phone:</label>
                         <input type="tel" id="phone" name="phone"
-                            placeholder="phone number" required><br>
+                            placeholder="phone number"><br>
                     </div>
 
                     <div class="allergies-input">
@@ -155,6 +153,6 @@
             <p class="copy">&copy; 2024 MedKorea. All right
                 reserved.</p>
         </footer>
-        <script src="../static/server.js"></script>
+        <script src="../static/index.js"></script>
     </body>
 </html>
