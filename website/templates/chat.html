@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chat Room</title>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../static/index.css">
+        <link rel="stylesheet" href="../static/chat.css">
+    </head>
+    <body>
+        <!-- Navigation bar -->
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png"
+                    alt>
+                <div class="logo">MedKorea</div>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('search_page')}}">Search</a>
+                <a href="{{ url_for('user_page')}}">Account</a>
+                <a href="{{ url_for('about_us')}}">About</a>
+            </div>
+        </nav>
+        <!-- Main Section -->
+        <main class="cover">
+            <div class="card-wrap">
+                <div class="side-nav">
+                    <ul>
+                        <div>
+                            <li>
+                                <i class="fa-solid fa-circle-user"></i>
+                            </li>
+                        </div>
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-inbox"></i>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-users"></i>
+                        </li>
+                        <div>
+                            <li>
+                                <i class="fa fa-sliders"></i>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="content">
+                    <div class="content-header">
+                        <div class="content-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Search">
+                            <span>Sort By:</span>
+                            <select name="name" id="select-div">
+                                <option value>Latest</option>
+                                <option value>Oldest</option>
+                                <option value>Archive</option>
+                                <option value>Starred</option>
+                            </select>
+                            <span>Add New</span>
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </div>
+                        <div class="user one">
+                            <div class="head">
+                                <i class="fa-regular fa-circle-user"> User 1</i>
+                                <span>Offline</span>
+                                <span>April 15 2024</span>
+                            </div>
+                            <p class="text">Lorem, ipsum dolor sit amet
+                                consectetur adipisicing elit. Nisi, soluta.</p>
+                        </div>
+                        <div id="active" class="user two">
+                            <div class="head">
+                                <i class="fa-solid fa-circle-user"> User 2</i>
+                                <span>Offline</span>
+                                <span>18 hours ago</span>
+                            </div>
+                            <p class="text">Lorem, ipsum dolor sit amet
+                                consectetur adipisicing elit. Nisi, soluta.</p>
+                        </div>
+                        <div class="user three">
+                            <div class="head">
+                                <i class="fa-regular fa-circle-user"> User 3</i>
+                                <span>Online</span>
+                                <span>7:25 am</span>
+                            </div>
+                            <p class="text">Lorem, ipsum dolor sit amet
+                                consectetur adipisicing elit. Nisi, soluta.</p>
+                        </div>
+                        <div class="user four">
+                            <div class="head">
+                                <i class="fa-solid fa-circle-user"> User 4</i>
+                                <span>Online</span>
+                                <span>9 mins ago</span>
+                            </div>
+                            <p class="text">Lorem, ipsum dolor sit amet
+                                consectetur adipisicing elit. Nisi, soluta.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="header">
+                        <div class="header-name">{{ user }}</div>
+                    </div>
+                    <div id="chat-window">
+                        <div id="messages-log"></div>
+                        <div class="form-div">
+                            <form action="/send_message" id="form-1"
+                                method="POST">
+                                <div class="input-body">
+                                    <input type="text" name="user_input"
+                                        id="user_input"
+                                        placeholder="Type something here..."><br>
+                                    <button id="btn-1">SEND</button><br>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="foot">
+                        <a href="{{ url_for('home')}}">Home</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons" style="margin-top: 0px;">
+                <a href="https://www.facebook.com" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 MedKorea. All right
+                reserved.</p>
+        </footer>
+        <script src="../static/chat.js"></script>
+    </body>
+</html>

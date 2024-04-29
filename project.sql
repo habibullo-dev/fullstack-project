@@ -44,6 +44,13 @@ CREATE TABLE IF NOT EXISTS Users (
     join_date DATE NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS Messages (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user VARCHAR(255) NOT NULL,
+    message_text VARCHAR(255), NOT NULL,
+    date_time timestamp 
+);
+
 -- Second batch of data for the Facilities Table in the Database Project
 
 INSERT INTO Facilities (id, name, speaker, type, address, phone, emergency, services) VALUES

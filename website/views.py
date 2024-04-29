@@ -1,7 +1,7 @@
-from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 import json
 import hashlib
 import datetime
+from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 from sqlalchemy.sql import text
 from website import app, engine
 
@@ -11,6 +11,15 @@ from website import app, engine
 def home():
     return render_template("index.html")
 
+#route for admin page
+@app.route('/admin') 
+def admin(): 
+    #Fetch user data from the database
+    with engine.connect() as conn:
+        users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, join_date FROM Users")).fetchall()
+        # Render HTML template with fetched data
+    return render_template('admin.html', users=users)
+
 #  To Display Database Project with TABLES Doctors and Facilities
 @app.route('/db_data')
 def db_data():
@@ -18,10 +27,8 @@ def db_data():
     with engine.connect() as conn:
         doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability FROM Doctors")).fetchall()
         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
-        users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, join_date FROM Users")).fetchall()
-
     # Render HTML template with fetched data
-    return render_template('db_info.html', doctors=doctors, facilities=facilities, users=users)
+    return render_template('db_info.html', doctors=doctors, facilities=facilities)
 
 
 # The function below, (hash_password) takes a password, encodes it into UTF-8
@@ -85,10 +92,9 @@ def login():
             stored_password = user[2] #user['password'] // coming in as tuple
             if verify_password(password, stored_password):
                 session['username'] = username
-                email = user[3]  # (new) Extract email from the user data
                 # app.logger.info(f"User '{username}' logged in successfully.")
                 flash('Login Successful!', category='success')
-                return redirect(url_for('user_page', email=email)) # Pass email to user_page route
+                return redirect(url_for('user_page')) # Pass email to user_page route
             else:
                 # app.logger.warning(f"Failed login attempt for user '{username}' - Incorrect password {password}.")
                 flash('Incorrect username or password. Please try again!', category='error')
@@ -96,8 +102,7 @@ def login():
             # app.logger.warning(f"Failed login attempt - User '{username}' does not exist and Password does not exist {password}.")
             flash('User does not exist. Please go to the registration page to create an account.', category='error')
 
-    go_back = f'<p>Or <strong><a href="{url_for("home")}">click here</a></strong> to go back to the home page</p>'
-    return render_template('login.html', go_back=go_back)
+    return render_template('verify.html')
 
 
 # contains the register page with a link to take user into login page
@@ -145,15 +150,14 @@ def register():
             else:
                 flash('Registration failed. Please continue trying.', category='error')
             
-    return render_template('register.html')
+    return render_template('verify.html')
 
 # route for the user page (accessible only if user is logged in)
 @app.route('/users')
 def user_page():
     # Render the user page. 
     if 'username' in session: # If username in sessions, (user is logged in) pass to user page
-        email = request.args.get('email')  #(new) Retrieve email from the query parameters
-        return render_template('users.html', username=session['username'], email=email)
+        return render_template('users.html', username=session['username'])
     else: 
          return redirect(url_for('home'))  # User not logged in, redirect to home page
 
@@ -162,10 +166,84 @@ def user_page():
 # route for the logout page
 @app.route('/logout')
 def logout():
+    # Implement a simple login check - We do not want to access the logout route or page if user is not login
+    if 'username' not in session:
+        flash('You must be logged in to access this page (logout).', category='error')
+        return redirect(url_for('login')) # Assuming user not logged in, We can redirect user back to login page
+
     session.clear()  # Clear the session data
     session.pop('username', None) # remove the username from the session if it is there
     flash('You have been logged out.', category='success') # Flash a message for logging out
     return render_template('logout.html')
+
+# New feature for the project (Chat Room)
+# Routes
+@app.route('/chat')
+def chat():
+    if 'username' not in session:
+        flash("You must be logged in to access this page.", category='error')
+        return redirect(url_for('login')) # Assuming the user is not logged in
+    else:
+        user = session['username']
+    
+    return render_template('chat.html', user=user)
+
+
+@app.route('/send_message', methods=['POST'])
+def send_message():
+        
+    if 'username' in session:
+        user = session['username']
+
+    data = request.get_json()
+    message = data.get('text', '')  # Adjusted to match JSON structure
+
+    if not message:
+        return jsonify({'message': 'Message is required.'}), 401
+
+    # time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time = datetime.now()
+
+    with engine.begin() as conn:
+        conn.execute(
+            text("INSERT INTO Messages (user, message, time) VALUES (:user, :message, :time)"),
+            {"user": user, "message": message, "time": time}
+        )
+
+    print(f"New message from {user}: {message}")
+
+    return jsonify({'message': 'Message sent successfully'}), 200
+
+
+@app.route('/all_messages')
+def all_messages():
+    if 'username' not in session:
+        return jsonify({'message': 'User is not logged in'}), 401
+
+    messages = []
+    with engine.begin() as conn:
+        res = conn.execute(text("SELECT user, message, time FROM Messages"))
+    messages = get_messages_from_db()
+
+    return jsonify(messages), 200
+
+
+# def get_messages_from_db():
+#     messages = []
+#     with engine.begin() as conn:
+#         res = conn.execute(text("SELECT user, message_text, date_time FROM Messages"))
+#         for row in res:
+#             message = {
+#                 'user': row.user,
+#                 'text': row.message_text,
+#                 'time': row.date_time.strftime("%Y-%m-%d %H:%M:%S")
+#             }
+#             messages.append(message)
+
+#     return messages
+
+
+# End feature for the Project (Chat Room)
 
 
 # Route to take you to the mvp page

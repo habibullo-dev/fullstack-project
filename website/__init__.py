@@ -9,7 +9,6 @@ engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Projec
 # engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/fsi-23")
 
 
-
 import website.views
 
 
