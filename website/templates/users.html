@@ -21,6 +21,7 @@
                 <div class="buttons">
                     <a href="{{ url_for('home')}}">Home</a>
                     <a href="{{ url_for('search_page')}}">Search</a>
+                    <a href="{{ url_for('chat')}}">Chat</a>
                     <a href="{{ url_for('about_us')}}">About</a>
                 </div>
             </nav>
@@ -43,10 +44,6 @@
             <p class="message">Welcome, {{ username }}. <span
                     class="msg-span">You are logged
                     in.</span></p>
-            <p class="message" style="font-size: 1.9rem;"><i
-                    class="fa-solid fa-envelope"></i> {{
-                email
-                }}</p>
             <form id="logOut" action="/logout" method="GET">
                 <input type="submit" value="Logout">
             </form>

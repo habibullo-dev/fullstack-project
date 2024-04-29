@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Page</title>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../static/index.css">
+        <style>
+        :root {
+            --color-primary: #4d78b8;
+            --color-secondary: #75C9C8;
+            --color-tertiary: #144e8b;
+            --color-dark: #2A2C24;
+            --color-light: whitesmoke;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            /* background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); */
+         }
+        .container-div {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            margin: 1.3rem 0;
+        }
+        h2 {
+            margin: 1.3rem 0;
+        }
+        table {
+            border-collapse: collapse;
+            margin-bottom: 5rem;
+        }
+        th, td {
+            border: 2px solid;
+            padding: 10px;
+        }
+        .tr-1 th {
+            background-color: var(--color-tertiary);
+            color: #EEEEEE;
+            border-right: 2px solid #EEEEEE;
+        }
+        .tr-1 th:last-child {
+            border-right: 2px solid var(--color-primary);
+        }
+        .user {
+            text-align: center;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+        }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation bar -->
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png"
+                    alt>
+                <div class="logo">MedKorea</div>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('about_us')}}">About</a>
+            </div>
+        </nav>
+        <h1>Admin Page</h1>
+        <div class="container-div">
+            <h2 class="user">List of registered users</h2>
+            <table>
+                <tr class="tr-1">
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Allergy</th>
+                    <th>Condition</th>
+                    <th>Date Joined</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td>{{ user[5] }}</td>
+                    <td>{{ user[6] }}</td>
+                    <td>{{ user[7] }}</td>
+                    <td>{{ user[8] }}</td>
+                    <td>{{ user[9] }}</td>
+                    <td>{{ user[10] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons" style="margin-top: 0px;">
+                <a href="https://www.facebook.com" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 MedKorea. All right
+                reserved.</p>
+        </footer>
+    </body>
+</html>

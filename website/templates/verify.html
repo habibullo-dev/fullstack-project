@@ -1,194 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register & Login Form</title>
-        <link rel="stylesheet" href="../static/styles.css">
+        <title>Register Page</title>
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
             integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../static/index.css">
     </head>
-    <style>
-        :root {
-                --color-primary: #4d78b8;
-                --color-secondary: #75C9C8;
-                --color-tertiary: #007bff;
-                --color-dark: #2A2C24;
-                --color-light: whitesmoke;
-            }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
-        }
 
-        h1 {
-            color: #0056b3;
-        }
-
-        h2 {
-            color: var(--color-light);
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-
-        a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* styles for navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--color-primary);
-            padding: 0.8rem;
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .navLogo {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .siteLogo {
-            height: 50px;
-            width: 50px;
-            margin-right: 1rem;
-        }
-
-        .navbar .buttons {
-            display: flex;
-        }
-
-        .navbar .buttons a {
-            color: var(--color-light);
-            text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid var(--color-light);
-            margin-left: 1rem;
-            border-radius: 5px;
-            transition: all 0.5s ease-out;
-            text-decoration: none;
-        }
-
-        .navbar .buttons a:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-light);
-            transform: scale(1.1);
-            cursor: pointer;
-        }
-
-
-        /* styles for the footer */
-        .footer {
-            background-color: #f5f5f5;
-            padding: 1rem;
-            text-align: center;
-            bottom: 0;
-            background-color: var(--color-primary);
-            color: #f5f5f5;
-            margin-top: 1rem;
-        }
-
-        .footer .footer-icons {
-            margin: 2rem;
-            transition: all 0.5s ease-out;
-        }
-
-        .footer .footer-icons:hover {
-            transform: scale(1.1);
-            cursor: pointer;
-        }
-
-        .footer .footer-icons a {
-            margin: 0 1rem;
-            color: #f5f5f5;
-            text-decoration: none;
-        }
-
-        .footer .footer-icons a:hover {
-            color: #333;
-        }
-        .copy {
-            margin-top: 2rem;
-        }
-        .btn {
-            transition: all 0.5s ease-out;
-            text-decoration: none;
-        }
-        .btn:hover {
-            transform: scale(1.1);
-            cursor: pointer;
-            background-color: var(--color-secondary);
-            color: var(--color-light);
-        }
-        .link {
-            color: #2A2C24;
-        }
-        /* Flashed messages styles */
-        .messages {
-            margin-bottom: 20px;
-        }
-
-        .flash-messages {
-            list-style-type: none;
-            padding: 10px;
-            margin: 0;
-            font-size: 1.2rem;
-        }
-
-        .flash-messages li {
-            margin-bottom: 5px;
-            color: #000;
-        }
-
-        .flash-messages .error {
-             color: #d9534f;
-        }
-
-        .flash-messages .success {
-            color: #5cb85c;
-        }
-
-        .card-left {
-            display: flex;
-            flex-direction: column;
-        }
-        .wrapper-1 {
-            margin:0;
-            padding: 0;
-            overflow: hidden;
-        }
-</style>
     <body>
-    </nav>
-    <div class="wrapper-1">
         <!-- Navigation bar -->
         <nav class="navbar">
             <div class="navLogo">
@@ -198,117 +22,181 @@
             </div>
             <div class="buttons">
                 <a href="{{ url_for('home')}}">Home</a>
-                <a href="{{ url_for('user_page')}}">Account</a>
-                <a href="{{ url_for('verify_page')}}">About</a>
+                <a href="{{ url_for('search_page')}}">Search</a>
+                <a href="{{ url_for('chat')}}">Chat</a>
+                <a href="{{ url_for('about_us')}}">About</a>
+            </div>
+        </nav>
+        <div class="wrapper">
+            <!-- Flashed messages -->
+            <div class="messages">
+                {% with messages =
+                get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <ul class="flash-messages">
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">
+                        <span class="message-text">{{ message }}</span>
+                        <button style="cursor: pointer;"
+                            class="dismiss-btn">&times;</button>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+
+            <!-- Main Content -->
+            <h1>Create an account</h1>
+            <div class="card-box">
+                <!-- form for register -->
+                <form method="POST" action="/register" id="registerForm"
+                    class="inputForm">
+
+                    <!-- username input -->
+                    <div class="username-input">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username"
+                            placeholder="Username" required><br>
+                    </div>
+
+                    <!-- password input -->
+                    <div class="password-input">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password"
+                            placeholder="Password" required><br>
+                    </div>
+
+                    <!-- email input -->
+                    <div class="email-input">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email"
+                            placeholder="email@example.com" required><br>
+                    </div>
+
+                    <!-- First Name Input -->
+                    <div class="first-input">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="firstName" name="firstName"
+                            placeholder="First Name">
+                    </div>
+
+                    <!-- Last Name Input -->
+                    <div class="last-input">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="lastName" name="lastName"
+                            placeholder="Last Name">
+                    </div>
+                    <div class="radio-input">
+                        <label for="gender">Gender:</label>
+                        <fieldset>
+                            <!-- <legend>Select your gender:</legend> -->
+                            <div class="gLabel">
+                                <input type="radio" id="male" name="gender"
+                                    value="male">
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender"
+                                    value="female" />
+                                <label for="female">Female</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- birth date -->
+                    <div class="dob-input">
+                        <label for="birthdate">Date of Birth:</label>
+                        <input type="date" id="birthDate" name="birth_date"><br>
+                    </div>
+
+                    <!-- phone input -->
+                    <div class="phone-input">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone"
+                            placeholder="phone number" required><br>
+                    </div>
+
+                    <div class="allergies-input">
+                        <label for="allergy">Allergies:</label>
+                        <input type="text" name="allergy" class="allergy"
+                            placeholder="Allergies">
+                    </div>
+
+                    <div class="conditions">
+                        <label for="condition">Medical
+                            Conditions:</label>
+                        <input type="text" name="condition" class="condition"
+                            placeholder="Previous medical conditions">
+                    </div>
+                    <!-- Register Button -->
+                    <div class="btn-div">
+                        <button class="btn register"
+                            type="submit">Register</button>
+                    </div>
+                    <p class="redirect">Click<a href="{{url_for('login')}}">
+                            Login</a> to sign in to
+                        your
+                        account.</p>
+                </form>
             </div>
         </div>
-        <div class="container">
-                <!-- Flashed messages -->
-                <div class="messages">
-                    {% with messages =
-                    get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                    <ul class="flash-messages">
-                        {% for category, message in messages %}
-                        <li class="{{ category }}">
-                            <span class="message-text">{{ message }}</span>
-                            <button style="cursor: pointer;"
-                                class="dismiss-btn">&times;</button>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    {% endwith %}
-                </div>
-                <!-- form content -->
-                <div class="card-box">
-                    <span class="lineBorder"></span>
-                    <form method="POST" action="/register" id="registerForm"
-                        class="inputForm">
-                        <h1>Create account</h1>
-                        <input type="text" class="username" name="username"
-                            placeholder="Username" required>
-                        <input type="password" class="password" name="password"
-                            placeholder="Password" required>
-                        <input placeholder="Email" name="email" class="email"
-                            type="email" required>
-                        <input type="text" class="phone" name="phone"
-                            placeholder="Phone number">
+        <div class="container-right">
+            <div class="card-wrap">
+                <h2>Welcome!</h2>
+                <p>Already have an account?</p>
+                <p>Login and start browsing for you favorite doctor</p>
+                <div id="login-div">
+                    <form action="/login" id="loginForm" method="POST">
+                        <div class="user-input">
+                            <label for="username">Username:</label>
+                            <input type="text" class="username" name="username"
+                                placeholder="Username">
+                        </div>
+                        <div class="pass-input">
+                            <label for="password">Password:</label>
+                            <input type="password" class="password"
+                                name="password"
+                                placeholder="Password">
+                        </div>
                         <div class="btn-div">
-                            <button class="btn register"
-                                type="submit">Register</button>
+                            <button class="btn" type="submit">Login</button><br>
                         </div>
                     </form>
                 </div>
-            </div>
-            <div class="card-right">
                 <div class="header">
-                    <h2 class="welcome">Welcome!</h2>
-                    <p>Already have an account?</p>
-                    <p>Login and start browsing for
-                        your favorite doctor</p>
-                    <a href="{{ url_for('login') }}">
-                        <button class="btn login">Login</button>
-                    </a>
-                    <p class="previous">Or <a href="{{ url_for('home') }}"
-                            class="link">
-                            click here </a>
-                        to
-                        go
-                        back
-                        to home page</p>
+                    <p class="message1">Not a member yet? <a
+                            href="{{url_for('register')}}"
+                            class="btn btn-1">Register</a>
+                        now!</p>
                 </div>
+                <p>Or <a href="{{url_for('home')}}">click</a> here to go back
+                    home</p>
             </div>
         </div>
-        <div class="wrapper-2">
-            <!-- Footer -->
-            <footer class="footer">
-                <p class="explore-text">Feel free to explore our resources and
-                    reach
-                    out if you have any questions. We're dedicated to supporting
-                    your health journey!
-                </p>
-                <!-- Social media icons below the footer -->
-                <div class="footer-icons" style="margin-top: 0px;">
-                    <a href="https://www.facebook.com" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.twitter.com" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://github.com" target="_blank"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                </div>
-                <p class="copy">&copy; 2024 MedKorea. All right
-                    reserved.</p>
-            </footer>
-        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons" style="margin-top: 0px;">
+                <a href="https://www.facebook.com" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 MedKorea. All right
+                reserved.</p>
+        </footer>
+        <script src="../static/server.js"></script>
+        <script src="../static/index.js"></script>
     </body>
-    <script src="../static/server.js"></script>
-    <script>
-    // Add event listener to the parent element to handle clicks on dismiss buttons
-    document.addEventListener('DOMContentLoaded', function () {
-        let flashMsg = document.querySelector('.flash-messages');
 
-        // Function to hide the flash message after a delay
-        function hideFlashMessage(msgElem) {
-            setTimeout(function() {
-                msgElem.style.display = 'none';
-            }, 3000); // Adjust the time delay as needed (in milliseconds)
-        }
-
-        flashMsg.addEventListener('click', function(evt) {
-            let msgElem = evt.target.parentElement;
-            msgElem.style.display = 'none';
-        });
-
-        // Hide flash messages automatically after a delay
-        let flashMessages = document.querySelectorAll('.flash-messages li');
-        flashMessages.forEach(function(msgElem) {
-            hideFlashMessage(msgElem);
-        });
-    });
-    </script>
 </html>

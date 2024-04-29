@@ -1,0 +1,218 @@
+/* css variables */
+:root {
+    --color-primary: #4d78b8;
+    --color-secondary: #75C9C8;
+    --color-tertiary: #144e8b;
+    --color-dark: #2A2C24;
+    --color-light: whitesmoke;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+}
+
+.cover {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-wrap {
+    display: flex;
+    justify-content: space-between;
+    height: 70vh;
+    width: 80%;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+}
+
+/* side nav start */
+
+.side-nav {
+    display: flex;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    width: 60px;
+}
+
+.side-nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+}
+
+/* Top area */
+.side-nav li:nth-child(1) {
+    margin-bottom: 20px;
+}
+
+/* Bottom area */
+.side-nav li:last-child {
+    margin-top: 20px;
+}
+
+
+
+/* Side nav end */
+
+/* content section */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 500px;
+    border: 2px solid var(--color-primary);
+}
+
+span {
+    margin-left: 0.8rem;
+}
+
+.fa-circle-plus {
+    color: var(--color-primary);
+}
+
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem auto;
+    width: 380px;
+    height: 100px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+}
+
+.user .head {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.2rem;
+}
+
+#active {
+    background-color: var(--color-tertiary);
+    color: var(--color-light);
+}
+
+.text {
+    font-size: 16px;
+}
+
+.foot a {
+    margin: 0 3rem;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-secondary);
+}
+
+
+.content-search {
+    position: relative;
+}
+
+.content-search input[type="text"] {
+    border-radius: 10px;
+}
+
+.content-search input[type='text']::placeholder {
+    text-align: center;
+}
+
+.content-search i.fa-magnifying-glass {
+    position: absolute;
+    left: 5%; /* Adjust based on icon size and desired position */
+    top: 60%;
+    transform: translateY(-50%);
+}
+
+/* End content */
+
+/* Chat section */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 800px;
+    border: 2px solid var(--color-primary);
+    border-radius: 0 5px 5px 0; 
+    background-color: var(--color-tertiary);
+}
+
+#chat-window {
+    height: 500px;
+    width: 90%;
+    margin: 0 auto;
+    border: 2px solid var(--color-tertiary);
+    border-radius: 10px;
+    background-color: var(--color-light);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-body {
+    display: flex;
+    margin: 1.2rem;
+}
+
+#user_input {
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border: 2px solid var(--color-primary);
+}
+
+#user_input::placeholder {
+    color: var(--color-light);
+}
+
+
+#btn-1 {
+    padding: 0.5rem;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    color: var(--color-light);
+    border-radius: 10px;
+}
+
+.section .header, .section .foot {
+    background-color: var(--color-tertiary);
+}
+
+.section .header a, .section .foot a, .header-name {
+    color:  var(--color-light);
+}
+
+/* Setup messages to alternate from Right to Left */
+.user-message {
+    background-color: #4FB0C6;
+    color: white;
+    align-self: flex-start;
+    text-align: right;
+}
+
+.other-message {
+    background-color: #4F86C6; 
+    color: black;
+    align-self: flex-end;
+    text-align: left;
+}
