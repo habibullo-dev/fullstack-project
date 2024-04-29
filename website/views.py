@@ -1,5 +1,5 @@
-import json
 import hashlib
+import json
 import datetime
 from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 from sqlalchemy.sql import text
@@ -16,7 +16,7 @@ def home():
 def admin(): 
     #Fetch user data from the database
     with engine.connect() as conn:
-        users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, join_date FROM Users")).fetchall()
+        users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date FROM Users")).fetchall()
         # Render HTML template with fetched data
     return render_template('admin.html', users=users)
 
@@ -58,13 +58,17 @@ def verify_password(input_password, hashed_password):
 def add_user(username, hashed_password, email, first_name, last_name, birth_date, gender, phone, allergy, condition):
     # Get the current date and time
     join_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    subscribe = True
+    logged_in = False
+
     # Start a new connection with database
     with engine.begin() as conn:
         # Execute the INSERT statement using parameterized query
         res = conn.execute(
-        text("INSERT INTO Users(username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, join_date) VALUES (:username, :password, :email, :first_name, :last_name, :birth_date, :gender, :phone, :allergy, :condition, :join_date)"),
-        {"username": username, "password": hashed_password, "email": email, "first_name": first_name, "last_name": last_name, "birth_date": birth_date, "gender": gender, "phone": phone, "allergy": allergy, "condition": condition, "join_date": join_date}
-    )
+            text("INSERT INTO Users(username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date) VALUES (:username, :password, :email, :first_name, :last_name, :birth_date, :gender, :phone, :allergy, :condition, :subscribe, :logged_in, :join_date)"),
+            {"username": username, "password": hashed_password, "email": email, "first_name": first_name, "last_name": last_name, "birth_date": birth_date, "gender": gender, "phone": phone, "allergy": allergy, "condition": condition, "subscribe": subscribe, "logged_in": logged_in, "join_date": join_date}
+        )
+
         # Check if the data is inserted
         # If the 'rowcount' is greater than 0, we have a successful insertion of the data from register page
         return res.rowcount > 0
@@ -176,75 +180,6 @@ def logout():
     flash('You have been logged out.', category='success') # Flash a message for logging out
     return render_template('logout.html')
 
-# New feature for the project (Chat Room)
-# Routes
-@app.route('/chat')
-def chat():
-    if 'username' not in session:
-        flash("You must be logged in to access this page.", category='error')
-        return redirect(url_for('login')) # Assuming the user is not logged in
-    else:
-        user = session['username']
-    
-    return render_template('chat.html', user=user)
-
-
-@app.route('/send_message', methods=['POST'])
-def send_message():
-        
-    if 'username' in session:
-        user = session['username']
-
-    data = request.get_json()
-    message = data.get('text', '')  # Adjusted to match JSON structure
-
-    if not message:
-        return jsonify({'message': 'Message is required.'}), 401
-
-    # time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    time = datetime.now()
-
-    with engine.begin() as conn:
-        conn.execute(
-            text("INSERT INTO Messages (user, message, time) VALUES (:user, :message, :time)"),
-            {"user": user, "message": message, "time": time}
-        )
-
-    print(f"New message from {user}: {message}")
-
-    return jsonify({'message': 'Message sent successfully'}), 200
-
-
-@app.route('/all_messages')
-def all_messages():
-    if 'username' not in session:
-        return jsonify({'message': 'User is not logged in'}), 401
-
-    messages = []
-    with engine.begin() as conn:
-        res = conn.execute(text("SELECT user, message, time FROM Messages"))
-    messages = get_messages_from_db()
-
-    return jsonify(messages), 200
-
-
-# def get_messages_from_db():
-#     messages = []
-#     with engine.begin() as conn:
-#         res = conn.execute(text("SELECT user, message_text, date_time FROM Messages"))
-#         for row in res:
-#             message = {
-#                 'user': row.user,
-#                 'text': row.message_text,
-#                 'time': row.date_time.strftime("%Y-%m-%d %H:%M:%S")
-#             }
-#             messages.append(message)
-
-#     return messages
-
-
-# End feature for the Project (Chat Room)
-
 
 # Route to take you to the mvp page
 @app.route('/mvp')
@@ -294,6 +229,9 @@ def load_data():
 
 # Load data once when the application starts
 data = load_data()
+
+# Convert dict data to a file using json dump
+
 
 # Function to filter data based on the search query or provided criteria
 def filter_data(data, search_input, city, expert):

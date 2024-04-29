@@ -39,17 +39,22 @@ CREATE TABLE IF NOT EXISTS Users (
     birth_date DATE, 
     gender VARCHAR(20),
     phone VARCHAR(20),
-    allergy VARCHAR (255),
+    allergy VARCHAR(255),
     `condition` VARCHAR(255),
+    subscribe BOOLEAN DEFAULT true,
+    logged_in BOOLEAN DEFAULT false,
     join_date DATE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Messages (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user VARCHAR(255) NOT NULL,
-    message_text VARCHAR(255), NOT NULL,
-    date_time timestamp 
-);
+-- Add the new columns with default values to the Users table
+ALTER TABLE Users
+ADD COLUMN subscribe BOOLEAN DEFAULT true,
+ADD COLUMN logged_in BOOLEAN DEFAULT false;
+
+-- Update all existing rows to set subscribe = true and logged_in = false
+UPDATE Users
+SET subscribe = true, logged_in = false;
+
 
 -- Second batch of data for the Facilities Table in the Database Project
 
