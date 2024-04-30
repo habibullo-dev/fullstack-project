@@ -6,6 +6,7 @@
 /* css variables */
 :root {
     --color-primary: #4d78b8;
+    --color-extra: #98b1d7;
     --color-secondary: #75C9C8;
     --color-tertiary: #144e8b;
     --color-dark: #2A2C24;
@@ -209,7 +210,7 @@ a:hover {
     border: 2px solid var(--color-light);
     border-radius: 10px;
     background-color: var(--color-primary);
-    text-decoration: none; 
+    text-decoration: none;
     font-weight: bold;
     padding: 0.5rem 1.3rem;
     transition: all 0.5s ease-out;
@@ -222,7 +223,7 @@ a:hover {
 }
 
 .link:hover {
-    background-color: var(--color-secondary); 
+    background-color: var(--color-secondary);
     cursor: pointer;
     text-decoration: none;
     transform: scale(1.1);
@@ -232,8 +233,17 @@ a:hover {
 
 
 /* register page container / wrapper */
-.wrapper {
+.registerContainer {
     min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper {
+    /* border-top: 2px solid var(--color-primary); */
+    min-height: 100vh;
+    margin: 50px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     /* justify-content: center;
@@ -262,9 +272,30 @@ a:hover {
 
 /* register.html styling */
 
+.container-right {
+    /* border-top: var(--color-primary) 2px solid; */
+    /* background-color: var(--color-tertiary); */
+    width: 50%;
+    min-height: 100vh;
+    background-color: var(--color-extra);
+    color: var(--color-light);
+}
+
+.card-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 200px;
+}
+
+.card-wrap h2,
+a {
+    color: var(--color-tertiary);
+}
+
+
 .inputForm {
     margin: 0 auto;
-    background-color: var(--color-primary);
+    background-color: var(--color-extra);
     padding: 30px;
     border-radius: 20px;
     width: 500px;
@@ -311,7 +342,9 @@ label {
 .firstName,
 .lastName,
 .allergy,
-.condition {
+.condition,
+.username,
+.password {
     width: 250px;
     border: 1.5px solid var(--color-primary);
     border-radius: 5px;
@@ -348,7 +381,7 @@ legend {
 /* border: 2px solid red; */
 /* Adjust the value as needed */
 /* } */
-
+.btn,
 .btn.register {
     padding: 8px 12px;
     border: 1.5px solid var(--color-light);
@@ -363,6 +396,7 @@ legend {
     text-decoration: none;
 }
 
+.btn:hover,
 .btn.register:hover {
     background-color: var(--color-secondary);
     color: var(--color-light);
@@ -421,7 +455,9 @@ legend {
 
 /* About page styles */
 
-
+ul {
+    list-style: none;
+}
 
 .container-1 {
     min-height: 100vh;
@@ -441,14 +477,32 @@ legend {
 
 .about1 h1 {
     font-size: 45px;
-    margin-top: 0px;
+    /* margin-top: 0px; */
 }
 
-.about5 h2 {
-    border: #0056b3 3px solid;
-    width: auto;
-    text-align: left;
-    padding-left: 10rem;
+.leftText {
+    width: 700px;
+}
+
+.rightText {
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.offerText {
+    /* border: 2px solid teal; */
+    position: absolute;
+    right: 20px;
+    margin-top: 150px;
+}
+
+
+#thirdText {
+    padding-bottom: 200px;
+}
+
+.yehaw {
+    height: 100px;
 }
 
 .about1 {
@@ -456,75 +510,62 @@ legend {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    border: 2px solid red;
     width: 100%;
     height: 600px;
     background-image: url('./images/stethDesk.jpg');
     background-size: cover;
     background-position: center;
-    /* Center the background image */
-    /* background-image: #; */
-    /* background-color: var(--color-primary); */
 }
 
 .about2 {
+    /* background-image: url('./images/34.jpg'); */
+    /* background-size: contain; */
+    /* background-position: right; */
+    /* background-repeat: no-repeat; */
     display: flex;
     flex-direction: column;
     justify-content: left;
-    border: 2px solid blue;
-    /* background-image: #; */
-    /* background-color: var(--color-primary); */
+    padding: 30px 50px;
 }
 
 .about3 {
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    border: 2px solid orange;
+    justify-content: flex-end;
     width: 100%;
     height: 600px;
     background-image: url('./images/bandage.jpg');
     background-size: cover;
     background-position: center;
-    /* background-image: #; */
-    /* background-color: var(--color-primary); */
 }
 
 .about4 {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    border: 2px solid green;
     width: 100%;
     height: 600px;
     background-image: url('./images/medicalBlocks.jpg');
     background-size: cover;
     background-position: center;
-    /* background-image: #; */
-    /* background-color: var(--color-primary); */
 }
 
 .about5 {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    border: 2px solid purple;
-    /* background-image: #; */
-    /* background-color: var(--color-primary); */
+    padding: 30px 50px;
 }
 
 .about6 {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    border: 2px solid cyan;
     width: 100%;
     height: 600px;
     background-image: url('./images/stethBlue.jpg');
     background-size: 100%;
     background-position: center;
-    /* background-image: #; */
-    /* background-color: var(--color-primary); */
 }
 
 /* styling for about.html END */
