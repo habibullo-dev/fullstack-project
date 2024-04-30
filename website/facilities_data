@@ -1,0 +1,155 @@
+[
+    {
+        "Name": "Pusan National Univ. Hospital",
+        "Speaker": "Ms. Lee, Kyung-Ah",
+        "Type": "Hospital",
+        "Address": "Amidong 1-ga, Seo-gu",
+        "Phone": "240-7890",
+        "Emergency": "240-7501",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Kang Internal Medicine Clinic",
+        "Speaker": "Ms. Lee, Kyung-Ah\r\nDr. Kang, Pil-joong",
+        "Type": "Clinic",
+        "Address": "245-3, Bujeon 2-dong, Jin-Ku, Busan\r\n",
+        "Phone": "Unknown",
+        "Emergency": "817-2334",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Baptist Hospital",
+        "Speaker": "Ms. Song, Jung-Ok",
+        "Type": "Hospital",
+        "Address": "374-75, Namsan-dong Geumjeong-gu",
+        "Phone": "580-1313",
+        "Emergency": "580-1212",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Baptist Hospital",
+        "Speaker": "Mr. Lee, Jung-Sang",
+        "Type": "Hospital",
+        "Address": "374-75, Namsan-dong Geumjeong-gu",
+        "Phone": "580-1251",
+        "Emergency": "580-1212",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Inje Univ.Busan Paik Hospital",
+        "Speaker": "Mr. Cha, Ji-Hoon",
+        "Type": "Hospital",
+        "Address": "633-165, Gaegeum 2-dong, Busanjin-gu",
+        "Phone": "890-6220",
+        "Emergency": "890-6221",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Maryknoll General Hospital",
+        "Speaker": "Mr. Park, Myung-hwan",
+        "Type": "Hospital",
+        "Address": "12, Daecheong-dong, 4-ga, jung-gu",
+        "Phone": "468-3858",
+        "Emergency": "461-2300",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Dong-A University Hospital",
+        "Speaker": "Ms. Kim, Sung-Ah",
+        "Type": "Hospital",
+        "Address": "1, Dongdaesin-dong 3-ga, Seo-gu",
+        "Phone": "240-2415",
+        "Emergency": "240-5580",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Ye Dental Clinic",
+        "Speaker": "Dr. Kim, Byung-Soo",
+        "Type": "Clinic",
+        "Address": "255-1, Dong-A Bldg., 6th Floor, Bujeon 2-dong, Jin-Ku, Busan",
+        "Phone": "Unknown",
+        "Emergency": "808-2900",
+        "Services": "unknown"
+    },
+    {
+        "Name": "Yonsei University Medical Center, Severance Hospital",
+        "Speaker": "Dr. John Linton, M.D.",
+        "Type": "Hospital",
+        "Address": "134 Shinchon-Dong, Seodaemun-Gu Seoul 120-752",
+        "Phone": "2228-5800",
+        "Emergency": "010-9948-0983",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "Samsung Medical Center",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "50 Ilwong-Dong, Gangnam-Gu, Seoul",
+        "Phone": "3410-2114",
+        "Emergency": "3410-2060",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "Asan Medical Center",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "388-1 Pungnap-2 Dong, Songpa-Gu, Seoul",
+        "Phone": "3010-5001, 5002",
+        "Emergency": "02-3010-3333",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "Soon Chun Hyang Univeristy Hospital",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "657 Hannam-Dong, Yongsan-Gu, Seoul",
+        "Phone": "2072-2890",
+        "Emergency": "2072-2473",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "Seoul National University Hospital",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "28- Yeongeon-dong, Jonggo-gu, Seoul",
+        "Phone": "2072-2890",
+        "Emergency": "2072-2473",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "St. Mary's Hospital",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "505 Banpo-dong, Seocho-gu, Seoul",
+        "Phone": "590-1114",
+        "Emergency": "590-1632",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "Cha General Hospital",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "650-9 Yeoksam-dong, Gangnam-gu, Seoul",
+        "Phone": "02-3465-3127",
+        "Emergency": "010-4707-9179",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "Gangbuk Samsung Hospital",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "108 Pyeong-dong, Jonggu-gu, Seoul",
+        "Phone": "02-2001-1101",
+        "Emergency": "2001-1000",
+        "Services": "24_hours"
+    },
+    {
+        "Name": "Samsung Cheil General Hospital",
+        "Speaker": "Unknown",
+        "Type": "Hospital",
+        "Address": "1-19 Mukjeong-dong, Jung-gu, Seoul",
+        "Phone": "2000-7000",
+        "Emergency": "02-2000-7062",
+        "Services": "24_hours"
+    }
+]

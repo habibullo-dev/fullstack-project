@@ -1,5 +1,4 @@
 import hashlib
-import json
 import datetime
 from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 from sqlalchemy.sql import text
@@ -25,10 +24,19 @@ def admin():
 def db_data():
     # Fetch data from the database
     with engine.connect() as conn:
-        doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability FROM Doctors")).fetchall()
+        doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")).fetchall()
         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
     # Render HTML template with fetched data
     return render_template('db_info.html', doctors=doctors, facilities=facilities)
+
+# route for the booking page (user need to be logged in)
+@app.route('/bookings')
+def booking_form():
+    if 'username' not in session:
+        flash('You must be logged in to access this page (logout).', category='error')
+        return redirect(url_for('login')) # Assuming user not logged in, We can redirect user back to login page
+    
+    return render_template('booking.html')
 
 
 # The function below, (hash_password) takes a password, encodes it into UTF-8
@@ -96,17 +104,38 @@ def login():
             stored_password = user[2] #user['password'] // coming in as tuple
             if verify_password(password, stored_password):
                 session['username'] = username
-                # app.logger.info(f"User '{username}' logged in successfully.")
+
+                #Update the 'logged_in (default = False)' column in the database
+                # user_id = user['id'] # Check the id (primary key) in the Users column
+                
+                 # Update the 'logged_in (default = False)' column in the database
+                update_logged_in(username, True)
+
+                
                 flash('Login Successful!', category='success')
-                return redirect(url_for('user_page')) # Pass email to user_page route
+                return redirect(url_for('user_page'))
+                # return redirect(url_for('booking_form')) # Option, redirect the user to booking page
             else:
-                # app.logger.warning(f"Failed login attempt for user '{username}' - Incorrect password {password}.")
                 flash('Incorrect username or password. Please try again!', category='error')
         else:
-            # app.logger.warning(f"Failed login attempt - User '{username}' does not exist and Password does not exist {password}.")
             flash('User does not exist. Please go to the registration page to create an account.', category='error')
 
     return render_template('verify.html')
+
+# Function to update 'logged_in' column in the database
+def update_logged_in(username, status):
+
+    #Start connection with database
+    with engine.begin() as conn:
+        # Execute the UPDATE statement with parameterized query
+        res = conn.execute(
+            text("UPDATE Users SET logged_in = :status WHERE username = :username"),
+            {'status': status, 'username': username}
+        )
+
+    # Check if the data is updated
+    # If the 'rowcount' is greater than 0, we have a successful update of the data
+    return res.rowcount > 0
 
 
 # contains the register page with a link to take user into login page
@@ -126,10 +155,14 @@ def register():
         allergy = request.form.get('allergy')
         condition = request.form.get('condition')
 
-        # Check if email already exists
+
+        registered_user = get_user(username)
         registered_email = get_user(email)
-        if registered_email:
-            flash('Email is already registered. Please use a different email address.', category='error')
+
+         #check if username and email  already exists
+        if registered_email or registered_user:
+            flash('Email or Username is already registered. Please use a different username or email address.', category='error')
+            return render_template('verify.html')
         
         #Validate form  inputs
         if len(email) < 4:
@@ -174,11 +207,15 @@ def logout():
     if 'username' not in session:
         flash('You must be logged in to access this page (logout).', category='error')
         return redirect(url_for('login')) # Assuming user not logged in, We can redirect user back to login page
+    else:
+        username = session['username']
+        # Update the 'logged_in' column in the database from True to False
+        update_logged_in(username, False)
 
-    session.clear()  # Clear the session data
     session.pop('username', None) # remove the username from the session if it is there
+    session.clear()  # Clear the session data
     flash('You have been logged out.', category='success') # Flash a message for logging out
-    return render_template('logout.html')
+    return redirect(url_for('login'))
 
 
 # Route to take you to the mvp page
@@ -229,9 +266,6 @@ def load_data():
 
 # Load data once when the application starts
 data = load_data()
-
-# Convert dict data to a file using json dump
-
 
 # Function to filter data based on the search query or provided criteria
 def filter_data(data, search_input, city, expert):

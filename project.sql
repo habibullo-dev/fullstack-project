@@ -96,5 +96,36 @@ ADD ratings VARCHAR(20) NOT NULL;
 ALTER TABLE Doctors
 ADD availability DATE NOT NULL;
 
- 
 
+-- Add new column called about with default sentences to the Doctors Table
+ALTER TABLE Doctors
+ADD COLUMN about VARCHAR(255) NULL
+
+
+-- Update the about column (one entry) in the Doctors Table <----- FOR TEST PURPOSES ONLY
+UPDATE Doctors
+SET about = 'Comprehensive dental care with a gentle touch and patient education.'
+WHERE name = 'Dr. Chung Chin-Koo';
+
+-- Update multiple doctors about Column in the Doctors Table using SQL CASE
+UPDATE Doctors
+SET about =
+    CASE
+        WHEN name = 'Dr. Shin Ho-Chul' THEN 'Over 15 years of experience, provides compassionate care, emphasizing preventive health, patient relationships, holistic wellness, and actively contributes to community outreach and medical education'
+        WHEN name = 'Dr. Yoon Shin-ae' THEN 'Specializes in allergic diseases and immunology, creating supportive environments for children\s health'
+        WHEN name = 'Dr. Kwak' THEN 'Dedicated to comprehensive care, emphasizing open communication and patient empowerment'
+        WHEN name = 'Dr. H.S. Rhee' THEN 'Extensive experience matched with excellence in patient care, fostering trust and confidence'
+        WHEN name = 'Dr. John Linton' THEN 'Priorities preventive medicine and health education, empowering patients for wellness'
+        WHEN name = 'Dr. Jang' THEN 'Expertise in general practice, compassionate and collaborative care for physical and emotional well-being'
+        WHEN name = 'Dr. Ho-wan Han' THEN 'Compassionate care in obstetrics and gynaecology, guiding women through every reproductive stage'
+        WHEN name = 'Dr. Sung Hae-Ree' THEN 'Passion for women\s health, evidence-based care tailored to individual needs and preferences'
+        WHEN name = 'Dr. Chung Chin-koo' THEN 'Comprehensive dental care with a gentle touch and patient education'
+        WHEN name = 'Dr. Lee Soo-Chan' THEN 'Skilled in various dental procedures, prioritizing personalized care and patient satisfaction'
+        WHEN name = 'Dr. Kong' THEN 'Highly skilled in preserving and enhancing vision, personalized care with compassion and education'
+        WHEN name = 'Dr. James Lee' THEN 'Enhances health naturally, specializing in spinal health and holistic therapies for balance and relief'
+    END
+WHERE name IN ('Dr. Shin Ho-Chul', 'Dr. Yoon Shin-ae', 'Dr. Kwak', 'Dr. H.S. Rhee', 'Dr. John Linton', 'Dr. Jang', 'Dr. Ho-wan Han', 'Dr. Sung Hae-Ree', 'Dr. Chung chin-koo', 'Dr. Lee Soo-Chan', 'Dr. Kong', 'Dr. James Lee');
+
+-- No ELSE part and no conditions are true, it returns NULL
+-- about column in the Doctors Table is set to NULL
+ 

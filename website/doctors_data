@@ -1,0 +1,106 @@
+[
+    {
+        "Name": "Dr. Shin Ho-Chul",
+        "Expertise": "General Practice",
+        "Company": "Kangbuk Samsung Hospital",
+        "Address": "108 Pyong-dong, Chung-ku, Seoul",
+        "Phone": "2001-2911, 5100",
+        "Ratings": "3.5"
+    },
+    {
+        "Name": "Dr. Yoo Shin-ae",
+        "Expertise": "General Practice",
+        "Company": "Samsung Medical Centre",
+        "Address": "50 Ilwon-dong, Kangnam-ku, Seoul",
+        "Phone": "3410-0200",
+        "Ratings": "3.3"
+    },
+    {
+        "Name": "Dr. Kwak",
+        "Expertise": "General Practice",
+        "Company": "Seoul Chungang Hospital",
+        "Address": "388-1 Poongnap-dong, Songpa-ku, Seoul",
+        "Phone": "3010-5001/2",
+        "Ratings": "3.4"
+    },
+    {
+        "Name": "Dr. H.S. Rhee",
+        "Expertise": "General Practice",
+        "Company": "Seoul Foreign Clinic",
+        "Address": "5-3 Hannam-dong, Yongsan-ku, Seoul",
+        "Phone": "796-1871-2",
+        "Ratings": "3.6"
+    },
+    {
+        "Name": "Dr. John Linton",
+        "Expertise": "General Practice",
+        "Company": "Severance Yonsei Hospital",
+        "Address": "134 Shinchon-dong, Sodaemun-ku, Seoul",
+        "Phone": "361-6540",
+        "Ratings": "3.5"
+    },
+    {
+        "Name": "Dr. Jang",
+        "Expertise": "General Practice",
+        "Company": "Soonchunhyang Hospital",
+        "Address": "657-58 Hannam-dong, Yongsan-ku, Seoul",
+        "Phone": "709-9158",
+        "Ratings": "3.7"
+    },
+    {
+        "Name": "Dr. Ho-wan Han",
+        "Expertise": "Obstetrics and Gynaecology",
+        "Company": "Samsung Cheil Hospital",
+        "Address": "1/23 Mukchung-dong, Chung-ku, Seoul",
+        "Phone": "2273-0151",
+        "Ratings": "3.6"
+    },
+    {
+        "Name": "Dr. Sung Hae-ree",
+        "Expertise": "Obstetrics and Gynaecology",
+        "Company": "UN Village Clinic",
+        "Address": "UN Village, Seoul",
+        "Phone": "790-0802",
+        "Ratings": "3.4"
+    },
+    {
+        "Name": "Dr. Yoo Shin-ae",
+        "Expertise": "Paediatrics / Allergy",
+        "Company": "Samsung Medical Centre",
+        "Address": "50 Ilwon-dong, Kangnam-ku, Seoul",
+        "Phone": "3410-0200",
+        "Ratings": "3.5"
+    },
+    {
+        "Name": "Dr. Chung Chin-koo",
+        "Expertise": "Dentist",
+        "Company": "Unknown",
+        "Address": "135-3 Itaewon-dong, Yongsan-ku, Seoul",
+        "Phone": "795-7726",
+        "Ratings": "3.6"
+    },
+    {
+        "Name": "Dr. Lee Soo-chan",
+        "Expertise": "Dentist",
+        "Company": "Unknown",
+        "Address": "186 Hangang-Ro, 2ga, Yongsan-ku, Seoul",
+        "Phone": "798-0500",
+        "Ratings": "3.6"
+    },
+    {
+        "Name": "Dr. Kong",
+        "Expertise": "Opthamologist",
+        "Company": "Dr. Kong's Eye Clinic",
+        "Address": "Injoo Building, 111-1 Seorin-dong, Chongno-ku, Seoul",
+        "Phone": "733-6890",
+        "Ratings": "3.8"
+    },
+    {
+        "Name": "Dr. James Lee",
+        "Expertise": "Chiropractic physician",
+        "Company": "Itaewon Wellnes",
+        "Address": "Itaewon Subway Exit #2, Hannam Bldg., 3F, Seoul",
+        "Phone": "02-794-3536",
+        "Ratings": "3.7"
+    }
+]

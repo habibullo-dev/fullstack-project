@@ -100,14 +100,14 @@ engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Projec
         #     {
         #           'name': 'Dr. Chung Chin-koo', 
         #           'expertise': 'Dentist', 
-        #           'company': 'Unknown', 
+        #           'company': 'Global Dentist', 
         #           'address': '135-3 Itaewon-dong, Yongsan-ku, Seoul', 
         #           'phone': '795-7726'
         #     },
         #     {
         #           'name': 'Dr. Lee Soo-chan', 
         #           'expertise': 'Dentist', 
-        #           'company': 'Unknown', 
+        #           'company': 'InterSeoul Dentist Clinic', 
         #           'address': '186 Hangang-Ro, 2ga, Yongsan-ku, Seoul', 
         #           'phone': '798-0500'
         #     },
@@ -225,3 +225,4 @@ engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Projec
 #     )
 #     db.commit()  
 #     db.close()
+
