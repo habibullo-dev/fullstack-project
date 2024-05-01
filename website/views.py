@@ -228,7 +228,7 @@ def load_data():
     conn = engine.connect()
     
     # Fetch data from the 'Doctors' table
-    doctors_statement = text("SELECT name, expertise, company, address, phone, ratings FROM Doctors")
+    doctors_statement = text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")
     doctors_data = conn.execute(doctors_statement).fetchall()
 
     # Fetch data from the 'Facilities' table
@@ -245,7 +245,9 @@ def load_data():
          'Company': doctor[2], 
          'Address': doctor[3], 
          'Phone': doctor[4], 
-         'Ratings': doctor[5]} for doctor in doctors_data]
+         'Ratings': doctor[5],
+         'Availability': doctor[6],
+         'About': doctor[7]} for doctor in doctors_data]
     
     facilities_dict = [
         {'Name': facility[0], 
@@ -284,6 +286,8 @@ def filter_data(data, search_input, city, expert):
            search_input_lower in doctor['Expertise'].lower() or
            search_input_lower in doctor['Phone'].lower() or
            search_input_lower in doctor['Ratings'].lower() or
+           search_input_lower in doctor['Availability'].lower() or
+           search_input_lower in doctor['About'].lower() or
            city_lower in doctor['Address'].lower() and
            expert_lower in doctor['Expertise'].lower()
     ]

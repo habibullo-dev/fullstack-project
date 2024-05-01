@@ -210,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedCard = document.querySelector('.selectedCard');
         // Populate the right card with the doctor's information
         selectedCard.querySelector('.drName').textContent = doctor.Name;
+        selectedCard.querySelector('.hospAbout').textContent = doctor.About;
         selectedCard.querySelector('.hospCompany').textContent = doctor.Company;
         selectedCard.querySelector('.hospExpertise').textContent = doctor.Expertise;
         selectedCard.querySelector('.hospAddresses').textContent = `${doctor.Address}`;
