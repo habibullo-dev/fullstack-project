@@ -80,23 +80,6 @@
             transform: scale(1.1);
             cursor: pointer;
         }
-        .sendBtn {
-            color: var(--color-light);
-            background-color: var(--color-primary);
-            text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid var(--color-light);
-            margin-left: 1rem;
-            border-radius: 5px;
-            transition: all 0.5s ease-out;
-            text-decoration: none;
-        }
-        .sendBtn:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-light);
-            transform: scale(1.1);
-            cursor: pointer;
-        }
         </style>
     </head>
     <body>
@@ -114,11 +97,8 @@
             </div>
         </nav>
         <h1>Admin Dashboard</h1>
-        <h2>Send Email for MedKorea Subscriber</h2>
-        <form method="POST" action="/send_email">
-            <!-- Ensure method is "post" -->
-            <!-- Submit button -->
-            <input class="sendBtn" type="submit" value="Send Email" />
+        <form id="logOut" action="/logout" method="GET">
+            <input type="submit" value="Logout">
         </form>
         <div class="container-div">
             <h2 class="user">Registered users</h2>

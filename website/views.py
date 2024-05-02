@@ -15,44 +15,60 @@ def home():
 #  Also to Display Database Project with TABLES Doctors, Facilities and Users
 @app.route('/admin') 
 def admin(): 
-    #Fetch user data from the database
-    with engine.connect() as conn:
-        users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date FROM Users")).fetchall()
-        doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")).fetchall()
-        facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
-        # Render HTML template with fetched data
-    return render_template('admin.html', users=users, doctors=doctors, facilities=facilities)
+    # Check in the user is logged in and is an admin(ID needs to be 1, 2, 3, 4)
+    if 'username' in session:
+        user = get_user(session['username'])
+        user = {'id': user[0], 'username': user[1]}
+
+        #Check if the user's ID is in the list of admin ID's
+        if user and user['id'] in [1,2,3,4]: 
+        #Fetch user data from the database
+            with engine.connect() as conn:
+                users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date FROM Users")).fetchall()
+                doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")).fetchall()
+                facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
+                # Render HTML template with fetched data
+            return render_template('admin.html', users=users, doctors=doctors, facilities=facilities)
+        else:
+            flash('You do not have permission to access this page.', category='error')
+            return redirect(url_for('user_page')) # redirect unauthorized users to user dashboard
+    else:
+        flash('You must be logged in to access this page.', category='error')
+        return redirect(url_for('login')) # Redirect unauthenticated users to login page
+    
+
+# # Setup up for the smtplib sending email to a recipient
+# # Need a  function to send email
+# def send_email(receiver_email):
+#     sender_email = 'medkorea01@gmail.com' # Sender's email address
+#     From = "support@medkorea.com"
+#     subject = 'New Account Subscription - MedKorea' # Email subject
+#     message = """
+#             Thank you for subscribing to MedKorea! We are thrilled to have you on board.\n
+#             Your account has been successfully created. Feel free to explore our platform and discover a world of healthcare innovation.\n
+#             If you have any questions or need assistance, don't hesitate to reach out to our support team at medkorea1@gmail.com.\n
+#             Best regards,\n\nThe MedKorea Team,
 
 
-# Setup up for the smtplib sending email to a recipient
-# Need a  function to send email
-def send_email(receiver_email):
-    sender_email = 'medkorea01@gmail.com' # Sender's email address
-    From = "support@medkorea.com"
-    subject = 'New Account Subscription - MedKorea' # Email subject
-    message = """
-            Thank you for subscribing to MedKorea! We are thrilled to have you on board.\n
-            Your account has been successfully created. Feel free to explore our platform and discover a world of healthcare innovation.\n
-            If you have any questions or need assistance, don't hesitate to reach out to our support team at medkorea1@gmail.com.\n
-            Best regards,\n\nThe MedKorea Team,
-    """
-    text = f"From: {From}\n\nSubject: {subject}\n\nBody:{message}"
+#             Please do not reply to this email.
+#     """
+#     text = f"From: {From}\n\nSubject: {subject}\n\nBody:{message}"
 
-    # Connect to Gmail SMTP server
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls() # Start TLS encryption
+#     # Connect to Gmail SMTP server
+#     server = smtplib.SMTP("smtp.gmail.com", 587)
+#     server.starttls() # Start TLS encryption
 
-    server.login(sender_email, 'cenqfigvidsttjbd') # app password from gmail account and log in to sender's account
+#     server.login(sender_email, 'cenqfigvidsttjbd') # app password from gmail account and log in to sender's account
 
-    server.sendmail(sender_email, receiver_email, text) #Send email
-    server.quit() #Close connection to the SMTP Client
+#     server.sendmail(sender_email, receiver_email, text) #Send email
+#     server.quit() #Close connection to the SMTP Client
 
-@app.route('/send_email', methods=['POST'])
-def transmit_email():
-    if request.method == 'POST':
-        receiver_email = 'nik.piao26@gmail.com' # Receiver's email address
-        send_email(receiver_email) # Call the send_email function to send the email
-        return f'Email sent successfully! Email has been sent to {receiver_email}' # Return a success message
+# @app.route('/send_email', methods=['POST'])
+# def transmit_email():
+#     if request.method == 'POST':
+#         receiver_email = 'nik.piao26@gmail.com' # Receiver's email address
+#         send_email(receiver_email) # Call the send_email function to send the email
+#         return f'Email sent successfully! Email has been sent to {receiver_email}' # Return a success message
 
 
 # route for the booking page (user need to be logged in)

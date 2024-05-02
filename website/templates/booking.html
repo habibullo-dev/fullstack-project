@@ -30,6 +30,23 @@
             display: flex;
             flex-direction: column;
          }
+         .sendBtn {
+            color: var(--color-light);
+            background-color: var(--color-primary);
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid var(--color-light);
+            margin-left: 1rem;
+            border-radius: 5px;
+            transition: all 0.5s ease-out;
+            text-decoration: none;
+        }
+        .sendBtn:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+            transform: scale(1.1);
+            cursor: pointer;
+        }
         </style>
     </head>
     <body>
@@ -51,9 +68,9 @@
         <div class="wrapper-div">
             <h1>Doctor Appointment Request Form</h1>
             <h2>Please finalize your booking details below:</h2>
-            <form id="bookForm" name="booking" action>
-
-            </form>
+            <!-- <form method="POST" action="/send_email" id="bookForm">
+                <input class="sendBtn" type="submit" value="Send Email" />
+            </form> -->
             <div class="booking-form">
 
             </div>
