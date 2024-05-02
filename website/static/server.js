@@ -39,6 +39,7 @@ cards.forEach(card => {
 
 // js for styling clicked listings end//
 
+
 // code for the search input and fetch data from the backend python and database Mariadb
 
 // Execute the code when the DOM Content is loaded
@@ -109,10 +110,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Save and store fetched data into a variable
                 searchData = data;
 
+                // Clear Previous results
+                textField.innerHTML = ''
+
                 // Display search results message
                 textField.innerHTML = `<p>Search results for (Expertise):  <strong>${expertValue}</strong> in (City): <strong>${cityValue}</strong></p>`;
 
-                // Clear previous search results after 3 seconds
+                // Clear message results
                 setTimeout(() => {
                     textField.innerHTML = '';
                 }, 3000);
@@ -157,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
         doctorCard.innerHTML = `
             <div class='left'>
                 <div class='hospL'>
-                    <img class='hospLogo' src='../static/images/logoInBlue.png' alt='Hospital Logo'>
+                    <img class='hospLogo' src='../static/images/stethoscopeLogo.png' alt='Hospital Logo'>
                 </div>
                 <p class='rating'>${doctor.Ratings}/5</p>
             </div>
@@ -185,25 +189,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const facilityCard = document.createElement('div');
         facilityCard.classList.add('facility', 'card');
         facilityCard.innerHTML = `
-            <div class='left'>
-                <div class='hospL'>
-                    <img class='hospLogo' src='../static/images/logoInBlue.png' alt='Hospital Logo'>
-                </div>
-                <p class='rating'>3.5/5</p>
+        <div class='left'>
+            <div class='hospL'>
+                <img class='hospLogo' src='../static/images/medicalLogo.png' alt='Hospital Logo'>
             </div>
-            <div class='middle'>
-                <h2 class='nameElem' style='font-size:1.8rem;'>${facility.Name}</h2>
-                <div class='hospInfo'>
-                    <p class='hospAddress'>Address: ${facility.Address}</p>
-                    <p class='hospPhone'>Phone: ${facility.Phone}</p>
-                </div>
-                <div class='blurb'>
-                    <p>This is the official data of the ${facility.Name}. Please select the card for more additional information</p>
-                </div>
+            <p class='rating'>3.5/5</p>
+        </div>
+        <div class='middle'>
+            <h2 class='nameElem' style='font-size:1.8rem;'>${facility.Name}</h2>
+            <div class='hospInfo'>
+                <p class='hospAddress'>Address: ${facility.Address}</p>
+                <p class='hospPhone'>Phone: ${facility.Phone}</p>
             </div>
-        `;
+            <div class='blurb'>
+                <p>This is the official data of the ${facility.Name}. Please select the card for more additional information</p>
+            </div>
+        </div>
+    `;
         container.appendChild(facilityCard);
     }
+
 
     // Function to populate the right card with full data of the selected doctor
     function updateRightCard(doctor) {

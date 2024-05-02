@@ -129,3 +129,11 @@ WHERE name IN ('Dr. Shin Ho-Chul', 'Dr. Yoon Shin-ae', 'Dr. Kwak', 'Dr. H.S. Rhe
 -- No ELSE part and no conditions are true, it returns NULL
 -- about column in the Doctors Table is set to NULL
  
+
+-- Add new column called images with data type blob to Doctors table
+ALTER TABLE Doctors
+ADD COLUMN IF NOT EXISTS images BLOB;
+
+-- Drop column images in the Doctors Table 
+ALTER TABLE Doctors
+DROP COLUMN images

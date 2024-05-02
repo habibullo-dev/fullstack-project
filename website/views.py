@@ -1,5 +1,6 @@
 import hashlib
 import datetime
+import smtplib
 from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 from sqlalchemy.sql import text
 from website import app, engine
@@ -11,23 +12,48 @@ def home():
     return render_template("index.html")
 
 #route for admin page
+#  Also to Display Database Project with TABLES Doctors, Facilities and Users
 @app.route('/admin') 
 def admin(): 
     #Fetch user data from the database
     with engine.connect() as conn:
         users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date FROM Users")).fetchall()
-        # Render HTML template with fetched data
-    return render_template('admin.html', users=users)
-
-#  To Display Database Project with TABLES Doctors and Facilities
-@app.route('/db_data')
-def db_data():
-    # Fetch data from the database
-    with engine.connect() as conn:
         doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")).fetchall()
         facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
-    # Render HTML template with fetched data
-    return render_template('db_info.html', doctors=doctors, facilities=facilities)
+        # Render HTML template with fetched data
+    return render_template('admin.html', users=users, doctors=doctors, facilities=facilities)
+
+
+# Setup up for the smtplib sending email to a recipient
+# Need a  function to send email
+def send_email(receiver_email):
+    sender_email = 'medkorea01@gmail.com' # Sender's email address
+    From = "support@medkorea.com"
+    subject = 'New Account Subscription - MedKorea' # Email subject
+    message = """
+            Thank you for subscribing to MedKorea! We are thrilled to have you on board.\n
+            Your account has been successfully created. Feel free to explore our platform and discover a world of healthcare innovation.\n
+            If you have any questions or need assistance, don't hesitate to reach out to our support team at medkorea1@gmail.com.\n
+            Best regards,\n\nThe MedKorea Team,
+    """
+    text = f"From: {From}\n\nSubject: {subject}\n\nBody:{message}"
+
+    # Connect to Gmail SMTP server
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls() # Start TLS encryption
+
+    server.login(sender_email, 'cenqfigvidsttjbd') # app password from gmail account and log in to sender's account
+
+    server.sendmail(sender_email, receiver_email, text) #Send email
+    server.quit() #Close connection to the SMTP Client
+
+@app.route('/send_email', methods=['POST'])
+def transmit_email():
+    if request.method == 'POST':
+        receiver_email = 'nik.piao26@gmail.com' # Receiver's email address
+        send_email(receiver_email) # Call the send_email function to send the email
+        return f'Email sent successfully! Email has been sent to {receiver_email}' # Return a success message
+
 
 # route for the booking page (user need to be logged in)
 @app.route('/bookings')
@@ -223,10 +249,11 @@ def logout():
 def search_page():
     return render_template('mvp.html')
 
+
 # Load data from the database and convert it to JSON format
 def load_data():
     conn = engine.connect()
-    
+
     # Fetch data from the 'Doctors' table
     doctors_statement = text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")
     doctors_data = conn.execute(doctors_statement).fetchall()
@@ -234,10 +261,11 @@ def load_data():
     # Fetch data from the 'Facilities' table
     facilities_statement = text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")
     facilities_data = conn.execute(facilities_statement).fetchall()
-    
+
     # Close the database connection
     conn.close()
-    
+
+
     # Convert data to dictionaries
     doctors_dict = [
         {'Name': doctor[0], 
@@ -250,14 +278,14 @@ def load_data():
          'About': doctor[7]} for doctor in doctors_data]
     
     facilities_dict = [
-        {'Name': facility[0], 
+        {'Name': facility[0],
          'Speaker': facility[1], 
          'Type': facility[2], 
          'Address': facility[3], 
          'Phone': facility[4], 
          'Emergency': facility[5], 
          'Services': facility[6]} for facility in facilities_data]
-    
+
     # Combine the data into a dictionary
     db_data = {
         'Doctors': doctors_dict,
@@ -266,13 +294,13 @@ def load_data():
     
     return db_data
 
+
 # Load data once when the application starts
 data = load_data()
 
 # Function to filter data based on the search query or provided criteria
 def filter_data(data, search_input, city, expert):
-    # Convert inputs to lowercase for case-insensitive comparison
-    search_input_lower = search_input.lower()
+    search_input_lower = search_input.lower() # Convert inputs to lowercase for case-insensitive comparison
     city_lower = city.lower()
     expert_lower = expert.lower()
 
@@ -282,32 +310,33 @@ def filter_data(data, search_input, city, expert):
     # Filter doctors based on search criteria
     filtered_doctors = [
         doctor for doctor in data['Doctors']
-        if search_input_lower in doctor['Name'].lower() or
-           search_input_lower in doctor['Expertise'].lower() or
-           search_input_lower in doctor['Phone'].lower() or
-           search_input_lower in doctor['Ratings'].lower() or
-           search_input_lower in doctor['Availability'].lower() or
-           search_input_lower in doctor['About'].lower() or
-           city_lower in doctor['Address'].lower() and
-           expert_lower in doctor['Expertise'].lower()
+        if (search_input_lower in doctor['Name'].lower() or
+            search_input_lower in doctor['Expertise'].lower() or
+            search_input_lower in doctor['Phone'].lower() or
+            search_input_lower in doctor['Ratings'].lower() or
+            search_input_lower in doctor['Availability'].lower() or
+            search_input_lower in doctor['About'].lower() or
+            city_lower in doctor['Address'].lower()) and
+            expert_lower in doctor['Expertise'].lower()
     ]
+    # breakpoint()
 
     # Filter facilities based on search criteria
     filtered_facilities = [
         facility for facility in data['Facilities']
-        if search_input_lower in facility['Name'].lower() or
-           search_input_lower in facility['speaker'].lower() or
-           search_input_lower in facility['phone'].lower() or
-           search_input_lower in facility['emergency'].lower() or
-           city_lower in facility['Address'].lower() and
-           expert_lower in facility['Type'].lower()
+        if (search_input_lower in facility['Name'].lower() or
+            search_input_lower in facility['Speaker'].lower() or
+            search_input_lower in facility['Phone'].lower() or
+            search_input_lower in facility['Emergency'].lower() or
+            search_input_lower in facility['Services'].lower() or
+            city_lower in facility['Address'].lower())
+            # expert_lower in facility['Type'].lower()
     ]
 
     return {
         'Doctors': filtered_doctors,
         'Facilities': filtered_facilities
     }
-
 
 # Define the '/search_input' endpoint
 @app.route('/search_input', methods=['POST'])
@@ -327,16 +356,19 @@ def search_input():
     # Filter the data based on the search criteria
     filtered_results = filter_data(data, search_input, city_input, expert_input)
 
+    # breakpoint()
+    
     # Return the filtered results as JSON
     return jsonify(filtered_results)
-    # This turns the JSON output into a Response object with the application/json mimetype.
 
+
+    # This turns the JSON output into a Response object with the application/json mimetype.
 
 # About page route
 @app.route('/about')
 def about_us():
     intro = """
-We are dedicated to providing reliable and comprehensive information about English-speaking medical professionals and facilities in South Korea. 
+We are dedicated to providing reliable and comprehensive information about English-speaking medical professionals and facilities in South Korea.    
 Our platform is designed to make healthcare more accessible and less stressful for foreigners visiting or living in South Korea. 
 Whether you are a tourist, student, or expat, finding quality healthcare in a new country can be challenging, especially if there is a language barrier. 
 We are here to help bridge that gap.

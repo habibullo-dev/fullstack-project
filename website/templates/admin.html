@@ -48,18 +48,54 @@
             border: 2px solid;
             padding: 10px;
         }
-        .tr-1 th {
+        .tr-1 th, .tr-2 th, .tr-3 th {
             background-color: var(--color-tertiary);
             color: #EEEEEE;
             border-right: 2px solid #EEEEEE;
         }
-        .tr-1 th:last-child {
+        .tr-1 th:last-child,
+        .tr-2 th:last-child,
+        .tr-3 th:last-child {
             border-right: 2px solid var(--color-primary);
         }
-        .user {
+        .user, .doc, .fac {
             text-align: center;
             letter-spacing: 0.3rem;
             text-transform: uppercase;
+        }
+        .showBtn {
+            color: var(--color-light);
+            background-color: var(--color-primary);
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid var(--color-light);
+            margin-left: 1rem;
+            border-radius: 5px;
+            transition: all 0.5s ease-out;
+            text-decoration: none;
+        }
+        .showBtn:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        .sendBtn {
+            color: var(--color-light);
+            background-color: var(--color-primary);
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid var(--color-light);
+            margin-left: 1rem;
+            border-radius: 5px;
+            transition: all 0.5s ease-out;
+            text-decoration: none;
+        }
+        .sendBtn:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+            transform: scale(1.1);
+            cursor: pointer;
         }
         </style>
     </head>
@@ -73,13 +109,21 @@
             </div>
             <div class="buttons">
                 <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('search_page')}}">Search</a>
                 <a href="{{ url_for('about_us')}}">About</a>
             </div>
         </nav>
-        <h1>Admin Page</h1>
+        <h1>Admin Dashboard</h1>
+        <h2>Send Email for MedKorea Subscriber</h2>
+        <form method="POST" action="/send_email">
+            <!-- Ensure method is "post" -->
+            <!-- Submit button -->
+            <input class="sendBtn" type="submit" value="Send Email" />
+        </form>
         <div class="container-div">
-            <h2 class="user">List of registered users</h2>
-            <table>
+            <h2 class="user">Registered users</h2>
+            <button class="showBtn" onclick="toggleBtn(0)">Show Users</button>
+            <table class="adminTable" style="display: none;">
                 <tr class="tr-1">
                     <th>Username</th>
                     <th>Password</th>
@@ -113,6 +157,59 @@
                 </tr>
                 {% endfor %}
             </table>
+            <!-- Table for the Doctors -->
+            <h2 class="doc">English Speaking Doctors in Korea</h2>
+            <button class="showBtn" onclick="toggleBtn(1)">Show Doctors</button>
+            <table class="adminTable">
+                <tr class="tr-2">
+                    <th>Name</th>
+                    <th>Expertise</th>
+                    <th>Company</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Ratings</th>
+                    <th>Availability</th>
+                    <th>About</th>
+                </tr>
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor[0] }}</td>
+                    <td>{{ doctor[1] }}</td>
+                    <td>{{ doctor[2] }}</td>
+                    <td>{{ doctor[3] }}</td>
+                    <td>{{ doctor[4] }}</td>
+                    <td>{{ doctor[5] }}</td>
+                    <td>{{ doctor[6] }}</td>
+                    <td class="about">{{ doctor[7] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <!-- Table for facilities -->
+            <h2 class="fac">English Speaking Facilities in Korea</h2>
+            <button class="showBtn" onclick="toggleBtn(2)">Show
+                Facilities</button>
+            <table class="adminTable">
+                <tr class="tr-3">
+                    <th>Name</th>
+                    <th>Speaker</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Emergency</th>
+                    <th>Services</th>
+                </tr>
+                {% for facility in facilities %}
+                <tr>
+                    <td>{{ facility[0] }}</td>
+                    <td>{{ facility[1] }}</td>
+                    <td>{{ facility[2] }}</td>
+                    <td>{{ facility[3] }}</td>
+                    <td>{{ facility[4] }}</td>
+                    <td>{{ facility[5] }}</td>
+                    <td>{{ facility[6] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
         <!-- Footer -->
         <footer class="footer">
@@ -137,5 +234,6 @@
             <p class="copy">&copy; 2024 MedKorea. All right
                 reserved.</p>
         </footer>
+        <script src="../static/admin.js"></script>
     </body>
 </html>
