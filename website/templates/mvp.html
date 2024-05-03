@@ -24,7 +24,11 @@
                 </div>
                 <div class="buttons">
                     <a href="{{ url_for('home')}}">Home</a>
-                    <a href="{{ url_for('register')}}">Account</a>
+                    {% if session.logged_in %}
+                    <a href="{{ url_for('user_page')}}">Account</a>
+                    {% else %}
+                    <a href="{{url_for('login')}}">Account</a>
+                    {% endif %}
                     <a href="{{ url_for('about_us')}}">About</a>
                 </div>
             </nav>

@@ -132,6 +132,17 @@ def get_user(username):
         )
         return res.fetchone() # fetch one row from db
 
+# function for login authentication
+def user_auth(username, password):
+    # verify if username and password provided are correct
+    # Make a query to database to check if username exists and password matches
+    user = get_user(username)
+    if user:
+        stored_password = user[2] #Password is in third column, access data using index
+        return verify_password(password, stored_password)
+    else:
+        return False
+
 # route for the login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -142,25 +153,17 @@ def login():
         user = get_user(username)
         # breakpoint() #stop the code (debugger)
 
-        if user:
-            stored_password = user[2] #user['password'] // coming in as tuple
-            if verify_password(password, stored_password):
-                session['username'] = username
+        if user and user_auth(username, password):
+            session['username'] = username
+            session['logged_in'] = True
 
-                #Update the 'logged_in (default = False)' column in the database
-                # user_id = user['id'] # Check the id (primary key) in the Users column
-                
-                 # Update the 'logged_in (default = False)' column in the database
-                update_logged_in(username, True)
-
-                
-                flash('Login Successful!', category='success')
-                return redirect(url_for('user_page'))
-                # return redirect(url_for('booking_form')) # Option, redirect the user to booking page
-            else:
-                flash('Incorrect username or password. Please try again!', category='error')
+            # Update the 'logged_in (default = False)' column in the database
+            update_logged_in(username, True)
+            
+            flash('Login Successful!', category='success')
+            return redirect(url_for('user_page')) # Login successful, redirect to user dashboard
         else:
-            flash('User does not exist. Please go to the registration page to create an account.', category='error')
+            flash('Incorrect username or password. Please try again!', category='error')
 
     return render_template('verify.html')
 
@@ -206,7 +209,7 @@ def register():
             flash('Email or Username is already registered. Please use a different username or email address.', category='error')
             return render_template('verify.html')
         
-        #Validate form  inputs
+        #Validate form inputs
         if len(email) < 4:
             flash('Email must be greater than 4 characters.', category='error')
         elif len(username) < 5:
