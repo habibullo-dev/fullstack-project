@@ -569,3 +569,71 @@ ul {
 }
 
 /* styling for about.html END */
+
+/* styling for booking START */
+
+.bookTitle h1 {
+    /* display: flex; */
+    margin: 15px auto;
+}
+
+.booking-form {
+    margin: 0 auto;
+    background-color: var(--color-extra);
+    padding: 30px;
+    border-radius: 20px;
+    width: 800px;
+    align-items: center;
+}
+
+.doctorSelected {
+    display: none;
+}
+
+/* div styling */
+.selectDoctor,
+.fullNameInput,
+.preferredDate,
+.currentConcerns {
+    margin: 0px 4px;
+    padding: 0px 4px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+/* input styling */
+#doctorSelect,
+#fullName,
+.apptConcerns,
+#apptDate {
+    width: 250px;
+    border: 1.5px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 8px 4px;
+    margin-left: auto;
+    margin-bottom: 16px;
+    height: 50px
+}
+
+
+.patientSelect {
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+    /* border: 1.5px solid var(--color-primary); */
+    border-radius: 5px;
+    padding: 4px 4px;
+    margin-left: auto;
+    margin-bottom: 16px;
+}
+
+.bookLabel {
+    text-align: left;
+    color: var(--color-light);
+    font-size: 1.3rem;
+    font-weight: 600;
+    width: 300px;
+}
+
+/* styling for booking END */
