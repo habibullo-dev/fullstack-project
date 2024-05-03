@@ -1,84 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User Dashboard</title>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="../static/index.css">
-    </head>
-    <body>
-        <main class="main">
-            <nav class="navbar">
-                <div class="navLogo">
-                    <img class="siteLogo" src="../static/images/logoInWhite.png"
-                        alt>
-                    <div class="logo">MedKorea</div>
-                </div>
-                <div class="buttons">
-                    <a href="{{ url_for('home')}}">Home</a>
-                    <a href="{{ url_for('search_page')}}">Search</a>
-                    <a href="{{ url_for('admin')}}">Admin</a>
-                    <a href="{{ url_for('booking_form')}}">Appointment</a>
-                    <a href="{{ url_for('about_us')}}">About</a>
-                </div>
-            </nav>
-            <h1>My Account</h1>
-            <!-- flash messages -->
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            <ul class="flash-messages" style="background-color: none;">
-                {% for category, message in messages %}
-                <li class="{{ category }}">
-                    <span class="message-span">{{ message }}</span>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
 
-            <!-- regular Jinja template  -->
-            {% if username %}
-            <p class="message">Welcome, {{ username }}. <span
-                    class="msg-span">You are logged
-                    in.</span></p>
-            <form id="logOut" action="/logout" method="GET">
-                <input type="submit" value="Logout">
-            </form>
-            {% else %}
-            <p class="message">You are not logged in. <br> Please <a
-                    href="{{ url_for('login')}}">login</a>
-                to
-                access the user page.</p>
-            {% endif %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/index.css">
+</head>
 
-            <div class="container-4"></div>
-            <footer class="footer">
-                <p class="explore-text">Feel free to explore our resources and
-                    reach
-                    out if you have any questions. We're dedicated to supporting
-                    your health journey!
-                </p>
-                <!-- Social media icons below the footer -->
-                <div class="footer-icons" style="margin-top: 0px;">
-                    <a href="https://www.facebook.com" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.twitter.com" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://github.com" target="_blank"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
+<body>
+    <main class="main">
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png" alt>
+                <div class="logo">MedKorea</div>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('search_page')}}">Search</a>
+                <a href="{{ url_for('admin')}}">Admin</a>
+                <a href="{{ url_for('booking_form')}}">Appointment</a>
+                <a href="{{ url_for('about_us')}}">About</a>
+            </div>
+        </nav>
+        <h1>My Account</h1>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class="flash-messages" style="background-color: none;">
+            {% for category, message in messages %}
+            <li class="{{ category }}">
+                <span class="message-span">{{ message }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <!-- regular Jinja template  -->
+        {% if username %}
+        <p class="message">Welcome, {{ username }}. <span class="msg-span">You are logged
+                in.</span></p>
+        <!-- <form id="logOut" action="/logout" method="GET">
+            <input type="submit" value="Logout">
+        </form> -->
+        {% else %}
+        <p class="message">You are not logged in. <br> Please <a href="{{ url_for('login')}}">login</a>
+            to
+            access the user page.</p>
+        {% endif %}
+
+        <div class="container-4">
+            <div class="userPage">
+
+
+                <div class="sideBar">
+
+                    <div class="sideUserCard" id="userTop">
+                        <h3>Welcome, <br><span>User</span>! </h3>
+                    </div>
+
+                    <div class="sideCard" id="userDetailBtn">
+                        <h4>Personal Details</h4>
+                    </div>
+
+                    <div class="sideCard" id="userBookingsBtn">
+                        <h4>My Bookings</h4>
+                    </div>
+
+                    <div class="sideUserCard" id="userBot">
+                        <form id="logOut" action="/logout" method="GET">
+                            <input type="submit" value="Logout">
+                        </form>
+                    </div>
+
                 </div>
-                <p class="copy">&copy; 2024 MedKorea. All right
-                    reserved</p>
-            </footer>
-        </main>
-        <script src="../static/index.js"></script>
-    </body>
+
+
+                <div class="userContent">
+
+                    <div class="userPageContent" id="personalDetails">
+                        <h2>Your Details :</h2>
+                        <div class="detailsCard">
+                            <label for="username">Username: </label>
+                            <p class="userDetails"><span>username</span></p>
+
+                            <label for="email">Email: </label>
+                            <p class="userDetails"><span>user@email.com</span></p>
+
+                            <label for="fullname">Full Name: </label>
+                            <p class="userDetails"><span>user full name</span></p>
+
+                            <label for="gender">Gender: </label>
+                            <p class="userDetails"><span>M/F</span></p>
+
+                            <label for="DOB">Date of Birth: </label>
+                            <p class="userDetails"><span>mm/dd/yyyy</span></p>
+
+                            <label for="phNum">Phone Number: </label>
+                            <p class="userDetails"><span>0123456789</span></p>
+
+                            <label for="allergies">Allergies: </label>
+                            <p class="userDetails"><span>none</span></p>
+
+                            <label for="medicalconditions">Medical Condition/s: </label>
+                            <p class="userDetails"><span>none</span></p>
+                        </div>
+                    </div>
+
+                    <div class="userPageContent" id="userBookings">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons" style="margin-top: 0px;">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 MedKorea. All right
+                reserved</p>
+        </footer>
+    </main>
+    <script src="../static/index.js"></script>
+</body>
+
 </html>
