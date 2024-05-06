@@ -671,16 +671,24 @@ ul {
 }
 
 .sideUserCard {
-    height: 200px;
+    height: 250px;
     padding: 50px;
     align-items: center;
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
 }
 
 .sideCard {
     height: 50px;
     padding: 50px;
-    border: 1px solid red;
+    transition: all 0.5s ease-out;
+    /* border: 1px solid red; */
+}
+
+.sideCard:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    /* transform: scale(1.1); */
+    cursor: pointer;
 }
 
 .userContent {

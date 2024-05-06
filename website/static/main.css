@@ -357,7 +357,7 @@ video {
 
 .subscribe-newsletter,
 .subscribe-form {
-    flex-basis: 50%;
+    /* flex-basis: 50%; */
     /* Each takes up half the width */
     padding: 10px;
 }
@@ -375,15 +375,11 @@ video {
     display: flex;
     padding: 5px;
     border-radius: 20px;
-    width: 400px;
+    width: 420px;
     justify-content: space-between;
     color: var(--color-light);
     border: 2px solid var(--color-light);
 }
-
-/* 
-.input-wrapper input[type="text"] {
-} */
 
 input[type="text"] {
     /* Adjust padding */
@@ -394,7 +390,7 @@ input[type="text"] {
 
 input[type="text"]::placeholder {
     color: var(--color-dark);
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.1rem;
     font-weight: 800;
 }
 
