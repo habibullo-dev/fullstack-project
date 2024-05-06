@@ -38,11 +38,12 @@ CREATE TABLE IF NOT EXISTS Users (
     last_name VARCHAR(255) NOT NULL,
     birth_date DATE, 
     gender VARCHAR(20),
-    phone VARCHAR(20),
+    phone VARCHAR(15),
     allergy VARCHAR(255),
     `condition` VARCHAR(255),
     subscribe BOOLEAN DEFAULT true,
     logged_in BOOLEAN DEFAULT false,
+    is_admin BOOLEAN DEFAULT false,
     join_date DATE NOT NULL
 );
 
@@ -51,9 +52,24 @@ ALTER TABLE Users
 ADD COLUMN subscribe BOOLEAN DEFAULT true,
 ADD COLUMN logged_in BOOLEAN DEFAULT false;
 
+-- Add new column with default value = false to the Users table
+ALTER TABLE Users
+ADD COLUMN is_admin BOOLEAN DEFAULT FALSE;
+
+
 -- Update all existing rows to set subscribe = true and logged_in = false
 UPDATE Users
 SET subscribe = true, logged_in = false;
+
+-- Update all existing rows to set is_admin = true for id[1,2,3,4] and else = false
+UPDATE Users
+SET 
+    subscribe = true,
+    logged_in = false,
+    is_admin = CASE 
+                    WHEN id IN (1,2,3,4) THEN true
+                    ELSE false
+                END;
 
 
 -- Second batch of data for the Facilities Table in the Database Project

@@ -18,11 +18,13 @@ def admin():
     # Check in the user is logged in and is an admin(ID needs to be 1, 2, 3, 4)
     if 'username' in session:
         user = get_user(session['username'])
-        user = {'id': user[0], 'username': user[1]}
+        is_admin = user[-1]
+        # admin = {'id': user[0], 'username': user[1]}
 
         #Check if the user's ID is in the list of admin ID's
-        if user and user['id'] in [1,2,3,4]: 
-        #Fetch user data from the database
+        # if user and admin['id'] in [1,2,3,4]: 
+        if user and is_admin:
+        #Fetch user data from the database 
             with engine.connect() as conn:
                 users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date FROM Users")).fetchall()
                 doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")).fetchall()
@@ -157,6 +159,16 @@ def login():
             session['username'] = username
             session['logged_in'] = True
 
+        # Check if the user(tuple) is an admin (assuming is_admin is the last element in the user tuple)
+            is_admin = user[-1] if user else False  
+            # print("is_admin:", is_admin)
+        
+        # Check if the user is an admin (is_admin=true)
+            if is_admin:
+                session['is_admin'] = True
+            else:
+                session.pop('is_admin', None)  # Clear the 'is_admin' if it exists
+
             # Update the 'logged_in (default = False)' column in the database
             update_logged_in(username, True)
             
@@ -239,7 +251,12 @@ def register():
 def user_page():
     # Render the user page. 
     if 'username' in session: # If username in sessions, (user is logged in) pass to user page
-        return render_template('users.html', username=session['username'])
+        user = session['username']
+
+       # Extract the admin status from the session
+        is_admin = session.get('is_admin', False)
+        
+        return render_template('users.html', user=user, admin=is_admin)
     else: 
          return redirect(url_for('home'))  # User not logged in, redirect to home page
 
@@ -258,6 +275,9 @@ def logout():
         update_logged_in(username, False)
 
     session.pop('username', None) # remove the username from the session if it is there
+    session.pop('logged_in', None)
+    session.pop('is_admin', None)
+
     session.clear()  # Clear the session data
     flash('You have been logged out.', category='success') # Flash a message for logging out
     return redirect(url_for('login'))

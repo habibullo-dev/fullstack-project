@@ -72,6 +72,14 @@ main {
     font-weight: bold;
 }
 
+.navbar .logo a {
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-light);
+    text-decoration: none;
+}
+
 .navbar .buttons {
     display: flex;
 }

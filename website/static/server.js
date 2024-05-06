@@ -9,8 +9,6 @@ selectDoctor.forEach(function (h2) {
     });
 });
 
-// code to populate info into selected card (on right)
-
 // js for styling clicked listings //
 
 const cards = document.querySelectorAll('.card');
@@ -38,6 +36,9 @@ cards.forEach(card => {
 });
 
 // js for styling clicked listings end//
+
+
+
 
 
 // code for the search input and fetch data from the backend python and database Mariadb
@@ -266,9 +267,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener to the 'Show More' button
     showBtn.addEventListener('click', handleButtonClick);
 })
-
-
 // End of the js code for the mvp search input and result
+
+
 
 
 // function for burgermenu//
