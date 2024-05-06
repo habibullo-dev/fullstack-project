@@ -26,7 +26,7 @@ def admin():
         if user and is_admin:
         #Fetch user data from the database 
             with engine.connect() as conn:
-                users = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date FROM Users")).fetchall()
+                users = conn.execute(text("SELECT username, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date, is_admin FROM Users")).fetchall()
                 doctors = conn.execute(text("SELECT name, expertise, company, address, phone, ratings, availability, about FROM Doctors")).fetchall()
                 facilities = conn.execute(text("SELECT name, speaker, type, address, phone, emergency, services FROM Facilities")).fetchall()
                 # Render HTML template with fetched data

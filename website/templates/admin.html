@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Page</title>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="../static/index.css">
-        <style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/index.css">
+    <style>
         :root {
             --color-primary: #4d78b8;
             --color-secondary: #75C9C8;
@@ -17,13 +17,16 @@
             --color-dark: #2A2C24;
             --color-light: whitesmoke;
         }
+
         * {
             box-sizing: border-box;
         }
+
         body {
             margin: 0;
             /* background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); */
-         }
+        }
+
         .container-div {
             min-height: 100vh;
             display: flex;
@@ -34,36 +37,49 @@
             gap: 1.5rem;
             overflow: hidden;
         }
+
         h1 {
             text-align: center;
             margin: 1.3rem 0;
         }
+
         h2 {
             margin: 1.3rem 0;
         }
+
         table {
             border-collapse: collapse;
             margin-bottom: 5rem;
         }
-        th, td {
+
+        th,
+        td {
             border: 2px solid;
             padding: 10px;
         }
-        .tr-1 th, .tr-2 th, .tr-3 th {
+
+        .tr-1 th,
+        .tr-2 th,
+        .tr-3 th {
             background-color: var(--color-tertiary);
             color: #EEEEEE;
             border-right: 2px solid #EEEEEE;
         }
+
         .tr-1 th:last-child,
         .tr-2 th:last-child,
         .tr-3 th:last-child {
             border-right: 2px solid var(--color-primary);
         }
-        .user, .doc, .fac {
+
+        .user,
+        .doc,
+        .fac {
             text-align: center;
             letter-spacing: 0.3rem;
             text-transform: uppercase;
         }
+
         .showBtn {
             color: var(--color-light);
             background-color: var(--color-primary);
@@ -75,147 +91,143 @@
             transition: all 0.5s ease-out;
             text-decoration: none;
         }
+
         .showBtn:hover {
             background-color: var(--color-secondary);
             color: var(--color-light);
             transform: scale(1.1);
             cursor: pointer;
         }
-        </style>
-    </head>
-    <body>
-        <!-- Navigation bar -->
-        <nav class="navbar">
-            <div class="navLogo">
-                <img class="siteLogo" src="../static/images/logoInWhite.png"
-                    alt>
-                <div class="logo"><a
-                        href="{{url_for('home')}}">MedKorea</a></div>
-            </div>
-            <div class="buttons">
-                <a href="{{ url_for('home')}}">Home</a>
-                <a href="{{ url_for('search_page')}}">Search</a>
-                <a href="{{ url_for('about_us')}}">About</a>
-            </div>
-        </nav>
-        <h1>Admin Dashboard</h1>
-        <form id="logOut" action="/logout" method="GET">
-            <input type="submit" value="Logout">
-        </form>
-        <div class="container-div">
-            <h2 class="user">Registered users</h2>
-            <button class="showBtn" onclick="toggleBtn(0)">Show Users</button>
-            <table class="adminTable" style="display: none;">
-                <tr class="tr-1">
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Email</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Birth Date</th>
-                    <th>Gender</th>
-                    <th>Phone</th>
-                    <th>Allergy</th>
-                    <th>Condition</th>
-                    <th>Subscription</th>
-                    <th>Logged In</th>
-                    <th>Date Joined</th>
-                </tr>
-                {% for user in users %}
-                <tr>
-                    <td>{{ user[0] }}</td>
-                    <td>{{ user[1] }}</td>
-                    <td>{{ user[2] }}</td>
-                    <td>{{ user[3] }}</td>
-                    <td>{{ user[4] }}</td>
-                    <td>{{ user[5] }}</td>
-                    <td>{{ user[6] }}</td>
-                    <td>{{ user[7] }}</td>
-                    <td>{{ user[8] }}</td>
-                    <td>{{ user[9] }}</td>
-                    <td>{{ user[10] }}</td>
-                    <td>{{ user[11] }}</td>
-                    <td>{{ user[12] }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            <!-- Table for the Doctors -->
-            <h2 class="doc">English Speaking Doctors in Korea</h2>
-            <button class="showBtn" onclick="toggleBtn(1)">Show Doctors</button>
-            <table class="adminTable">
-                <tr class="tr-2">
-                    <th>Name</th>
-                    <th>Expertise</th>
-                    <th>Company</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Ratings</th>
-                    <th>Availability</th>
-                    <th>About</th>
-                </tr>
-                {% for doctor in doctors %}
-                <tr>
-                    <td>{{ doctor[0] }}</td>
-                    <td>{{ doctor[1] }}</td>
-                    <td>{{ doctor[2] }}</td>
-                    <td>{{ doctor[3] }}</td>
-                    <td>{{ doctor[4] }}</td>
-                    <td>{{ doctor[5] }}</td>
-                    <td>{{ doctor[6] }}</td>
-                    <td class="about">{{ doctor[7] }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            <!-- Table for facilities -->
-            <h2 class="fac">English Speaking Facilities in Korea</h2>
-            <button class="showBtn" onclick="toggleBtn(2)">Show
-                Facilities</button>
-            <table class="adminTable">
-                <tr class="tr-3">
-                    <th>Name</th>
-                    <th>Speaker</th>
-                    <th>Type</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Emergency</th>
-                    <th>Services</th>
-                </tr>
-                {% for facility in facilities %}
-                <tr>
-                    <td>{{ facility[0] }}</td>
-                    <td>{{ facility[1] }}</td>
-                    <td>{{ facility[2] }}</td>
-                    <td>{{ facility[3] }}</td>
-                    <td>{{ facility[4] }}</td>
-                    <td>{{ facility[5] }}</td>
-                    <td>{{ facility[6] }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+    </style>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="navLogo">
+            <img class="siteLogo" src="../static/images/logoInWhite.png" alt>
+            <div class="logo"><a href="{{url_for('home')}}">MedKorea</a></div>
         </div>
-        <!-- Footer -->
-        <footer class="footer">
-            <p class="explore-text">Feel free to explore our resources and
-                reach
-                out if you have any questions. We're dedicated to supporting
-                your health journey!
-            </p>
-            <!-- Social media icons below the footer -->
-            <div class="footer-icons" style="margin-top: 0px;">
-                <a href="https://www.facebook.com" target="_blank"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i
-                        class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="https://github.com" target="_blank"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-            </div>
-            <p class="copy">&copy; 2024 MedKorea. All right
-                reserved.</p>
-        </footer>
-        <script src="../static/admin.js"></script>
-    </body>
+        <div class="buttons">
+            <a href="{{ url_for('home')}}">Home</a>
+            <a href="{{ url_for('search_page')}}">Search</a>
+            <a href="{{ url_for('about_us')}}">About</a>
+        </div>
+    </nav>
+    <h1>Admin Dashboard</h1>
+    <form id="logOut" action="/logout" method="GET">
+        <input type="submit" value="Logout">
+    </form>
+    <div class="container-div">
+        <h2 class="user">Registered users</h2>
+        <button class="showBtn" onclick="toggleBtn(0)">Show Users</button>
+        <table class="adminTable" style="display: none;">
+            <tr class="tr-1">
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birth Date</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Allergy</th>
+                <th>Condition</th>
+                <th>Subscription</th>
+                <th>Logged In</th>
+                <th>Date Joined</th>
+                <th>Is_Admin</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
+                <td>{{ user[6] }}</td>
+                <td>{{ user[7] }}</td>
+                <td>{{ user[8] }}</td>
+                <td>{{ user[9] }}</td>
+                <td>{{ user[10] }}</td>
+                <td>{{ user[11] }}</td>
+                <td>{{ user[12] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!-- Table for the Doctors -->
+        <h2 class="doc">English Speaking Doctors in Korea</h2>
+        <button class="showBtn" onclick="toggleBtn(1)">Show Doctors</button>
+        <table class="adminTable">
+            <tr class="tr-2">
+                <th>Name</th>
+                <th>Expertise</th>
+                <th>Company</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Ratings</th>
+                <th>Availability</th>
+                <th>About</th>
+            </tr>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor[0] }}</td>
+                <td>{{ doctor[1] }}</td>
+                <td>{{ doctor[2] }}</td>
+                <td>{{ doctor[3] }}</td>
+                <td>{{ doctor[4] }}</td>
+                <td>{{ doctor[5] }}</td>
+                <td>{{ doctor[6] }}</td>
+                <td class="about">{{ doctor[7] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <!-- Table for facilities -->
+        <h2 class="fac">English Speaking Facilities in Korea</h2>
+        <button class="showBtn" onclick="toggleBtn(2)">Show
+            Facilities</button>
+        <table class="adminTable">
+            <tr class="tr-3">
+                <th>Name</th>
+                <th>Speaker</th>
+                <th>Type</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Emergency</th>
+                <th>Services</th>
+            </tr>
+            {% for facility in facilities %}
+            <tr>
+                <td>{{ facility[0] }}</td>
+                <td>{{ facility[1] }}</td>
+                <td>{{ facility[2] }}</td>
+                <td>{{ facility[3] }}</td>
+                <td>{{ facility[4] }}</td>
+                <td>{{ facility[5] }}</td>
+                <td>{{ facility[6] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="explore-text">Feel free to explore our resources and
+            reach
+            out if you have any questions. We're dedicated to supporting
+            your health journey!
+        </p>
+        <!-- Social media icons below the footer -->
+        <div class="footer-icons" style="margin-top: 0px;">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="copy">&copy; 2024 MedKorea. All right
+            reserved.</p>
+    </footer>
+    <script src="../static/admin.js"></script>
+</body>
+
 </html>
