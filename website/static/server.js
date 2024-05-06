@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
         facilityCard.innerHTML = `
         <div class='left'>
             <div class='hospL'>
-                <img class='hospLogo' src='../static/doctors/${doctor.Name}.jpeg' alt='Hospital Logo'>
+                <img class='hospLogo' src='../static/image/medicalLogo.png' alt='Hospital Logo'>
             </div>
             <p class='rating'>3.5/5</p>
         </div>
