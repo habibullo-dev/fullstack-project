@@ -372,22 +372,24 @@ video {
 }
 
 .input-wrapper {
-    position: relative;
+    display: flex;
+    padding: 5px;
+    border-radius: 20px;
+    width: 400px;
+    justify-content: space-between;
+    color: var(--color-light);
+    border: 2px solid var(--color-light);
 }
 
+/* 
 .input-wrapper input[type="text"] {
-    color: var(--color-light);
-}
+} */
 
 input[type="text"] {
-    margin-left: 18rem;
-    width: 60%;
-    padding: 10px;
     /* Adjust padding */
     border-radius: 15px;
     /* Optional: adjust border radius */
     background-color: transparent;
-    border: 2px solid var(--color-light);
 }
 
 input[type="text"]::placeholder {
@@ -398,11 +400,6 @@ input[type="text"]::placeholder {
 
 
 .btn-subscribe {
-    position: absolute;
-    right: 40px;
-    /* Position the button to the right of the input */
-    top: 50%;
-    transform: translateY(-50%);
     /* Vertically center the button */
     padding: 10px;
     border: none;
