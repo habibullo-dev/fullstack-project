@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
         doctorCard.innerHTML = `
             <div class='left'>
                 <div class='hospL'>
-                    <img class='hospLogo' src='../static/images/stethoscopeLogo.png' alt='Hospital Logo'>
+                    <img class='hospLogo' src='../static/doctors/${doctor.Name}.jpeg' alt='Hospital Logo'>
                 </div>
                 <p class='rating'>${doctor.Ratings}/5</p>
             </div>
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
         facilityCard.innerHTML = `
         <div class='left'>
             <div class='hospL'>
-                <img class='hospLogo' src='../static/images/medicalLogo.png' alt='Hospital Logo'>
+                <img class='hospLogo' src='../static/doctors/${doctor.Name}.jpeg' alt='Hospital Logo'>
             </div>
             <p class='rating'>3.5/5</p>
         </div>
@@ -215,6 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateRightCard(doctor) {
         const selectedCard = document.querySelector('.selectedCard');
         // Populate the right card with the doctor's information
+        selectedCard.querySelector('.drImg').src = `../static/doctors/${doctor.Name}.jpeg`;
         selectedCard.querySelector('.drName').textContent = doctor.Name;
         selectedCard.querySelector('.hospAbout').textContent = doctor.About;
         selectedCard.querySelector('.hospCompany').textContent = doctor.Company;
