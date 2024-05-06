@@ -26,7 +26,6 @@
                 <a href="{{ url_for('about_us')}}">About</a>
             </div>
         </nav>
-        <h1>My Account</h1>
         <!-- flash messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -41,26 +40,34 @@
         {% endwith %}
 
         <!-- regular Jinja template  -->
-        {% if username %}
-        <p class="message">Welcome, {{ username }}. <span class="msg-span">You are logged
-                in.</span></p>
+        <!-- {% if username %}
+            <p class="message">Welcome, {{ username }}. <span class="msg-span">You are logged
+                in.</span></p> -->
         <!-- <form id="logOut" action="/logout" method="GET">
-            <input type="submit" value="Logout">
-        </form> -->
-        {% else %}
-        <p class="message">You are not logged in. <br> Please <a href="{{ url_for('login')}}">login</a>
-            to
-            access the user page.</p>
-        {% endif %}
+                    <input type="submit" value="Logout">
+                </form> -->
+        <!-- {% else %}
+                    <p class="message">You are not logged in. <br> Please <a href="{{ url_for('login')}}">login</a>
+                        to
+                        access the user page.</p>
+                        {% endif %} -->
 
         <div class="container-4">
             <div class="userPage">
-
-
                 <div class="sideBar">
 
                     <div class="sideUserCard" id="userTop">
-                        <h3>Welcome, <br><span>User</span>! </h3>
+                        {% if username %}
+                        <p class="message">Welcome, {{ username }}. <span class="msg-span">You are logged
+                                in.</span></p>
+                        <!-- <form id="logOut" action="/logout" method="GET">
+                                                <input type="submit" value="Logout">
+                                            </form> -->
+                        {% else %}
+                        <p class="message">You are not logged in. <br> Please <a href="{{ url_for('login')}}">login</a>
+                            to
+                            access the user page.</p>
+                        {% endif %}
                     </div>
 
                     <div class="sideCard" id="userDetailBtn">
@@ -82,37 +89,52 @@
 
                 <div class="userContent">
 
+                    <h1>My Account</h1>
                     <div class="userPageContent" id="personalDetails">
-                        <h2>Your Details :</h2>
                         <div class="detailsCard">
-                            <label for="username">Username: </label>
-                            <p class="userDetails"><span>username</span></p>
-
-                            <label for="email">Email: </label>
-                            <p class="userDetails"><span>user@email.com</span></p>
-
-                            <label for="fullname">Full Name: </label>
-                            <p class="userDetails"><span>user full name</span></p>
-
-                            <label for="gender">Gender: </label>
-                            <p class="userDetails"><span>M/F</span></p>
-
-                            <label for="DOB">Date of Birth: </label>
-                            <p class="userDetails"><span>mm/dd/yyyy</span></p>
-
-                            <label for="phNum">Phone Number: </label>
-                            <p class="userDetails"><span>0123456789</span></p>
-
-                            <label for="allergies">Allergies: </label>
-                            <p class="userDetails"><span>none</span></p>
-
-                            <label for="medicalconditions">Medical Condition/s: </label>
-                            <p class="userDetails"><span>none</span></p>
+                            <h1>Your Details :</h1>
+                            <ul class="detailsLeft">
+                                <li class="detailsRight">Username: <span>username</span></li>
+                                <li class="detailsRight">Name: <span>user full name</span></li>
+                                <li class="detailsRight">Email: <span>user@email.com</span></li>
+                                <li class="detailsRight">Gender: <span>M/F</span></li>
+                                <li class="detailsRight">Date of Birth: <span>mm/dd/yyyy</span></li>
+                                <li class="detailsRight">Phone Number: <span>0123456789</span></li>
+                                <li class="detailsRight">Allergies: <span>none</span></li>
+                                <li class="detailsRight">Any Previous Medical Conditions: <span>none</span></li>
+                            </ul>
                         </div>
                     </div>
-
                     <div class="userPageContent" id="userBookings">
 
+                        <div class="bookedAppt">
+                            <div class="newAppt">
+                                <h3>Upcoming Appointment/s: </h3>
+                                <ul class="apptCard" id="appt1">
+                                    <li class="apptRight">Doctor: <span>Doctor. example</span></li>
+                                    <li class="apptRight">Date: <span>00:00</span></li>
+                                    <li class="apptRight">Time: <span>dd/mm/yyyy</span></li>
+                                </ul>
+                                <ul class="apptCard">
+                                    <li class="apptRight">Hospital: <span>Example Hospital</span></li>
+                                    <li class="apptRight">Address: <span>123 Example Street, Neighbourhood</span></li>
+                                    <li class="apptRight">Phone Number: <span>0123456789</span></li>
+                                </ul>
+                            </div>
+                            <div class="newAppt">
+                                <h3 class="hidden">Upcoming Appointment/s: </h3>
+                                <ul class="apptCard" id="appt2">
+                                    <li class="apptRight">Doctor: <span>Doctor. example</span></li>
+                                    <li class="apptRight">Date: <span>00:00</span></li>
+                                    <li class="apptRight">Time: <span>dd/mm/yyyy</span></li>
+                                </ul>
+                                <ul class="apptCard">
+                                    <li class="apptRight">Hospital: <span>Example Hospital</span></li>
+                                    <li class="apptRight">Address: <span>123 Example Street, Neighbourhood</span></li>
+                                    <li class="apptRight">Phone Number: <span>0123456789</span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

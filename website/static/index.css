@@ -183,7 +183,7 @@ a:hover {
 .flash-messages .success {
     /* background-color: #d4edda; */
     color: #155724;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .flash-messages .error {
@@ -570,7 +570,7 @@ ul {
 
 /* styling for about.html END */
 
-/* styling for booking START */
+/* styling for booking.html START */
 
 .bookTitle h1 {
     /* display: flex; */
@@ -636,4 +636,113 @@ ul {
     width: 300px;
 }
 
-/* styling for booking END */
+/* styling for booking.html END */
+
+/* styling for user.html START */
+
+.userPage {
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid #0056b3; */
+}
+
+.sideBar {
+    background-color: var(--color-primary);
+    width: 300px;
+    position: sticky;
+    /* padding: 20px; */
+    color: var(--color-light);
+}
+
+.sideUserCard {
+    height: 200px;
+    padding: 50px;
+    align-items: center;
+    border: 2px solid yellow;
+}
+
+.sideCard {
+    height: 50px;
+    padding: 50px;
+    border: 1px solid red;
+}
+
+.userContent {
+    margin: 0 auto;
+}
+
+#personalDetails {
+    margin: 4px 0px;
+    width: 800px;
+    height: 100vh;
+    padding: 40px;
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    background-color: var(--color-extra);
+    border-radius: 15px;
+}
+
+.detailsCard ul {
+    color: var(--color-light);
+    font-size: 1.3rem;
+}
+
+.detailsCard span {
+    color: var(--color-dark);
+}
+
+.detailsRight {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin-bottom: 1rem;
+    border-bottom: 1.5px solid var(--color-primary);
+}
+
+#userBookings {
+    display: flex;
+    /* display: none; */
+    margin: 4px 0px;
+    width: 800px;
+    height: 100vh;
+    padding: 40px;
+    justify-content: center;
+    background-color: var(--color-extra);
+    border-radius: 15px;
+}
+
+/* .bookedAppt {} */
+
+.newAppt {
+    display: flex;
+    text-align: left;
+    padding: 8px;
+}
+
+.hidden {
+    color: var(--color-extra);
+}
+
+.apptCard {
+    border: 2px solid var(--color-light);
+}
+
+.apptCard ul {
+    color: var(--color-light);
+    font-size: 1.3rem;
+}
+
+.apptCard span {
+    color: var(--color-dark);
+}
+
+.apptRight {
+    /* display: flex;
+    justify-content: space-between; */
+    margin-bottom: 1rem;
+    border-bottom: 1.5px solid var(--color-primary);
+}
+
+
+/* styling for user.html END */
