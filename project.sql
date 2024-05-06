@@ -72,6 +72,15 @@ SET
                 END;
 
 
+-- Create a new table for password resetCREATE TABLE PasswordReset (
+    CREATE TABLE IF NOT EXISTS PasswordReset (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    expiration_date DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Second batch of data for the Facilities Table in the Database Project
 
 INSERT INTO Facilities (id, name, speaker, type, address, phone, emergency, services) VALUES
@@ -145,6 +154,11 @@ WHERE name IN ('Dr. Shin Ho-Chul', 'Dr. Yoon Shin-ae', 'Dr. Kwak', 'Dr. H.S. Rhe
 -- No ELSE part and no conditions are true, it returns NULL
 -- about column in the Doctors Table is set to NULL
  
+
+
+-- We will not use these sql query / schema from below to save the images we have into the database
+-- This only acts as an example on how to alter a table and insert an image as blob
+
 
 -- Add new column called images with data type blob to Doctors table
 ALTER TABLE Doctors

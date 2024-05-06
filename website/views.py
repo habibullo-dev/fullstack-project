@@ -1,6 +1,6 @@
 import hashlib
 import datetime
-import smtplib
+import smtplib, ssl
 from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 from sqlalchemy.sql import text
 from website import app, engine
@@ -41,6 +41,18 @@ def admin():
 
 # # Setup up for the smtplib sending email to a recipient
 # # Need a  function to send email
+
+# def send_email():
+#     sender = 'medkorea01@gmail.com'
+#     # password = 
+
+
+#     #Connect to gmail smtp server
+#     smtp_server = smtplib.SMTP('smtp.gmail.com', 587)
+
+# @app.route('/send_email', methods=['POST'])
+# def transmit_email():
+
 # def send_email(receiver_email):
 #     sender_email = 'medkorea01@gmail.com' # Sender's email address
 #     From = "support@medkorea.com"
@@ -195,6 +207,7 @@ def update_logged_in(username, status):
     return res.rowcount > 0
 
 
+
 # contains the register page with a link to take user into login page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -256,7 +269,11 @@ def user_page():
        # Extract the admin status from the session
         is_admin = session.get('is_admin', False)
 
-        return render_template('users.html', user=user, admin=is_admin)
+       # Start a new connection with database
+        with engine.connect() as conn:
+           users_data = conn.execute(text("SELECT username, password, email, first_name, last_name, birth_date, gender, phone, allergy, `condition`, subscribe, logged_in, join_date, is_admin FROM Users")).fetchall()
+
+        return render_template('users.html', user=user, admin=is_admin, users_data=users_data)
     else: 
          return redirect(url_for('home'))  # User not logged in, redirect to home page
 
