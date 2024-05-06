@@ -255,7 +255,7 @@ def user_page():
 
        # Extract the admin status from the session
         is_admin = session.get('is_admin', False)
-        
+
         return render_template('users.html', user=user, admin=is_admin)
     else: 
          return redirect(url_for('home'))  # User not logged in, redirect to home page

@@ -33,160 +33,176 @@
                     {% endif %}
                 </div>
             </nav>
-            <h1>My Account</h1>
-            <!-- flash messages -->
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            <ul class="flash-messages" style="background-color: none;">
-                {% for category, message in messages %}
-                <li class="{{ category }}">
-                    <span class="message-span">{{ message }}</span>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-
-            <!-- Start Jinja template  -->
-            {% if user %}
-            {% if admin %}
-            <p class="message">Welcome, admin: {{ user }}.</p>
-            {% else %}
-            <p class="message">Welcome, user: {{ user }}. <span
-                    class="msg-span">You are logged in.</span></p>
-            {% endif %}
-            {% else %}
-            <p class="message">You are not logged in. <br> Please <a
-                    href="{{ url_for('login')}}">login</a> to access the user
-                page.</p>
-            {% endif %}
-            <!-- End jinja template -->
             <div class="container-4">
                 <div class="userPage">
 
                     <div class="sideBar">
 
                         <div class="sideUserCard" id="userTop">
-                            <h3>Welcome, <br><span>User</span>! </h3>
-                        </div>
-
-                        <div class="sideCard" id="userDetailBtn">
-                            <h4>Personal Details</h4>
-                        </div>
-
-                        <div class="sideCard" id="userBookingsBtn">
-                            <h4>My Bookings</h4>
-                        </div>
-
-                        <div class="sideUserCard" id="userBot">
-                            <form id="logOut" action="/logout" method="GET">
-                                <input type="submit" value="Logout">
-                            </form>
-                        </div>
-
-                    </div>
-
-                    <div class="userContent">
-
-                        <h1>My Account</h1>
-                        <div class="userPageContent" id="personalDetails">
-                            <div class="detailsCard">
-                                <h1>Your Details :</h1>
-                                <ul class="detailsLeft">
-                                    <li class="detailsRight">Username:
-                                        <span>username</span></li>
-                                    <li class="detailsRight">Name: <span>user
-                                            full name</span></li>
-                                    <li class="detailsRight">Email:
-                                        <span>user@email.com</span></li>
-                                    <li class="detailsRight">Gender:
-                                        <span>M/F</span></li>
-                                    <li class="detailsRight">Date of Birth:
-                                        <span>mm/dd/yyyy</span></li>
-                                    <li class="detailsRight">Phone Number:
-                                        <span>0123456789</span></li>
-                                    <li class="detailsRight">Allergies:
-                                        <span>none</span></li>
-                                    <li class="detailsRight">Any Previous
-                                        Medical Conditions:
-                                        <span>none</span></li>
-                                </ul>
+                            <!-- Checks if user is an admin, display as admin -->
+                            {% if user %}
+                            {% if admin %}
+                            <p class="adminMsg">Welcome, admin: {{ user }}.</p>
+                            {% else %}
+                            <p class="message">Welcome, user: {{ user }}.
+                                {% endif %}
+                                {% else %}
+                                <p class="message">You are not logged in. <br>
+                                    Please <a
+                                        href="{{ url_for('login')}}">login</a>
+                                    to
+                                    access the user
+                                    page.</p>
+                                {% endif %}
+                                <!-- End jinja template -->
                             </div>
-                        </div>
-                        <div class="userPageContent" id="userBookings">
 
-                            <div class="bookedAppt">
-                                <div class="newAppt">
-                                    <h3>Upcoming Appointment/s: </h3>
-                                    <ul class="apptCard" id="appt1">
-                                        <li class="apptRight">Doctor:
-                                            <span>Doctor. example</span></li>
-                                        <li class="apptRight">Date:
-                                            <span>00:00</span></li>
-                                        <li class="apptRight">Time:
-                                            <span>dd/mm/yyyy</span></li>
-                                    </ul>
-                                    <ul class="apptCard">
-                                        <li class="apptRight">Hospital:
-                                            <span>Example Hospital</span></li>
-                                        <li class="apptRight">Address: <span>123
-                                                Example Street,
-                                                Neighbourhood</span></li>
-                                        <li class="apptRight">Phone Number:
+                            <div class="sideCard" id="userDetailBtn">
+                                <h4>Personal Details</h4>
+                            </div>
+
+                            <div class="sideCard" id="userBookingsBtn">
+                                <h4>My Bookings</h4>
+                            </div>
+
+                            <div class="sideUserCard" id="userBot">
+                                <form id="logOut" action="/logout" method="GET">
+                                    <input type="submit" value="Logout">
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="userContent">
+
+                            <h1>My Account</h1>
+                            <!-- Logged in message for user or admin -->
+                            {% if user or admin %}
+                            <span class="msg-span">You are logged in.</span>
+                            {% endif %}
+                            <!-- flash messages -->
+                            {% with messages =
+                            get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            <ul class="flash-messages"
+                                style="background-color: none;">
+                                {% for category, message in messages %}
+                                <li class="{{ category }}">
+                                    <span class="message-span">{{ message
+                                        }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% endwith %}
+                            <div class="userPageContent" id="personalDetails">
+                                <div class="detailsCard">
+                                    <h1>Your Details :</h1>
+                                    <ul class="detailsLeft">
+                                        <li class="detailsRight">Username:
+                                            <span>username</span></li>
+                                        <li class="detailsRight">Name:
+                                            <span>user
+                                                full name</span></li>
+                                        <li class="detailsRight">Email:
+                                            <span>user@email.com</span></li>
+                                        <li class="detailsRight">Gender:
+                                            <span>M/F</span></li>
+                                        <li class="detailsRight">Date of Birth:
+                                            <span>mm/dd/yyyy</span></li>
+                                        <li class="detailsRight">Phone Number:
                                             <span>0123456789</span></li>
+                                        <li class="detailsRight">Allergies:
+                                            <span>none</span></li>
+                                        <li class="detailsRight">Any Previous
+                                            Medical Conditions:
+                                            <span>none</span></li>
                                     </ul>
                                 </div>
-                                <div class="newAppt">
-                                    <h3 class="hidden">Upcoming Appointment/s:
-                                    </h3>
-                                    <ul class="apptCard" id="appt2">
-                                        <li class="apptRight">Doctor:
-                                            <span>Doctor. example</span></li>
-                                        <li class="apptRight">Date:
-                                            <span>00:00</span></li>
-                                        <li class="apptRight">Time:
-                                            <span>dd/mm/yyyy</span></li>
-                                    </ul>
-                                    <ul class="apptCard">
-                                        <li class="apptRight">Hospital:
-                                            <span>Example Hospital</span></li>
-                                        <li class="apptRight">Address: <span>123
-                                                Example Street,
-                                                Neighbourhood</span></li>
-                                        <li class="apptRight">Phone Number:
-                                            <span>0123456789</span></li>
-                                    </ul>
+                            </div>
+                            <div class="userPageContent" id="userBookings">
+
+                                <div class="bookedAppt">
+                                    <div class="newAppt">
+                                        <h3>Upcoming Appointment/s: </h3>
+                                        <ul class="apptCard" id="appt1">
+                                            <li class="apptRight">Doctor:
+                                                <span>Doctor.
+                                                    example</span></li>
+                                            <li class="apptRight">Date:
+                                                <span>00:00</span></li>
+                                            <li class="apptRight">Time:
+                                                <span>dd/mm/yyyy</span></li>
+                                        </ul>
+                                        <ul class="apptCard">
+                                            <li class="apptRight">Hospital:
+                                                <span>Example
+                                                    Hospital</span></li>
+                                            <li class="apptRight">Address:
+                                                <span>123
+                                                    Example Street,
+                                                    Neighbourhood</span></li>
+                                            <li class="apptRight">Phone Number:
+                                                <span>0123456789</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="newAppt">
+                                        <h3 class="hidden">Upcoming
+                                            Appointment/s:
+                                        </h3>
+                                        <ul class="apptCard" id="appt2">
+                                            <li class="apptRight">Doctor:
+                                                <span>Doctor.
+                                                    example</span></li>
+                                            <li class="apptRight">Date:
+                                                <span>00:00</span></li>
+                                            <li class="apptRight">Time:
+                                                <span>dd/mm/yyyy</span></li>
+                                        </ul>
+                                        <ul class="apptCard">
+                                            <li class="apptRight">Hospital:
+                                                <span>Example
+                                                    Hospital</span></li>
+                                            <li class="apptRight">Address:
+                                                <span>123
+                                                    Example Street,
+                                                    Neighbourhood</span></li>
+                                            <li class="apptRight">Phone Number:
+                                                <span>0123456789</span></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <footer class="footer">
-                <p class="explore-text">Feel free to explore our resources and
-                    reach
-                    out if you have any questions. We're dedicated to supporting
-                    your health journey!
-                </p>
-                <!-- Social media icons below the footer -->
-                <div class="footer-icons" style="margin-top: 0px;">
-                    <a href="https://www.facebook.com" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.twitter.com" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://github.com" target="_blank"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                </div>
-                <p class="copy">&copy; 2024 MedKorea. All right
-                    reserved</p>
-            </footer>
-        </main>
-        <script src="../static/index.js"></script>
-    </body>
+                <footer class="footer">
+                    <p class="explore-text">Feel free to explore our resources
+                        and
+                        reach
+                        out if you have any questions. We're dedicated to
+                        supporting
+                        your health journey!
+                    </p>
+                    <!-- Social media icons below the footer -->
+                    <div class="footer-icons" style="margin-top: 0px;">
+                        <a href="https://www.facebook.com" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://github.com" target="_blank"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                    </div>
+                    <p class="copy">&copy; 2024 MedKorea. All right
+                        reserved</p>
+                </footer>
+            </main>
+            <script src="../static/index.js"></script>
+        </body>
 
-</html>
+    </html>

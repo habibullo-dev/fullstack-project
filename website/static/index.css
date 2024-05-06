@@ -422,12 +422,21 @@ legend {
 }
 
 .message {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .message:hover {
     cursor: pointer;
 }
+
+.adminMsg {
+    font-size: 2.5rem;
+}
+
+.adminMsg:hover {
+    cursor: pointer;
+}
+
 
 /* input[type="submit"] {
     font-size: 1.4rem;
