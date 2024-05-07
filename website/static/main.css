@@ -381,9 +381,11 @@ video {
     border: 2px solid var(--color-light);
 }
 
+
 input[type="text"] {
     /* Adjust padding */
-    border-radius: 15px;
+    padding: 0rem 0.5rem;
+    border: none;
     /* Optional: adjust border radius */
     background-color: transparent;
 }
