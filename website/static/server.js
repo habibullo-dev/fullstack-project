@@ -1,3 +1,62 @@
+// Nina - Recommended Doctors event listener to populate selected card on the right
+const docOne = document.querySelector("#docOne");
+docOne.addEventListener("click", displayRightCard1);
+function displayRightCard1() {
+    const selectedCard = document.querySelector('.selectedCard');
+    // Populate the right card with the doctor's information
+    selectedCard.querySelector('.drImg').src = "../static/doctors/Dr. Shin Ho-Chul.jpeg";
+    selectedCard.querySelector('.drName').textContent = "Dr. Shin Ho-Chul";
+    selectedCard.querySelector('.hospAbout').textContent = "Over 15 years of experience, provides compassionate care, emphasizing preventive health, patient relationships, holistic wellness, and actively contributes to community outreach and medical education";
+    selectedCard.querySelector('.hospCompany').textContent = "Kangbuk Samsung Hospital";
+    selectedCard.querySelector('.hospExpertise').textContent = "General Practice";
+    selectedCard.querySelector('.hospAddresses').textContent = "108 Pyong-dong, Chung-ku, Seoul";
+    selectedCard.querySelector('.hospPhones').textContent = "2001-2911, 5100";
+    selectedCard.querySelector('.hospRating').textContent = "5/5"
+    selectedCard.querySelector('.blurbs').innerHTML = `
+        This is the official information of Dr. Shin Ho-Chul.
+        For more information, please contact the provided email or doctor's phone #.
+    `;
+};
+
+const docTwo = document.querySelector("#docTwo");
+docTwo.addEventListener("click", displayRightCard2);
+function displayRightCard2() {
+    const selectedCard = document.querySelector('.selectedCard');
+    // Populate the right card with the doctor's information
+    selectedCard.querySelector('.drImg').src = "../static/doctors/Dr. Yoo Shin-ae.jpeg";
+    selectedCard.querySelector('.drName').textContent = "Dr. Yoo Shin-ae";
+    selectedCard.querySelector('.hospAbout').textContent = "Specializes in allergic diseases and immunology, creating supportive environments for children's health";
+    selectedCard.querySelector('.hospCompany').textContent = "Samsung Medical Centre";
+    selectedCard.querySelector('.hospExpertise').textContent = "Paediatrics / Allergy";
+    selectedCard.querySelector('.hospAddresses').textContent = "50 Ilwon-dong, Kangnam-ku, Seoul";
+    selectedCard.querySelector('.hospPhones').textContent = "3410-0200";
+    selectedCard.querySelector('.hospRating').textContent = "5/5"
+    selectedCard.querySelector('.blurbs').innerHTML = `
+    This is the official information of Dr. Yoo Shin-ae.
+    For more information, please contact the provided email or doctor's phone #.
+    `;
+};
+
+const docThree = document.querySelector("#docThree");
+docThree.addEventListener("click", displayRightCard3);
+function displayRightCard3() {
+    const selectedCard = document.querySelector('.selectedCard');
+    // Populate the right card with the doctor's information
+    selectedCard.querySelector('.drImg').src = "../static/doctors/Dr. Kwak.jpeg";
+    selectedCard.querySelector('.drName').textContent = "Dr. Kwak";
+    selectedCard.querySelector('.hospAbout').textContent = "Dedicated to comprehensive care, emphasizing open communication and patient empowerment";
+    selectedCard.querySelector('.hospCompany').textContent = "Seoul Chungang Hospital";
+    selectedCard.querySelector('.hospExpertise').textContent = "General Practice";
+    selectedCard.querySelector('.hospAddresses').textContent = "388-1 Poongnap-dong, Songpa-ku, Seoul";
+    selectedCard.querySelector('.hospPhones').textContent = "3010-5001/2";
+    selectedCard.querySelector('.hospRating').textContent = "5/5"
+    selectedCard.querySelector('.blurbs').innerHTML = `
+    This is the official information of Dr. Kwak.
+    For more information, please contact the provided email or doctor's phone #.
+    `;
+};
+
+// Something Nik did
 const selectDoctor = document.querySelectorAll("h2.click");
 
 selectDoctor.forEach(function (h2) {
@@ -283,5 +342,4 @@ function toggleMenu() {
 }
 // burgermenu function END//
 
-// Nina - User Dash event listener to display flex the personal details and bookings cards
 

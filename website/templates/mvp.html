@@ -1,239 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MVP Page</title>
-        <link rel="stylesheet" href="../static/mvp.css">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Page</title>
+    <link rel="stylesheet" href="../static/mvp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-    <body>
-        <main>
-            <nav class="navbar">
-                <div class="navLogo">
-                    <img class="siteLogo" src="../static/images/logoInWhite.png"
-                        alt>
-                    <div class="logo"><a
-                            href="{{url_for('home')}}">MedKorea</a></div>
-                </div>
-                <div class="buttons">
-                    <a href="{{ url_for('home')}}">Home</a>
-                    {% if session.logged_in %}
-                    <a href="{{ url_for('user_page')}}">Account</a>
-                    {% else %}
-                    <a href="{{url_for('login')}}">Account</a>
-                    {% endif %}
-                    <a href="{{ url_for('about_us')}}">About</a>
-                </div>
-            </nav>
-            <div class="searchBackground">
-                <div class="searchBar">
-
-                    <!-- code burger menu 23/04 -->
-                    <div class="burger-menu" onclick="toggleMenu()">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                    </div>
-                    <!-- New Form for the search input-->
-                    <form id="searchForm" method="POST" action="/search_input">
-                        <select name="city" id="citySelect">
-                            <option value>Select a city</option>
-                            <option value="seoul">Seoul</option>
-                            <option value="busan">Busan</option>
-                            <!-- Add more city options as needed -->
-                        </select>
-                        <select name="expertise" id="expertSelect">
-                            <option value>Select an expertise</option>
-                            <option value="general">General practice</option>
-                            <option value="dentist">Dentistry</option>
-                            <option value="paediatrics / Allergy">Paediatrics /
-                                Allergy</option>
-                            <option value="pregnancy / childbirth">Pregnancy /
-                                Childbirth</option>
-                            <option value="opthamologist">Opthamologist</option>
-                            <option value="chiropractic">Chiropractic</option>
-                            <option value="facilities">Facilities</option>
-                            <!-- Add more expertise options as needed -->
-                        </select>
-                        <!-- <input type="text" id="searchInput" placeholder="Find a doctor now..." required /> -->
-                        <button type="button" id="searchButton">Search</button>
-                    </form>
-                    <div id="textField"></div>
-                </div>
+<body>
+    <main>
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png" alt>
+                <div class="logo"><a href="{{url_for('home')}}">MedKorea</a></div>
             </div>
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                {% if session.logged_in %}
+                <a href="{{ url_for('user_page')}}">Account</a>
+                {% else %}
+                <a href="{{url_for('login')}}">Account</a>
+                {% endif %}
+                <a href="{{ url_for('about_us')}}">About</a>
+            </div>
+        </nav>
+        <div class="searchBackground">
+            <div class="searchBar">
 
-            <div class="container">
-                <div class="cards">
-                    <div id="docOne" class="doctor card">
-                        <div class="left">
-                            <div class="hospL">
-                                <img class="hospLogo"
-                                    src="../static/images/stethoscopeLogo.png"
-                                    alt="Hospital Logo">
-                            </div>
-                            <p class="rating">3.5/5</p>
+                <!-- code burger menu 23/04 -->
+                <div class="burger-menu" onclick="toggleMenu()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <!-- New Form for the search input-->
+                <form id="searchForm" method="POST" action="/search_input">
+                    <select name="city" id="citySelect">
+                        <option value>Select a city</option>
+                        <option value="seoul">Seoul</option>
+                        <option value="busan">Busan</option>
+                        <!-- Add more city options as needed -->
+                    </select>
+                    <select name="expertise" id="expertSelect">
+                        <option value>Select an expertise</option>
+                        <option value="general">General practice</option>
+                        <option value="dentist">Dentistry</option>
+                        <option value="paediatrics / Allergy">Paediatrics /
+                            Allergy</option>
+                        <option value="pregnancy / childbirth">Pregnancy /
+                            Childbirth</option>
+                        <option value="opthamologist">Opthamologist</option>
+                        <option value="chiropractic">Chiropractic</option>
+                        <option value="facilities">Facilities</option>
+                        <!-- Add more expertise options as needed -->
+                    </select>
+                    <!-- <input type="text" id="searchInput" placeholder="Find a doctor now..." required /> -->
+                    <button type="button" id="searchButton">Search</button>
+                </form>
+                <div id="textField"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="cards">
+                <div id="docOne" class="doctor card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="../static/doctors/Dr. Shin Ho-Chul.jpeg" alt="Hospital Logo">
                         </div>
-                        <div class="middle">
-                            <h2 class="nameElem">Dr. Name</h2>
-                            <div class="hospInfo">
-                                <p class="hospName">Expertise</p>
-                                <p class="hospLocation">Hospital Name</p>
-                            </div>
-                            <div class="blurb">
-                                <p>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.</p>
-                            </div>
-                        </div>
+                        <p class="rating">5/5</p>
                     </div>
-                    <div id="docTwo" class="doctor card">
-                        <div class="left">
-                            <div class="hospL">
-                                <img class="hospLogo"
-                                    src="../static/images/stethoscopeLogo.png"
-                                    alt="Hospital Logo">
-                            </div>
-                            <p class="rating">3.5/5</p>
+                    <div class="middle">
+                        <h2 class="nameElem">Dr. Shin Ho-Chul</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">General Practice</p>
+                            <p class="hospLocation">Kangbuk Samsung Hospital</p>
                         </div>
-                        <div class="middle">
-                            <h2 class="nameElem">Dr. Name</h2>
-                            <div class="hospInfo">
-                                <p class="hospName">Expertise</p>
-                                <p class="hospLocation">Hospital Name</p>
-                            </div>
-                            <div class="blurb">
-                                <p>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.</p>
-                            </div>
-                        </div>
-                        <!-- Add more cards here if needed -->
-                    </div>
-                    <div id="docThree" class="doctor card">
-                        <div class="left">
-                            <div class="hospL">
-                                <img class="hospLogo"
-                                    src="../static/images/stethoscopeLogo.png"
-                                    alt="Hospital Logo">
-                            </div>
-                            <p class="rating">3.5/5</p>
-                        </div>
-                        <div class="middle">
-                            <h2 class="nameElem">Dr. Name</h2>
-                            <div class="hospInfo">
-                                <p class="hospName">Expertise</p>
-                                <p class="hospLocation">Hospital Name</p>
-                            </div>
-                            <div class="blurb">
-                                <p>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="facility card">
-                        <div class="left">
-                            <div class="hospL">
-                                <img class="hospLogo"
-                                    src="../static/images/medicalLogo.png"
-                                    alt="Hospital Logo">
-                            </div>
-                        </div>
-                        <div class="middle">
-                            <h2 class="nameElem"
-                                style="font-size: 1.8rem;">Facility Name</h2>
-                            <div class="hospInfo">
-                                <p class="hospAddress">Address</p>
-                                <p class="hospPhone">Phone Number</p>
-                            </div>
-                            <div class="blurb">
-                                <p>Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit.</p>
-                            </div>
+                        <div class="blurb">
+                            <p>This is official information of Dr. Shin Ho-Chul. Please click the card for additional
+                                inquiry!</p>
                         </div>
                     </div>
                 </div>
-                <div class="selectedCard">
-                    <div class="top">
-                        <h1 class="drName">Dr. Name</h1>
-                        <img class="drImg"
-                            src="../static/images/medicineLogo.png"
-                            alt="Doctor image">
+                <div id="docTwo" class="doctor card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="../static/doctors/Dr. Yoo Shin-ae.jpeg" alt="Hospital Logo">
+                        </div>
+                        <p class="rating">5/5</p>
                     </div>
-                    <div class="mainInfo">
-                        <h3>About</h3>
-                        <br>
-                        <p class="hospAbout">Lorem ipsum dolor sit amet
-                            consectetur adipisicing
-                            elit.</p>
-                        <br>
-                        <h3>Hospital Information</h3>
-                        <div class="hospDetails">
-                            <br>
-                            <h4>Hospital Name:</h4>
-                            <p class="hospCompany"></p>
-                            <br>
-                            <h4>Specialization:</h4>
-                            <p class="hospExpertise"></p>
-                            <br>
-                            <h4>Address:</h4>
-                            <p class="hospAddresses"></p>
-                            <br>
-                            <h4>Phone:</h4>
-                            <p class="hospPhones"></p>
-                            <br>
-                            <h4>Rating:</h4>
-                            <p class="hospRating"></p>
-                            <br>
-                            <p class="blurbs"></p>
+                    <div class="middle">
+                        <h2 class="nameElem">Dr. Yoo Shin-ae</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">Paediatrics / Allergy</p>
+                            <p class="hospLocation">Samsung Medical Centre</p>
                         </div>
-                        <div class="buttonWrap">
-                            {% if 'username' in session %}
-                            <button id="apptBook"><a
-                                    href="{{ url_for('booking_form') }}">Book an
-                                    appointment</a></button>
-                            {% else %}
-                            <button id="apptBook"><a
-                                    href="{{ url_for('login') }}">Book an
-                                    appointment</a></button>
-                            {% endif %}
+                        <div class="blurb">
+                            <p>This is official information of Dr. Yoo Shin-ae. Please click the card for additional
+                                inquiry!</p>
                         </div>
-
+                    </div>
+                    <!-- Add more cards here if needed -->
+                </div>
+                <div id="docThree" class="doctor card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="../static/doctors/Dr. Kwak.jpeg" alt="Hospital Logo">
+                        </div>
+                        <p class="rating">5/5</p>
+                    </div>
+                    <div class="middle">
+                        <h2 class="nameElem">Dr. Kwak</h2>
+                        <div class="hospInfo">
+                            <p class="hospName">General Practice</p>
+                            <p class="hospLocation">Seoul Chungang Hospital</p>
+                        </div>
+                        <div class="blurb">
+                            <p>This is official information of Dr. Kwak. Please click the card for additional
+                                inquiry!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="facility card">
+                    <div class="left">
+                        <div class="hospL">
+                            <img class="hospLogo" src="../static/images/medicalLogo.png" alt="Hospital Logo">
+                        </div>
+                        <p class="rating">3.5/5</p>
+                    </div>
+                    <div class="middle">
+                        <h2 class="nameElem" style="font-size: 1.8rem;">Dong-A University Hospital</h2>
+                        <div class="hospInfo">
+                            <p class="hospAddress">1, Dongdaesin-dong 3-ga, Seo-gu</p>
+                            <p class="hospPhone">Phone #: 240-2415</p>
+                        </div>
+                        <div class="blurb">
+                            <p>This is the official data of the Dong-A University Hospital. Please select the card for
+                                more additional information</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="showMore">More</button>
-
-            <footer class="footer">
-                <p class="explore-text">Feel free to explore our resources and
-                    reach
-                    out if you have any questions. We're dedicated to supporting
-                    your health journey!
-                </p>
-                <!-- Social media icons below the footer -->
-                <div class="footer-icons">
-                    <a href="https://www.facebook.com" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.twitter.com" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com" target="_blank"><i
-                            class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://youtube.com" target="_blank"><i
-                            class="fa-brands fa-youtube"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
+            <div class="selectedCard">
+                <div class="top">
+                    <h1 class="drName">Dr. Name</h1>
+                    <img class="drImg" src="../static/images/medicineLogo.png" alt="Doctor image">
                 </div>
-                <p class="copy">&copy; 2024 Website name. All right
-                    reserved.</p>
-            </footer>
-        </main>
-        <script src="../static/server.js"></script>
-    </body>
+                <div class="mainInfo">
+                    <h3>About</h3>
+                    <br>
+                    <p class="hospAbout">Lorem ipsum dolor sit amet
+                        consectetur adipisicing
+                        elit.</p>
+                    <br>
+                    <h3>Hospital Information</h3>
+                    <div class="hospDetails">
+                        <br>
+                        <h4>Hospital Name:</h4>
+                        <p class="hospCompany"></p>
+                        <br>
+                        <h4>Specialization:</h4>
+                        <p class="hospExpertise"></p>
+                        <br>
+                        <h4>Address:</h4>
+                        <p class="hospAddresses"></p>
+                        <br>
+                        <h4>Phone:</h4>
+                        <p class="hospPhones"></p>
+                        <br>
+                        <h4>Rating:</h4>
+                        <p class="hospRating"></p>
+                        <br>
+                        <p class="blurbs"></p>
+                    </div>
+                    <div class="buttonWrap">
+                        {% if 'username' in session %}
+                        <button id="apptBook"><a href="{{ url_for('booking_form') }}">Book an
+                                appointment</a></button>
+                        {% else %}
+                        <button id="apptBook"><a href="{{ url_for('login') }}">Book an
+                                appointment</a></button>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <button class="showMore">More</button>
+
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 Website name. All right
+                reserved.</p>
+        </footer>
+    </main>
+    <script src="../static/server.js"></script>
+</body>
 
 </html>
