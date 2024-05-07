@@ -65,132 +65,133 @@
                         </form>
                     </div>
                 </div>
-            </div>
+                <div class="userContent">
 
-            <div class="userContent">
-
-                <h1>My Account</h1>
-                <!-- Logged in message for user or admin -->
-                {% if user or admin %}
-                <span class="msg-span">You are logged in.</span>
-                {% endif %}
-                <!-- flash messages -->
-                {% with messages =
-                get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                <ul class="flash-messages" style="background-color: none;">
-                    {% for category, message in messages %}
-                    <li class="{{ category }}">
-                        <span class="message-span">{{ message
-                            }}</span>
-                    </li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                {% endwith %}
-                <div class="userPageContent" id="personalDetails">
-                    <div class="detailsCard">
-                        <h1>Your Details:</h1>
-                        {% for user_data in users_data %}
-                        {% if user_data[0] == user or user_data[0]
-                        == admin %}
-                        <ul class="detailsLeft">
-                            <li class="detailsRight">Username:
-                                <span>{{ user_data[0] }}</span>
-                            </li>
-                            <li class="detailsRight">Name: <span>{{
-                                    user_data[3] }} {{ user_data[4]
-                                    }}</span></li>
-                            <li class="detailsRight">Email: <span>{{
-                                    user_data[2] }}</span></li>
-                            <li class="detailsRight">Gender:
-                                <span>{{ user_data[6] }}</span>
-                            </li>
-                            <li class="detailsRight">Date of Birth:
-                                <span>{{ user_data[5] }}</span>
-                            </li>
-                            <li class="detailsRight">Phone Number:
-                                <span>{{ user_data[7] }}</span>
-                            </li>
-                            <li class="detailsRight">Allergies:
-                                <span>{{ user_data[8] }}</span>
-                            </li>
-                            <li class="detailsRight">Any Previous
-                                Medical Conditions: <span>{{
-                                    user_data[9] }}</span></li>
-                        </ul>
-                        {% endif %}
+                    <h1>My Account</h1>
+                    <!-- Logged in message for user or admin -->
+                    {% if user or admin %}
+                    <span class="msg-span">You are logged in.</span>
+                    {% endif %}
+                    <!-- flash messages -->
+                    {% with messages =
+                    get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <ul class="flash-messages" style="background-color: none;">
+                        {% for category, message in messages %}
+                        <li class="{{ category }}">
+                            <span class="message-span">{{ message
+                                }}</span>
+                        </li>
                         {% endfor %}
-                    </div>
-                    <div class="userPageContent" id="userBookings">
-                        <div class="bookedAppt">
-                            <div class="newAppt">
-                                <h3>Upcoming Appointment/s:
-                                </h3>
-                                <ul class="apptCard" id="appt1">
-                                    <li class="apptRight">Doctor:
-                                        <span>Doctor.
-                                            example</span>
-                                    </li>
-                                    <li class="apptRight">Date:
-                                        <span>00:00</span>
-                                    </li>
-                                    <li class="apptRight">Time:
-                                        <span>dd/mm/yyyy</span>
-                                    </li>
-                                </ul>
-                                <ul class="apptCard">
-                                    <li class="apptRight">Hospital:
-                                        <span>Example
-                                            Hospital</span>
-                                    </li>
-                                    <li class="apptRight">Address:
-                                        <span>123
-                                            Example Street,
-                                            Neighbourhood</span>
-                                    </li>
-                                    <li class="apptRight">Phone
-                                        Number:
-                                        <span>0123456789</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="newAppt">
-                                <h3 class="hidden">Upcoming
-                                    Appointment/s:
-                                </h3>
-                                <ul class="apptCard" id="appt2">
-                                    <li class="apptRight">Doctor:
-                                        <span>Doctor.
-                                            example</span>
-                                    </li>
-                                    <li class="apptRight">Date:
-                                        <span>00:00</span>
-                                    </li>
-                                    <li class="apptRight">Time:
-                                        <span>dd/mm/yyyy</span>
-                                    </li>
-                                </ul>
-                                <ul class="apptCard">
-                                    <li class="apptRight">Hospital:
-                                        <span>Example
-                                            Hospital</span>
-                                    </li>
-                                    <li class="apptRight">Address:
-                                        <span>123
-                                            Example Street,
-                                            Neighbourhood</span>
-                                    </li>
-                                    <li class="apptRight">Phone
-                                        Number:
-                                        <span>0123456789</span>
-                                    </li>
-                                </ul>
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                    <div class="userPageContent" id="personalDetails">
+                        <div class="detailsCard">
+                            <h1>Your Details:</h1>
+                            {% for user_data in users_data %}
+                            {% if user_data[0] == user or user_data[0]
+                            == admin %}
+                            <ul class="detailsLeft">
+                                <li class="detailsRight">Username:
+                                    <span>{{ user_data[0] }}</span>
+                                </li>
+                                <li class="detailsRight">Name: <span>{{
+                                        user_data[3] }} {{ user_data[4]
+                                        }}</span></li>
+                                <li class="detailsRight">Email: <span>{{
+                                        user_data[2] }}</span></li>
+                                <li class="detailsRight">Gender:
+                                    <span>{{ user_data[6] }}</span>
+                                </li>
+                                <li class="detailsRight">Date of Birth:
+                                    <span>{{ user_data[5] }}</span>
+                                </li>
+                                <li class="detailsRight">Phone Number:
+                                    <span>{{ user_data[7] }}</span>
+                                </li>
+                                <li class="detailsRight">Allergies:
+                                    <span>{{ user_data[8] }}</span>
+                                </li>
+                                <li class="detailsRight">Any Previous
+                                    Medical Conditions: <span>{{
+                                        user_data[9] }}</span></li>
+                            </ul>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="userPageContent" id="userBookings">
+                            <div class="bookedAppt">
+                                <div class="newAppt">
+                                    <h3>Upcoming Appointment/s:
+                                    </h3>
+                                    <ul class="apptCard" id="appt1">
+                                        <li class="apptRight">Doctor:
+                                            <span>Doctor.
+                                                example</span>
+                                        </li>
+                                        <li class="apptRight">Date:
+                                            <span>00:00</span>
+                                        </li>
+                                        <li class="apptRight">Time:
+                                            <span>dd/mm/yyyy</span>
+                                        </li>
+                                    </ul>
+                                    <ul class="apptCard">
+                                        <li class="apptRight">Hospital:
+                                            <span>Example
+                                                Hospital</span>
+                                        </li>
+                                        <li class="apptRight">Address:
+                                            <span>123
+                                                Example Street,
+                                                Neighbourhood</span>
+                                        </li>
+                                        <li class="apptRight">Phone
+                                            Number:
+                                            <span>0123456789</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="newAppt">
+                                    <h3 class="hidden">Upcoming
+                                        Appointment/s:
+                                    </h3>
+                                    <ul class="apptCard" id="appt2">
+                                        <li class="apptRight">Doctor:
+                                            <span>Doctor.
+                                                example</span>
+                                        </li>
+                                        <li class="apptRight">Date:
+                                            <span>00:00</span>
+                                        </li>
+                                        <li class="apptRight">Time:
+                                            <span>dd/mm/yyyy</span>
+                                        </li>
+                                    </ul>
+                                    <ul class="apptCard">
+                                        <li class="apptRight">Hospital:
+                                            <span>Example
+                                                Hospital</span>
+                                        </li>
+                                        <li class="apptRight">Address:
+                                            <span>123
+                                                Example Street,
+                                                Neighbourhood</span>
+                                        </li>
+                                        <li class="apptRight">Phone
+                                            Number:
+                                            <span>0123456789</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+
 
 
             <footer class="footer">
