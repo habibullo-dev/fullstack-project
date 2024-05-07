@@ -71,15 +71,9 @@ SET
                     ELSE false
                 END;
 
+-- return the value in the ELSE clause, if no condition are true;
+-- If there is no ELSE part and no conditions are true, it returns NULL (LINE 138 - 154 for reference)
 
--- Create a new table for password resetCREATE TABLE PasswordReset (
-    CREATE TABLE IF NOT EXISTS PasswordReset (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    token VARCHAR(255) NOT NULL,
-    expiration_date DATETIME NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 -- Second batch of data for the Facilities Table in the Database Project
 
@@ -89,7 +83,7 @@ INSERT INTO Facilities (id, name, speaker, type, address, phone, emergency, serv
 (12, 'Soon Chun Hyang Univeristy Hospital', 'Unknown', 'Hospital', '657 Hannam-Dong, Yongsan-Gu, Seoul', '2072-2890', '2072-2473', '24_hours'),
 (13, 'Seoul National University Hospital', 'Unknown', 'Hospital', '28- Yeongeon-dong, Jonggo-gu, Seoul', '2072-2890', '2072-2473', '24_hours'),
 (14, "St. Mary's Hospital", 'Unknown', 'Hospital', '505 Banpo-dong, Seocho-gu, Seoul', '590-1114', '590-1632', '24_hours'),
-(15, 'Cha General Hospital', 'Unknown', 'Hospital', '650-9 Yeoksam-dong, Gangnam-gu, Seoul', '02-3465-3127', '010-4707-9179', '24_hours'),
+(15, 'Cha General Hospital', 'Unknown' x, 'Hospital', '650-9 Yeoksam-dong, Gangnam-gu, Seoul', '02-3465-3127', '010-4707-9179', '24_hours'),
 (16, 'Gangbuk Samsung Hospital', 'Unknown', 'Hospital', '108 Pyeong-dong, Jonggu-gu, Seoul', '02-2001-1101', '2001-1000', '24_hours'),
 (17, 'Samsung Cheil General Hospital', 'Unknown', 'Hospital', '1-19 Mukjeong-dong, Jung-gu, Seoul', '2000-7000', '02-2000-7062', '24_hours');
 

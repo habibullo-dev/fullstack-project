@@ -1,6 +1,8 @@
 import hashlib
 import datetime
-import smtplib, ssl
+import smtplib
+import secrets
+from email.mime.text import MIMEText
 from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 from sqlalchemy.sql import text
 from website import app, engine
@@ -39,52 +41,46 @@ def admin():
         return redirect(url_for('login')) # Redirect unauthenticated users to login page
     
 
-# # Setup up for the smtplib sending email to a recipient
-# # Need a  function to send email
+# Setup up for the smtplib sending email to a recipient
+# For a single email recipient first
 
-# def send_email():
-#     sender = 'medkorea01@gmail.com'
-#     # password = 
+def send_email(recipient, full_name):
+    sender = 'medkorea01@gmail.com'
+    password = 'xykboumszwtyygkw'
+    text = f"""
+        Hello {full_name},\n 
+            Thank you for booking an appointment with MedKorea! We are excited to assist you with your healthcare needs.\n
+            Your appointment has been successfully scheduled. Please make sure to arrive on time and bring any necessary documents.\n
+            If you have any questions or need to make changes to your appointment, feel free to contact our support team at medkorea1@gmail.com.\n
+            Best regards,\n\nThe MedKorea Team\n\n\n
+        
+            Please do not respond or reply back to this email.
+    """
 
+    message = MIMEText(text, 'plain')
+    message['Subject'] = 'MedKorea Account Registration'
+    message['From'] = sender
+    message['To'] = recipient
 
-#     #Connect to gmail smtp server
-#     smtp_server = smtplib.SMTP('smtp.gmail.com', 587)
+    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        server.starttls()
+        server.login(sender, password)
+        server.sendmail(sender, recipient, message.as_string())
 
-# @app.route('/send_email', methods=['POST'])
-# def transmit_email():
+    return f'Email sent successfully! Email has been sent to {recipient}'
 
-# def send_email(receiver_email):
-#     sender_email = 'medkorea01@gmail.com' # Sender's email address
-#     From = "support@medkorea.com"
-#     subject = 'New Account Subscription - MedKorea' # Email subject
-#     message = """
-#             Thank you for subscribing to MedKorea! We are thrilled to have you on board.\n
-#             Your account has been successfully created. Feel free to explore our platform and discover a world of healthcare innovation.\n
-#             If you have any questions or need assistance, don't hesitate to reach out to our support team at medkorea1@gmail.com.\n
-#             Best regards,\n\nThe MedKorea Team,
-
-
-#             Please do not reply to this email.
-#     """
-#     text = f"From: {From}\n\nSubject: {subject}\n\nBody:{message}"
-
-#     # Connect to Gmail SMTP server
-#     server = smtplib.SMTP("smtp.gmail.com", 587)
-#     server.starttls() # Start TLS encryption
-
-#     server.login(sender_email, 'cenqfigvidsttjbd') # app password from gmail account and log in to sender's account
-
-#     server.sendmail(sender_email, receiver_email, text) #Send email
-#     server.quit() #Close connection to the SMTP Client
-
-# @app.route('/send_email', methods=['POST'])
-# def transmit_email():
-#     if request.method == 'POST':
-#         receiver_email = 'nik.piao26@gmail.com' # Receiver's email address
-#         send_email(receiver_email) # Call the send_email function to send the email
-#         return f'Email sent successfully! Email has been sent to {receiver_email}' # Return a success message
-
-
+@app.route('/send_email', methods=['GET', 'POST'])
+def transmit_email():
+    feedback = ''
+    if request.method == 'POST':
+        recipient = request.form['email']  # Extract recipient email from form data
+        full_name = request.form['fullName'] # Extract the recipient full name from form data
+        send_email(recipient, full_name)
+        feedback = f'Email sent successfully to {recipient}!'
+    
+    # Render the booking form template with feedback message
+    return render_template('booking.html', feedback=feedback)
+    
 # route for the booking page (user need to be logged in)
 @app.route('/bookings')
 def booking_form():
@@ -92,7 +88,7 @@ def booking_form():
         flash('You must be logged in to access this page (logout).', category='error')
         return redirect(url_for('login')) # Assuming user not logged in, We can redirect user back to login page
     
-    return render_template('booking.html')
+    return render_template('booking.html') # render the booking form template
 
 
 # The function below, (hash_password) takes a password, encodes it into UTF-8
@@ -206,7 +202,52 @@ def update_logged_in(username, status):
     # If the 'rowcount' is greater than 0, we have a successful update of the data
     return res.rowcount > 0
 
+# route for the reset password page
+@app.route('/restore_password')
+def restore_password():
+    return render_template('reset.html')
 
+# Update the user's password in the database
+def update_password(email, username, hashed_password):
+    with engine.connect() as conn:
+        conn.execute(
+            text('UPDATE Users SET password = :password WHERE email = :email AND username = :username'),
+            {'email': email, 'username': username, 'password': hashed_password}
+        )
+
+# retrieve user email in the database
+def get_user_email(email):
+    with engine.connect() as conn:
+      res = conn.execute(
+          text('SELECT * FROM Users WHERE email = :email'),
+          {'email': email}
+      )
+      return res.fetchone() # fetch one row from database
+
+# # Route for password reset request and password reset
+# @app.route('/reset_password', methods=['POST'])
+# def reset_password():
+#     if request.method == 'POST':
+#         username = request.form.get('username')
+#         email_address = request.form.get('email')
+
+#         # Retrieve username information
+#         user = get_user(username)
+#         if not user:
+#             flash('User not found. Please enter a valid username.', category='error')
+#             return redirect(url_for('restore_password'))
+        
+#         # Retrieve email information
+#         user_email = get_user_email(email_address)
+#         if not user_email:
+#             flash('Email address not found. Please enter a valid email address.', category='error')
+#             return redirect(url_for('restore_password'))
+        
+#         # Check if the retrieved email matches with user's email in the database
+#         if user['email'] != user_email['email']:
+
+        
+#     return redirect(url_for('restore_password'))
 
 # contains the register page with a link to take user into login page
 @app.route('/register', methods=['GET', 'POST'])
@@ -300,7 +341,7 @@ def logout():
     return redirect(url_for('login'))
 
 
-# Route to take you to the mvp page
+# Route to take you to the mvp page or the search page
 @app.route('/mvp')
 def search_page():
     return render_template('mvp.html')

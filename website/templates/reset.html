@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reset Password</title>
+        <link rel="stylesheet" href="../static/index.css">
+    </head>
+    <style>
+        .reset-wrap {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        label {
+            color: var(--color-primary);
+        }
+    </style>
+    <body>
+        <!-- Navigation bar -->
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png"
+                    alt>
+                <div class="logo">MedKorea</div>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('search_page')}}">Search</a>
+                {% if session.logged_in %}
+                <a href="{{ url_for('user_page')}}">Account</a>
+                {% else %}
+                <a href="{{url_for('login')}}">Account</a>
+                {% endif %}
+                <a href="{{ url_for('about_us')}}">About</a>
+            </div>
+        </nav>
+        <div id="resetForm">
+            <h2>Password Reset</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form action="/reset_password" method="post">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="new_password">New Password:</label>
+                    <input type="password" id="new_password" name="new_password"
+                        required>
+                </div>
+                <div>
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" id="confirm_password"
+                        name="confirm_password" required>
+                </div>
+                <button type="submit">Reset Password</button>
+            </form>
+        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons" style="margin-top: 0px;">
+                <a href="https://www.facebook.com" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 MedKorea. All right
+                reserved.</p>
+        </footer>
+    </body>
+</html>

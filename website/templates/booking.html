@@ -50,6 +50,7 @@
                 <a href="{{ url_for('home')}}">Home</a>
                 <a href="{{ url_for('search_page')}}">Search</a>
                 <a href="{{ url_for('user_page')}}">Account</a>
+                <a href="{{ url_for('booking_form')}}">Appointment</a>
                 <a href="{{ url_for('about_us')}}">About</a>
             </div>
         </nav>
@@ -58,95 +59,105 @@
             <div class="bookTitle">
                 <h1>Doctor Appointment Request Form</h1>
                 <h2>Please finalize your booking details below:</h2>
+                <!-- Display the feedback message after finishing the booking -->
+                {% if feedback %}
+                <p id="note">{{ feedback }}</p>
+                {% endif %}
             </div>
 
             <div class="booking-form">
-                <!-- <form id="bookForm" name="booking" action> -->
-                <div class="selectDoctor">
-                    <label class="bookLabel" for="doctorSelect">Please select
-                        the Doctor you would like to book your
-                        appointment with</label>
-                    <select name="doctors" id="doctorSelect">
-                        <option value>Select a doctor</option>
-                        <option value="ShinHoChul">Dr. Shin Ho Chul</option>
-                        <option value="YooShinAe">Dr. Yoo Shin-Ae</option>
-                        <option value="Kwak">Dr. Kwak</option>
-                        <option value="HSRhee">Dr. H.S.Rhee</option>
-                        <option value="JohnLinton">Dr. John Linton</option>
-                        <option value="Jang">Dr. Jang</option>
-                        <option value="HanHoWan">Dr. Han Ho-Wan</option>
-                        <option value="SungHaeRee">Dr. Sung Hae-Ree</option>
-                        <option value="ChungChinKoo">Dr. Chung Chin-Koo</option>
-                        <option value="LeeSooChan">Dr. Lee Soo-Chan</option>
-                        <option value="Kong">Dr. Kong</option>
-                        <option value="JamesLee">Dr. James Lee</option>
-                    </select>
-                </div>
+                <form id="bookingForm" action="/send_email" method="POST"
+                    name="booking">
+                    <div class="selectDoctor">
+                        <!-- End of feedback message display -->
+                        <label class="bookLabel" for="doctorSelect">Please
+                            select the Doctor you would like to book your
+                            appointment with</label>
+                        <select name="doctor" id="doctorSelect">
+                            <option value>Select a doctor</option>
+                            <option value="ShinHoChul">Dr. Shin Ho Chul</option>
+                            <option value="YooShinAe">Dr. Yoo Shin-Ae</option>
+                            <option value="Kwak">Dr. Kwak</option>
+                            <option value="HSRhee">Dr. H.S.Rhee</option>
+                            <option value="JohnLinton">Dr. John Linton</option>
+                            <option value="Jang">Dr. Jang</option>
+                            <option value="HanHoWan">Dr. Han Ho-Wan</option>
+                            <option value="SungHaeRee">Dr. Sung Hae-Ree</option>
+                            <option value="ChungChinKoo">Dr. Chung
+                                Chin-Koo</option>
+                            <option value="LeeSooChan">Dr. Lee Soo-Chan</option>
+                            <option value="Kong">Dr. Kong</option>
+                            <option value="JamesLee">Dr. James Lee</option>
+                        </select>
+                    </div>
 
-                <div class="doctorSelected">
-                    <h2>Booking with <span class="chosenDoctor">#</span></h2>
-                </div>
+                    <div class="doctorSelected">
+                        <h2>Booking with <span class="chosenDoctor"></span></h2>
+                    </div>
 
-                <div class="radio-input">
-                    <label class="bookLabel" for="patientSelect">Who is this
-                        appointment for?</label>
-                    <fieldset>
-                        <!-- <legend>Select your gender:</legend> -->
-                        <div class="patientSelect">
-                            <input type="radio" id="meSelect" name="patient"
-                                value="Me">
-                            <label for="me">Me</label>
-                            <input type="radio" id="someOneElse" name="patient"
-                                value="someOneElse" />
-                            <label for="someOneElse">Someone Else</label>
-                        </div>
-                    </fieldset>
-                </div>
+                    <div class="radio-input">
+                        <label class="bookLabel" for="patientSelect">Who is this
+                            appointment for?</label>
+                        <fieldset>
+                            <div class="patientSelect">
+                                <input type="radio" id="meSelect" name="patient"
+                                    value="Me">
+                                <label for="meSelect">Me</label>
+                                <input type="radio" id="someOneElse"
+                                    name="patient" value="someoneElse">
+                                <label for="someOneElse">Someone Else</label>
+                            </div>
+                        </fieldset>
+                    </div>
 
-                <!-- password input -->
-                <div class="fullNameInput">
-                    <label class="bookLabel" for="fullName">Please confirm your
-                        full name:</label>
-                    <input type="name" id="fullName" name="Fullname"
-                        placeholder="Fullname" required><br>
-                </div>
+                    <!-- Full Name Input -->
+                    <div class="fullNameInput">
+                        <label class="bookLabel" for="fullName">Please confirm
+                            your full name:</label>
+                        <input type="text" id="fullName" name="fullName"
+                            placeholder="Full Name" required><br>
+                    </div>
 
-                <!-- email input -->
-                <div class="email-input">
-                    <label class="bookLabel" for="email">Please confirm your
-                        email address:</label>
-                    <input type="email" id="email" name="email"
-                        placeholder="email@example.com" required><br>
-                </div>
+                    <!-- Email Input -->
+                    <div class="email-input">
+                        <label class="bookLabel" for="email">Please confirm your
+                            email address:</label>
+                        <input type="email" id="email" name="email"
+                            placeholder="email@example.com" required><br>
+                    </div>
 
-                <!-- phone input -->
-                <div class="phone-input">
-                    <label class="bookLabel" for="phone">Please confirm your
-                        phone number:</label>
-                    <input type="tel" id="phone" name="phone"
-                        placeholder="phone number" required><br>
-                </div>
+                    <!-- Phone Input -->
+                    <div class="phone-input">
+                        <label class="bookLabel" for="phone">Please confirm your
+                            phone number:</label>
+                        <input type="tel" id="phone" name="phone"
+                            placeholder="Phone Number" required><br>
+                    </div>
 
-                <!-- birth date -->
-                <div class="preferredDate">
-                    <label class="bookLabel" for="apptDate">Please select your
-                        preferred date for booking an
-                        appointment:</label>
-                    <input type="date" id="apptDate" name="AppointmentDate"><br>
-                </div>
+                    <!-- Preferred Date -->
+                    <div class="preferredDate">
+                        <label class="bookLabel" for="apptDate">Please select
+                            your preferred date for booking an
+                            appointment:</label>
+                        <input type="date" id="apptDate"
+                            name="appointmentDate"><br>
+                    </div>
 
-                <div class="currentConcerns">
-                    <label class="bookLabel" for="currentConcerns">Any specific
-                        reasons for this appointment?:</label>
-                    <input type="text" name="currentConcerns"
-                        class="apptConcerns" placeholder="Please enter here:">
-                </div>
-                <!-- Register Button -->
-                <div class="btn-div">
-                    <button class="btn register" id="bookingConfirm"
-                        type="submit">Confirm Booking</button>
-                </div>
+                    <!-- Current Concerns -->
+                    <div class="currentConcerns">
+                        <label class="bookLabel" for="currentConcerns">Any
+                            specific reasons for this appointment?</label>
+                        <input type="text" id="currentConcerns"
+                            name="currentConcerns" class="apptConcerns"
+                            placeholder="Please enter here:">
+                    </div>
 
+                    <!-- Register Button -->
+                    <div class="btn-div">
+                        <button class="btn register" id="bookingConfirm"
+                            type="submit">Confirm Booking</button>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- Footer -->
@@ -172,6 +183,18 @@
             <p class="copy">&copy; 2024 MedKorea. All right
                 reserved.</p>
         </footer>
-    </body>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const msg = document.querySelector('#note');
 
+                // Function to hide the feedback message after it is activated
+                function hideFeedback() {
+                    setTimeout(function () {
+                        msg.style.display = 'none';
+                    }, 4000);
+                }
+                hideFeedback();
+            });
+        </script>
+    </body>
 </html>
