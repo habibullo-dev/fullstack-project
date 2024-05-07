@@ -700,7 +700,7 @@ ul {
     width: 800px;
     height: 100vh;
     padding: 40px;
-    /* display: flex; */
+    display: none;
     justify-content: center;
     background-color: var(--color-extra);
     border-radius: 15px;
