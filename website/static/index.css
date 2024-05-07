@@ -700,7 +700,7 @@ ul {
     width: 800px;
     height: 100vh;
     padding: 40px;
-    /* display: flex; */
+    display: none;
     justify-content: center;
     background-color: var(--color-extra);
     border-radius: 15px;
@@ -724,7 +724,7 @@ ul {
 }
 
 #userBookings {
-    display: none;
+    display: flex;
     margin: 4px 0px;
     width: 800px;
     height: 100vh;
@@ -805,6 +805,14 @@ ul {
 
 .adminTable {
     margin: 10px 50px;
+}
+
+.adminContent {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* styling for admin.html END */

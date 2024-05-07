@@ -28,14 +28,13 @@
         }
 
         .container-div {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* margin: 3rem; */
-            /* gap: 1.5rem; */
+            padding: 0;
             overflow: hidden;
+            /* border: 2px solid red; */
         }
 
         h1 {
@@ -151,8 +150,8 @@
             <h1>Admin Dashboard</h1>
             <div class="container-div">
                 <div class="rUsers">
+                    <h2 class="user">Registered users</h2>
                     <table class="adminTable">
-                        <h2 class="user">Registered users</h2>
                         <tr class="tr-1">
                             <th>Username</th>
                             <th>Email</th>
@@ -189,8 +188,8 @@
                 </div>
                 <!-- Table for the Doctors -->
                 <div class="englishDoctors">
+                    <h2 class="doc">English Speaking Doctors in Korea</h2>
                     <table class="adminTable" style="display: none;">
-                        <h2 class="doc">English Speaking Doctors in Korea</h2>
                         <tr class="tr-2">
                             <th>Name</th>
                             <th>Expertise</th>
@@ -219,8 +218,8 @@
                 <div class="englishFacilities">
                     <!-- Table for facilities -->
 
+                    <h2 class="fac">English Speaking Facilities in Korea</h2>
                     <table class="adminTable" style="display: none;">
-                        <h2 class="fac">English Speaking Facilities in Korea</h2>
                         <tr class="tr-3">
                             <th>Name</th>
                             <th>Speaker</th>
