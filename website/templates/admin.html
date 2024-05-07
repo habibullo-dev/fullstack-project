@@ -33,8 +33,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 3rem;
-            gap: 1.5rem;
+            /* margin: 3rem; */
+            /* gap: 1.5rem; */
             overflow: hidden;
         }
 
@@ -49,7 +49,7 @@
 
         table {
             border-collapse: collapse;
-            margin-bottom: 5rem;
+            /* margin-bottom: 5rem; */
         }
 
         th,
@@ -84,9 +84,10 @@
             color: var(--color-light);
             background-color: var(--color-primary);
             text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid var(--color-light);
-            margin-left: 1rem;
+            padding: 20px 15px;
+            border: 1px solid var(--color-primary);
+            /* margin-left: 1rem; */
+            margin: 20px 0px;
             border-radius: 5px;
             transition: all 0.5s ease-out;
             text-decoration: none;
@@ -114,101 +115,140 @@
             <a href="{{ url_for('about_us')}}">About</a>
         </div>
     </nav>
-    <h1>Admin Dashboard</h1>
-    <form id="logOut" action="/logout" method="GET">
-        <input type="submit" value="Logout">
-    </form>
-    <div class="container-div">
-        <h2 class="user">Registered users</h2>
-        <button class="showBtn" onclick="toggleBtn(0)">Show Users</button>
-        <table class="adminTable" style="display: none;">
-            <tr class="tr-1">
-                <th>Username</th>
-                <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Birth Date</th>
-                <th>Gender</th>
-                <th>Phone</th>
-                <th>Allergy</th>
-                <th>Condition</th>
-                <th>Subscription</th>
-                <th>Logged In</th>
-                <th>Date Joined</th>
-                <th>Is_Admin</th>
-            </tr>
-            {% for user in users %}
-            <tr>
-                <td>{{ user[0] }}</td>
-                <td>{{ user[1] }}</td>
-                <td>{{ user[2] }}</td>
-                <td>{{ user[3] }}</td>
-                <td>{{ user[4] }}</td>
-                <td>{{ user[5] }}</td>
-                <td>{{ user[6] }}</td>
-                <td>{{ user[7] }}</td>
-                <td>{{ user[8] }}</td>
-                <td>{{ user[9] }}</td>
-                <td>{{ user[10] }}</td>
-                <td>{{ user[11] }}</td>
-                <td>{{ user[12] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <!-- Table for the Doctors -->
-        <h2 class="doc">English Speaking Doctors in Korea</h2>
-        <button class="showBtn" onclick="toggleBtn(1)">Show Doctors</button>
-        <table class="adminTable">
-            <tr class="tr-2">
-                <th>Name</th>
-                <th>Expertise</th>
-                <th>Company</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Ratings</th>
-                <th>Availability</th>
-                <th>About</th>
-            </tr>
-            {% for doctor in doctors %}
-            <tr>
-                <td>{{ doctor[0] }}</td>
-                <td>{{ doctor[1] }}</td>
-                <td>{{ doctor[2] }}</td>
-                <td>{{ doctor[3] }}</td>
-                <td>{{ doctor[4] }}</td>
-                <td>{{ doctor[5] }}</td>
-                <td>{{ doctor[6] }}</td>
-                <td class="about">{{ doctor[7] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <!-- Table for facilities -->
-        <h2 class="fac">English Speaking Facilities in Korea</h2>
-        <button class="showBtn" onclick="toggleBtn(2)">Show
-            Facilities</button>
-        <table class="adminTable">
-            <tr class="tr-3">
-                <th>Name</th>
-                <th>Speaker</th>
-                <th>Type</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Emergency</th>
-                <th>Services</th>
-            </tr>
-            {% for facility in facilities %}
-            <tr>
-                <td>{{ facility[0] }}</td>
-                <td>{{ facility[1] }}</td>
-                <td>{{ facility[2] }}</td>
-                <td>{{ facility[3] }}</td>
-                <td>{{ facility[4] }}</td>
-                <td>{{ facility[5] }}</td>
-                <td>{{ facility[6] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+
+    <div class="adminPage">
+        <div class="adminSideBar">
+            <div class="sideUserCard" id="adminTop">
+                <!-- Checks if user is an admin, display as admin -->
+                <!-- {% if user %}
+                {% if admin %}
+                <p class="adminMsg">Welcome, admin: {{ user }}.</p>
+                {% else %}
+                <p class="message">Welcome, user: {{ user }}.
+                    {% endif %}
+                    {% else %}
+                <p class="message">You are not logged in. <br>
+                    Please <a href="{{ url_for('login')}}">login</a>
+                    to
+                    access the user
+                    page.</p>
+                {% endif %} -->
+                <!-- End jinja template -->
+            </div>
+            <div class="adminButtons">
+                <!-- <h4>Show Users</h4> -->
+                <button class="showBtn" onclick="toggleBtn(0)">Show Users</button>
+                <button class="showBtn" onclick="toggleBtn(1)">Show Doctors</button>
+                <button class="showBtn" onclick="toggleBtn(2)">Show Facilities</button>
+            </div>
+            <div class="sideUserCard" id="adminBot">
+                <form id="logOut" action="/logout" method="GET">
+                    <input type="submit" value="Logout">
+                </form>
+            </div>
+        </div>
+        <div class="adminContent">
+            <h1>Admin Dashboard</h1>
+            <div class="container-div">
+                <div class="rUsers">
+                    <table class="adminTable">
+                        <h2 class="user">Registered users</h2>
+                        <tr class="tr-1">
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Birth Date</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>Allergy</th>
+                            <th>Condition</th>
+                            <th>Subscription</th>
+                            <th>Logged In</th>
+                            <th>Date Joined</th>
+                            <th>Is_Admin</th>
+                        </tr>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user[0] }}</td>
+                            <td>{{ user[1] }}</td>
+                            <td>{{ user[2] }}</td>
+                            <td>{{ user[3] }}</td>
+                            <td>{{ user[4] }}</td>
+                            <td>{{ user[5] }}</td>
+                            <td>{{ user[6] }}</td>
+                            <td>{{ user[7] }}</td>
+                            <td>{{ user[8] }}</td>
+                            <td>{{ user[9] }}</td>
+                            <td>{{ user[10] }}</td>
+                            <td>{{ user[11] }}</td>
+                            <td>{{ user[12] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <!-- Table for the Doctors -->
+                <div class="englishDoctors">
+                    <table class="adminTable" style="display: none;">
+                        <h2 class="doc">English Speaking Doctors in Korea</h2>
+                        <tr class="tr-2">
+                            <th>Name</th>
+                            <th>Expertise</th>
+                            <th>Company</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Ratings</th>
+                            <th>Availability</th>
+                            <!-- <th>About</th> -->
+                        </tr>
+                        {% for doctor in doctors %}
+                        <tr>
+                            <td>{{ doctor[0] }}</td>
+                            <td>{{ doctor[1] }}</td>
+                            <td>{{ doctor[2] }}</td>
+                            <td>{{ doctor[3] }}</td>
+                            <td>{{ doctor[4] }}</td>
+                            <td>{{ doctor[5] }}</td>
+                            <td>{{ doctor[6] }}</td>
+                            <!-- <td class="about">{{ doctor[7] }}</td> -->
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+                <div class="englishFacilities">
+                    <!-- Table for facilities -->
+
+                    <table class="adminTable" style="display: none;">
+                        <h2 class="fac">English Speaking Facilities in Korea</h2>
+                        <tr class="tr-3">
+                            <th>Name</th>
+                            <th>Speaker</th>
+                            <th>Type</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Emergency</th>
+                            <th>Services</th>
+                        </tr>
+                        {% for facility in facilities %}
+                        <tr>
+                            <td>{{ facility[0] }}</td>
+                            <td>{{ facility[1] }}</td>
+                            <td>{{ facility[2] }}</td>
+                            <td>{{ facility[3] }}</td>
+                            <td>{{ facility[4] }}</td>
+                            <td>{{ facility[5] }}</td>
+                            <td>{{ facility[6] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- <form id="logOut" action="/logout" method="GET">
+        <input type="submit" value="Logout">
+    </form> -->
     <!-- Footer -->
     <footer class="footer">
         <p class="explore-text">Feel free to explore our resources and
