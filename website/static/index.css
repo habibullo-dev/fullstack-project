@@ -700,8 +700,7 @@ ul {
     width: 800px;
     height: 100vh;
     padding: 40px;
-    display: flex;
-    /* display: none; */
+    display: none;
     justify-content: center;
     background-color: var(--color-extra);
     border-radius: 15px;
@@ -725,8 +724,7 @@ ul {
 }
 
 #userBookings {
-    /* display: flex; */
-    display: none;
+    display: flex;
     margin: 4px 0px;
     width: 800px;
     height: 100vh;
@@ -768,5 +766,53 @@ ul {
     border-bottom: 1.5px solid var(--color-primary);
 }
 
-
 /* styling for user.html END */
+
+/* styling for admin.html Start */
+
+.adminPage {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.adminSideBar {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: var(--color-primary);
+    width: 150px;
+    /* position: sticky; */
+    height: auto;
+    /* padding: 20px; */
+    color: var(--color-light);
+}
+
+#adminTop {
+    height: 10px;
+}
+
+#adminButtons {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+
+#adminBot {
+    display: flex;
+    justify-content: center;
+}
+
+.adminTable {
+    margin: 10px 50px;
+}
+
+.adminContent {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* styling for admin.html END */

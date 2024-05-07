@@ -282,3 +282,6 @@ function toggleMenu() {
     }
 }
 // burgermenu function END//
+
+// Nina - User Dash event listener to display flex the personal details and bookings cards
+

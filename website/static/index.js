@@ -34,5 +34,24 @@ document.addEventListener('DOMContentLoaded', function () {
     hideUserMsg();
 });
 
+// Nina - User Dash event listener to display flex the personal details and bookings cards
+
+const userDetailBtn = document.getElementById("userDetailBtn");
+const personalDetails = document.getElementById("personalDetails");
+
+const userBookingsBtn = document.getElementById("userBookingsBtn");
+const userBookings = document.getElementById("userBookings");
+
+userDetailBtn.addEventListener("click", () => {
+    personalDetails.style.display = "flex";
+});
+
+userBookingsBtn.addEventListener("click", () => {
+    if (personalDetails.style.display = "flex") {
+        personalDetails.style.display = "none";
+        userBookings.style.display = "flex";
+    }
+});
+
 
 

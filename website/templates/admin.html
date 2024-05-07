@@ -29,14 +29,13 @@
         }
 
         .container-div {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 3rem;
-            gap: 1.5rem;
+            padding: 0;
             overflow: hidden;
+            /* border: 2px solid red; */
         }
 
         h1 {
@@ -50,7 +49,7 @@
 
         table {
             border-collapse: collapse;
-            margin-bottom: 5rem;
+            /* margin-bottom: 5rem; */
         }
 
         th,
@@ -85,9 +84,10 @@
             color: var(--color-light);
             background-color: var(--color-primary);
             text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid var(--color-light);
-            margin-left: 1rem;
+            padding: 20px 15px;
+            border: 1px solid var(--color-primary);
+            /* margin-left: 1rem; */
+            margin: 20px 0px;
             border-radius: 5px;
             transition: all 0.5s ease-out;
             text-decoration: none;
@@ -214,6 +214,184 @@
                 {% endfor %}
             </table>
         </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="explore-text">Feel free to explore our resources and
+                reach
+                out if you have any questions. We're dedicated to supporting
+                your health journey!
+            </p>
+            <!-- Social media icons below the footer -->
+            <div class="footer-icons" style="margin-top: 0px;">
+                <a href="https://www.facebook.com" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copy">&copy; 2024 MedKorea. All right
+                reserved.</p>
+        </footer>
+        <script src="../static/admin.js"></script>
+    </body>
+    <body>
+        <!-- Navigation bar -->
+        <nav class="navbar">
+            <div class="navLogo">
+                <img class="siteLogo" src="../static/images/logoInWhite.png"
+                    alt>
+                <div class="logo"><a
+                        href="{{url_for('home')}}">MedKorea</a></div>
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('home')}}">Home</a>
+                <a href="{{ url_for('search_page')}}">Search</a>
+                <a href="{{ url_for('about_us')}}">About</a>
+            </div>
+        </nav>
+
+        <div class="adminPage">
+            <div class="adminSideBar">
+                <div class="sideUserCard" id="adminTop">
+                    <!-- Checks if user is an admin, display as admin -->
+                    <!-- {% if user %}
+                {% if admin %}
+                <p class="adminMsg">Welcome, admin: {{ user }}.</p>
+                {% else %}
+                <p class="message">Welcome, user: {{ user }}.
+                    {% endif %}
+                    {% else %}
+                <p class="message">You are not logged in. <br>
+                    Please <a href="{{ url_for('login')}}">login</a>
+                    to
+                    access the user
+                    page.</p>
+                {% endif %} -->
+                    <!-- End jinja template -->
+                </div>
+                <div class="adminButtons">
+                    <!-- <h4>Show Users</h4> -->
+                    <button class="showBtn" onclick="toggleBtn(0)">Show
+                        Users</button>
+                    <button class="showBtn" onclick="toggleBtn(1)">Show
+                        Doctors</button>
+                    <button class="showBtn" onclick="toggleBtn(2)">Show
+                        Facilities</button>
+                </div>
+                <div class="sideUserCard" id="adminBot">
+                    <form id="logOut" action="/logout" method="GET">
+                        <input type="submit" value="Logout">
+                    </form>
+                </div>
+            </div>
+            <div class="adminContent">
+                <h1>Admin Dashboard</h1>
+                <div class="container-div">
+                    <div class="rUsers">
+                        <h2 class="user">Registered users</h2>
+                        <table class="adminTable">
+                            <tr class="tr-1">
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Birth Date</th>
+                                <th>Gender</th>
+                                <th>Phone</th>
+                                <th>Allergy</th>
+                                <th>Condition</th>
+                                <th>Subscription</th>
+                                <th>Logged In</th>
+                                <th>Date Joined</th>
+                                <th>Is_Admin</th>
+                            </tr>
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ user[0] }}</td>
+                                <td>{{ user[1] }}</td>
+                                <td>{{ user[2] }}</td>
+                                <td>{{ user[3] }}</td>
+                                <td>{{ user[4] }}</td>
+                                <td>{{ user[5] }}</td>
+                                <td>{{ user[6] }}</td>
+                                <td>{{ user[7] }}</td>
+                                <td>{{ user[8] }}</td>
+                                <td>{{ user[9] }}</td>
+                                <td>{{ user[10] }}</td>
+                                <td>{{ user[11] }}</td>
+                                <td>{{ user[12] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- Table for the Doctors -->
+                    <div class="englishDoctors">
+                        <h2 class="doc">English Speaking Doctors in Korea</h2>
+                        <table class="adminTable" style="display: none;">
+                            <tr class="tr-2">
+                                <th>Name</th>
+                                <th>Expertise</th>
+                                <th>Company</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Ratings</th>
+                                <th>Availability</th>
+                                <!-- <th>About</th> -->
+                            </tr>
+                            {% for doctor in doctors %}
+                            <tr>
+                                <td>{{ doctor[0] }}</td>
+                                <td>{{ doctor[1] }}</td>
+                                <td>{{ doctor[2] }}</td>
+                                <td>{{ doctor[3] }}</td>
+                                <td>{{ doctor[4] }}</td>
+                                <td>{{ doctor[5] }}</td>
+                                <td>{{ doctor[6] }}</td>
+                                <!-- <td class="about">{{ doctor[7] }}</td> -->
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                    <div class="englishFacilities">
+                        <!-- Table for facilities -->
+
+                        <h2 class="fac">English Speaking Facilities in
+                            Korea</h2>
+                        <table class="adminTable" style="display: none;">
+                            <tr class="tr-3">
+                                <th>Name</th>
+                                <th>Speaker</th>
+                                <th>Type</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Emergency</th>
+                                <th>Services</th>
+                            </tr>
+                            {% for facility in facilities %}
+                            <tr>
+                                <td>{{ facility[0] }}</td>
+                                <td>{{ facility[1] }}</td>
+                                <td>{{ facility[2] }}</td>
+                                <td>{{ facility[3] }}</td>
+                                <td>{{ facility[4] }}</td>
+                                <td>{{ facility[5] }}</td>
+                                <td>{{ facility[6] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <form id="logOut" action="/logout" method="GET">
+        <input type="submit" value="Logout">
+    </form> -->
         <!-- Footer -->
         <footer class="footer">
             <p class="explore-text">Feel free to explore our resources and
