@@ -855,9 +855,4 @@ ul {
     width: 15.6rem;
 }
 
-.resetBtn button {
-    border: 2px solid var(--color-light);
-    background-color: var(--color-primary);
-}
-
 /* styling for reset.html END */
