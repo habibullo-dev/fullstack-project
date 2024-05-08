@@ -834,21 +834,29 @@ ul {
 .resetForm {
     display: flex;
     flex-direction: column;
-
     background-color: var(--color-primary);
     padding: 2rem;
     border-radius: 1rem;
     width: 30rem;
+    height: auto;
 
 }
 
 .resetInput {
     display: flex;
+}
+
+.resetDivs {
+    width: 100%;
+    display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
 }
 
-.resetInput input {
+#old_password,
+#new_password {
+    /* display: flex;
+    justify-content: space-between; */
     height: 2rem;
     border: 1px solid var(--color-primary);
     border-radius: 0.3rem;

@@ -1,137 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Reset Password</title>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="stylesheet" href="../static/index.css">
-    </head>
-    <style>
-        h2 {
-            text-transform: uppercase;
-        }
-        .resetInput {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-        }
 
-        label {
-            color: var(--color--light);
-        }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/index.css">
+</head>
+<style>
+    h2 {
+        text-transform: uppercase;
+    }
 
-        button {
-            padding: 8px 12px;
-            border: 1.5px solid var(--color-light);
-            border-radius: 5px;
-            margin: 2rem;
-            background-color: var(--color-primary);
-            font-family: "Oswald", sans-serif;
-            color: var(--color-light);
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: all 0.5s ease-out;
-            text-decoration: none;
-        }
+    .resetInput {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        button:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-light);
-            transform: scale(1.1);
-            cursor: pointer;
-        }
+    label {
+        color: var(--color--light);
+    }
 
-        #flashMsg {
-            color: var(--color-primary);
-        }
+    button {
+        padding: 8px 12px;
+        border: 1.5px solid var(--color-light);
+        border-radius: 5px;
+        margin: 2rem;
+        background-color: var(--color-primary);
+        font-family: "Oswald", sans-serif;
+        color: var(--color-light);
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.5s ease-out;
+        text-decoration: none;
+    }
+
+    button:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-light);
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    #flashMsg {
+        color: var(--color-primary);
+    }
 </style>
-    <body>
-        <!-- Navigation bar -->
-        <nav class="navbar">
-            <div class="navLogo">
-                <img class="siteLogo" src="../static/images/logoInWhite.png"
-                    alt>
-                <div class="logo">MedKorea</div>
-            </div>
-            <div class="buttons">
-                <a href="{{ url_for('home')}}">Home</a>
-                <a href="{{ url_for('search_page')}}">Search</a>
-                {% if session.logged_in %}
-                <a href="{{ url_for('user_page')}}">Account</a>
-                {% else %}
-                <a href="{{url_for('login')}}">Account</a>
-                {% endif %}
-                <a href="{{ url_for('about_us')}}">About</a>
-            </div>
-        </nav>
-        <div id="resetForm">
-            <h2>Password Reset</h2>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            {% for category, message in messages %}
-            <div id="flashMsg" class="alert alert-{{ category }}">{{ message
-                }}</div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-            <form class="resetForm" action="/reset_password" method="post">
-                <div class="resetInput">
-                    <div>
-                        <label for="username">Enter Username:</label>
-                        <input type="text" class="username"
-                            name="username" placeholder="Username" required>
-                    </div>
-                    <div>
-                        <label for="old_password">Old Password:</label>
-                        <input type="password" id="old_password"
-                            name="old_password" placeholder="old_password"
-                            required>
-                    </div>
-                    <div>
-                        <label for="new_password">New Password:</label>
-                        <input type="password" id="new_password"
-                            placeholder="new_password"
-                            name="new_password"
-                            required>
-                    </div>
-                    <div>
-                        <button type="submit">Reset Password</button>
-                    </div>
-                </div>
-                <p class="copy">&copy; 2024 MedKorea. All right
-                    reserved.</p>
-            </form>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="navLogo">
+            <img class="siteLogo" src="../static/images/logoInWhite.png" alt>
+            <div class="logo">MedKorea</div>
         </div>
-        <footer class="footer">
-            <p class="explore-text">Feel free to explore our resources and
-                reach
-                out if you have any questions. We're dedicated to supporting
-                your health journey!
-            </p>
-            <!-- Social media icons below the footer -->
-            <div class="footer-icons" style="margin-top: 0px;">
-                <a href="https://www.facebook.com" target="_blank"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i
-                        class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="https://github.com" target="_blank"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
+        <div class="buttons">
+            <a href="{{ url_for('home')}}">Home</a>
+            <a href="{{ url_for('search_page')}}">Search</a>
+            {% if session.logged_in %}
+            <a href="{{ url_for('user_page')}}">Account</a>
+            {% else %}
+            <a href="{{url_for('login')}}">Account</a>
+            {% endif %}
+            <a href="{{ url_for('about_us')}}">About</a>
+        </div>
+    </nav>
+    <div id="resetForm">
+        <h2>Password Reset</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div id="flashMsg" class="alert alert-{{ category }}">{{ message
+            }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form class="resetForm" action="/reset_password" method="post">
+            <div class="resetInput">
+                <div class="resetDivs">
+                    <label for="username">Enter Username:</label>
+                    <input type="text" class="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="resetDivs">
+                    <label for="old_password">Old Password:</label>
+                    <input type="password" id="old_password" name="old_password" placeholder=" Old Password" required>
+                </div>
+                <div class="resetDivs">
+                    <label for="new_password">New Password:</label>
+                    <input type="password" id="new_password" placeholder=" New Password" name="new_password" required>
+                </div>
+                <div>
+                    <button type="submit">Reset Password</button>
+                </div>
             </div>
             <p class="copy">&copy; 2024 MedKorea. All right
                 reserved.</p>
-        </footer>
-        <script>
-            // Hide the flash message after 5 seconds
-        setTimeout(function(){
+        </form>
+    </div>
+    <footer class="footer">
+        <p class="explore-text">Feel free to explore our resources and
+            reach
+            out if you have any questions. We're dedicated to supporting
+            your health journey!
+        </p>
+        <!-- Social media icons below the footer -->
+        <div class="footer-icons" style="margin-top: 0px;">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="copy">&copy; 2024 MedKorea. All right
+            reserved.</p>
+    </footer>
+    <script>
+        // Hide the flash message after 5 seconds
+        setTimeout(function () {
             document.querySelector('.alert').style.display = 'none';
         }, 5000); // 5000 milliseconds = 5 seconds
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>
