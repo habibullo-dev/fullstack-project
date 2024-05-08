@@ -71,6 +71,7 @@ selectDoctor.forEach(function (h2) {
 // js for styling clicked listings //
 
 const cards = document.querySelectorAll('.card');
+const selectedCardContainer = document.querySelector('.selectedCard');
 
 const rootStyles = getComputedStyle(document.documentElement);
 const primaryColor = rootStyles.getPropertyValue('--color-primary').trim();
@@ -91,6 +92,8 @@ cards.forEach(card => {
 
         card.style.border = `4px solid ${secondaryColor}`;
         selectedCard = card;
+
+        selectedCardContainer.style.border = `4px solid ${secondaryColor}`
     });
 });
 
@@ -333,13 +336,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // function for burgermenu//
-function toggleMenu() {
-    const menu = document.querySelector('.buttons');
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 600) {
-        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-    }
-}
+// function toggleMenu() {
+//     const menu = document.querySelector('.buttons');
+//     const screenWidth = window.innerWidth;
+//     if (screenWidth <= 600) {
+//         menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+//     }
+// }
 // burgermenu function END//
 
 
