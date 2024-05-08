@@ -57,7 +57,7 @@ def send_email(recipient, full_name):
     """
 
     message = MIMEText(text, 'plain')
-    message['Subject'] = 'MedKorea Account Registration'
+    message['Subject'] = 'MedKorea Booking Confirmation'
     message['From'] = sender
     message['To'] = recipient
 
@@ -140,6 +140,16 @@ def get_user(username):
             {"username": username}
         )
         return res.fetchone() # fetch one row from db
+
+# Retrieve user info from the database by email
+def get_email(email):
+    with engine.connect() as conn:
+        res = conn.execute(
+            text("SELECT * FROM Users WHERE email = :email"),
+            {"email": email}
+        )
+        return res.fetchone()  # Fetch one row from the database
+
 
 # function for login authentication
 def user_auth(username, password):
@@ -246,9 +256,9 @@ def register():
 
     # Handle registration
     if request.method == 'POST':
-        username = request.form.get('username')
+        input_username = request.form.get('username')
         password = request.form.get('password')
-        email = request.form.get('email')
+        input_email = request.form.get('email')
         phone = request.form.get('phone')
         first_name = request.form.get('firstName')
         last_name = request.form.get('lastName')
@@ -257,19 +267,22 @@ def register():
         allergy = request.form.get('allergy')
         condition = request.form.get('condition')
 
+        # Check if username and email already exist
+        with engine.connect() as conn:
+            result = conn.execute(
+                text('SELECT username, email FROM Users WHERE username = :username OR email = :email'),
+                {"username": input_username, "email": input_email}
+            )
+            existing_user = result.fetchone()
 
-        registered_user = get_user(username)
-        registered_email = get_user(email)
-
-         #check if username and email  already exists
-        if registered_email or registered_user:
-            flash('Email or Username is already registered. Please use a different username or email address.', category='error')
-            return render_template('verify.html')
+        if existing_user:
+            flash('Username or Email is already taken. Please choose a different username and Email.', category='error')
+            return redirect(url_for('register'))
         
         #Validate form inputs
-        if len(email) < 4:
+        if len(input_email) < 4:
             flash('Email must be greater than 4 characters.', category='error')
-        elif len(username) < 5:
+        elif len(input_username) < 5:
             flash('Username must be at least 5 characters long.', category='error')
         elif len(first_name) < 2:
             flash('First name must be at least 2 characters long.', category='error')
@@ -282,7 +295,7 @@ def register():
             hashed_password = hash_password(password)
 
              # Add the new user to the database
-            result = add_user(username, hashed_password, email, first_name, last_name, birth_date, gender, phone, allergy, condition)
+            result = add_user(input_username, hashed_password, input_email, first_name, last_name, birth_date, gender, phone, allergy, condition)
             if result:
                 flash('Registration is successful. Account is created!', category='success')
                 return redirect(url_for('login')) # This will redirect the user to the booking page after registration
