@@ -33,11 +33,11 @@
             <div class="searchBar">
 
                 <!-- code burger menu 23/04 -->
-                <div class="burger-menu" onclick="toggleMenu()">
+                <!-- <div class="burger-menu" onclick="toggleMenu()">
                     <div class="line"></div>
                     <div class="line"></div>
                     <div class="line"></div>
-                </div>
+                </div> -->
                 <!-- New Form for the search input-->
                 <form id="searchForm" method="POST" action="/search_input">
                     <select name="city" id="citySelect">
@@ -160,24 +160,29 @@
                     <br>
                     <h3>Hospital Information</h3>
                     <div class="hospDetails">
-                        <br>
-                        <h4>Hospital Name:</h4>
-                        <p class="hospCompany"></p>
-                        <br>
-                        <h4>Specialization:</h4>
-                        <p class="hospExpertise"></p>
-                        <br>
-                        <h4>Address:</h4>
-                        <p class="hospAddresses"></p>
-                        <br>
-                        <h4>Phone:</h4>
-                        <p class="hospPhones"></p>
-                        <br>
-                        <h4>Rating:</h4>
-                        <p class="hospRating"></p>
-                        <br>
-                        <p class="blurbs"></p>
+                        <div class="hospDetailsLeft">
+                            <br>
+                            <h4>Hospital Name:</h4>
+                            <p class="hospCompany"></p>
+                            <br>
+                            <h4>Specialization:</h4>
+                            <p class="hospExpertise"></p>
+                            <br>
+                            <h4>Address:</h4>
+                            <p class="hospAddresses"></p>
+                            <br>
+                        </div>
+                        <div class="hospDetailsRight">
+                            <br>
+                            <h4>Phone:</h4>
+                            <p class="hospPhones"></p>
+                            <br>
+                            <h4>Rating:</h4>
+                            <p class="hospRating"></p>
+                            <br>
+                        </div>
                     </div>
+                    <!-- <p class="blurbs"></p> -->
                     <div class="buttonWrap">
                         {% if 'username' in session %}
                         <button id="apptBook"><a href="{{ url_for('booking_form') }}">Book an
