@@ -69,7 +69,6 @@ selectDoctor.forEach(function (h2) {
 });
 
 // js for styling clicked listings //
-
 const cards = document.querySelectorAll('.card');
 const selectedCardContainer = document.querySelector('.selectedCard');
 
@@ -241,6 +240,21 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         // Add click event listener for each card
         doctorCard.addEventListener('click', () => {
+            // clicked div border color change //
+            if (!originalBorderColor) {
+                originalBorderColor = getComputedStyle(doctorCard).borderColor;
+            }
+
+            if (selectedCard && selectedCard !== doctorCard) {
+                selectedCard.style.border = originalBorderColor;
+            }
+
+            doctorCard.style.border = `4px solid ${secondaryColor}`;
+            selectedCard = doctorCard;
+
+            selectedCardContainer.style.border = `4px solid ${secondaryColor}`
+
+
             // Call function to populate the right card with full data of the selected doctor card
             updateRightCard(doctor);
         });
@@ -253,22 +267,22 @@ document.addEventListener('DOMContentLoaded', function () {
         facilityCard.classList.add('facility', 'card');
         facilityCard.innerHTML = `
         <div class='left'>
-            <div class='hospL'>
-                <img class='hospLogo' src='../static/images/medicalLogo.png' alt='Hospital Logo'>
-            </div>
-            <p class='rating'>3.5/5</p>
+        <div class='hospL'>
+        <img class='hospLogo' src='../static/images/medicalLogo.png' alt='Hospital Logo'>
+        </div>
+        <p class='rating'>3.5/5</p>
         </div>
         <div class='middle'>
-            <h2 class='nameElem' style='font-size:1.8rem;'>${facility.Name}</h2>
-            <div class='hospInfo'>
-                <p class='hospAddress'>Address: ${facility.Address}</p>
-                <p class='hospPhone'>Phone: ${facility.Phone}</p>
-            </div>
-            <div class='blurb'>
-                <p>This is the official data of the ${facility.Name}. Please select the card for more additional information</p>
-            </div>
+        <h2 class='nameElem' style='font-size:1.8rem;'>${facility.Name}</h2>
+        <div class='hospInfo'>
+        <p class='hospAddress'>Address: ${facility.Address}</p>
+        <p class='hospPhone'>Phone: ${facility.Phone}</p>
         </div>
-    `;
+        <div class='blurb'>
+        <p>This is the official data of the ${facility.Name}. Please select the card for more additional information</p>
+        </div>
+        </div>
+        `;
         container.appendChild(facilityCard);
     }
 
@@ -286,8 +300,8 @@ document.addEventListener('DOMContentLoaded', function () {
         selectedCard.querySelector('.hospPhones').textContent = `${doctor.Phone}`;
         selectedCard.querySelector('.hospRating').textContent = `${doctor.Ratings}`
         selectedCard.querySelector('.blurbs').innerHTML = `
-            This is the official information of '${doctor.Name}'.
-            For more information, please contact the provided email or doctor ${doctor.Phone}.
+        This is the official information of '${doctor.Name}'.
+        For more information, please contact the provided email or doctor ${doctor.Phone}.
         `;
     }
 
@@ -329,6 +343,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add event listener to the 'Show More' button
     showBtn.addEventListener('click', handleButtonClick);
+
+
+    // clicked div border color change prior to search//
+    const cards = document.querySelectorAll('.card');
+    const selectedCardContainer = document.querySelector('.selectedCard');
+
+    const rootStyles = getComputedStyle(document.documentElement);
+    const primaryColor = rootStyles.getPropertyValue('--color-primary').trim();
+    const secondaryColor = rootStyles.getPropertyValue('--color-secondary').trim();
+
+    let selectedCard = null;
+    let originalBorderColor = `3px solid ${primaryColor}`;
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (!originalBorderColor) {
+                originalBorderColor = getComputedStyle(card).borderColor;
+            }
+
+            if (selectedCard && selectedCard !== card) {
+                selectedCard.style.border = originalBorderColor;
+            }
+
+            card.style.border = `4px solid ${secondaryColor}`;
+            selectedCard = card;
+
+            selectedCardContainer.style.border = `4px solid ${secondaryColor}`
+        });
+    });
 })
 // End of the js code for the mvp search input and result
 
