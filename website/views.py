@@ -169,7 +169,6 @@ def login():
 
         # Check if the user(tuple) is an admin (assuming is_admin is the last element in the user tuple)
             is_admin = user[-1] if user else False  
-            # print("is_admin:", is_admin)
         
         # Check if the user is an admin (is_admin=true)
             if is_admin:
@@ -202,52 +201,63 @@ def update_logged_in(username, status):
     # If the 'rowcount' is greater than 0, we have a successful update of the data
     return res.rowcount > 0
 
-# route for the reset password page
+
+# Route for rendering the password reset form
 @app.route('/restore_password')
 def restore_password():
     return render_template('reset.html')
 
-# Update the user's password in the database
-def update_password(email, username, hashed_password):
-    with engine.connect() as conn:
-        conn.execute(
-            text('UPDATE Users SET password = :password WHERE email = :email AND username = :username'),
-            {'email': email, 'username': username, 'password': hashed_password}
-        )
 
-# retrieve user email in the database
-def get_user_email(email):
-    with engine.connect() as conn:
-      res = conn.execute(
-          text('SELECT * FROM Users WHERE email = :email'),
-          {'email': email}
-      )
-      return res.fetchone() # fetch one row from database
+# Route for password reset by username
+@app.route('/reset_password', methods=['POST'])
+def reset_password_by_username():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        old_password = request.form.get('old_password')
+        new_password = request.form.get('new_password')
 
-# # Route for password reset request and password reset
-# @app.route('/reset_password', methods=['POST'])
-# def reset_password():
+        # Verify old password
+        if not user_auth(username, old_password):
+            flash('Incorrect old password. Please try again.', category='error')
+            return redirect(url_for('restore_password'))
+
+        # Hash the new password
+        hashed_new_password = hash_password(new_password)
+
+        # Update the user's password in the database
+        with engine.begin() as conn:
+            res = conn.execute(
+                text("UPDATE Users SET password = :password WHERE username = :username"),
+                {'password': hashed_new_password, 'username': username}
+            )
+
+        # Check if the data is updated
+        if res.rowcount > 0:
+            flash('Password reset successful. You can now log in with your new password.', category='success')
+            return redirect(url_for('login'))  # Redirect to the login route
+        else:
+            flash('Failed to reset password. Please try again.', category='error')
+            return redirect(url_for('restore_password'))
+
+# # Route for password reset by email
+# @app.route('/reset_password_by_email', methods=['POST'])
+# def reset_password_by_email():
 #     if request.method == 'POST':
-#         username = request.form.get('username')
 #         email_address = request.form.get('email')
+#         new_password = request.form.get('new_password')
 
-#         # Retrieve username information
-#         user = get_user(username)
-#         if not user:
-#             flash('User not found. Please enter a valid username.', category='error')
-#             return redirect(url_for('restore_password'))
-        
-#         # Retrieve email information
+#         # Check if email exists
 #         user_email = get_user_email(email_address)
 #         if not user_email:
 #             flash('Email address not found. Please enter a valid email address.', category='error')
 #             return redirect(url_for('restore_password'))
-        
-#         # Check if the retrieved email matches with user's email in the database
-#         if user['email'] != user_email['email']:
 
-        
-#     return redirect(url_for('restore_password'))
+#         # Update password
+#         update_password_by_email(email_address, new_password)
+
+#         flash('Password reset successful. You can now log in with your new password.', category='success')
+#         return redirect(url_for('login'))  # Redirect to the login route
+
 
 # contains the register page with a link to take user into login page
 @app.route('/register', methods=['GET', 'POST'])
