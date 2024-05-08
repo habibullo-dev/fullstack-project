@@ -1,7 +1,6 @@
 import hashlib
 import datetime
 import smtplib
-import secrets
 from email.mime.text import MIMEText
 from flask import Flask, flash, render_template, request, redirect, session, url_for, jsonify
 from sqlalchemy.sql import text
@@ -210,13 +209,13 @@ def restore_password():
 
 # Route for password reset by username
 @app.route('/reset_password', methods=['POST'])
-def reset_password_by_username():
+def reset_password():
     if request.method == 'POST':
         username = request.form.get('username')
         old_password = request.form.get('old_password')
         new_password = request.form.get('new_password')
 
-        # Verify old password
+        # Verify old password before proceeding with password change
         if not user_auth(username, old_password):
             flash('Incorrect old password. Please try again.', category='error')
             return redirect(url_for('restore_password'))
@@ -232,31 +231,13 @@ def reset_password_by_username():
             )
 
         # Check if the data is updated
-        if res.rowcount > 0:
-            flash('Password reset successful. You can now log in with your new password.', category='success')
+         # If the 'rowcount' is greater than 0, we have a successful update of the data
+        if res.rowcount > 0: 
+            flash('Password successfully reset. You can now log in with new password.', category='success')
             return redirect(url_for('login'))  # Redirect to the login route
         else:
-            flash('Failed to reset password. Please try again.', category='error')
+            flash('Error, failed to reset password. Please try again.', category='error')
             return redirect(url_for('restore_password'))
-
-# # Route for password reset by email
-# @app.route('/reset_password_by_email', methods=['POST'])
-# def reset_password_by_email():
-#     if request.method == 'POST':
-#         email_address = request.form.get('email')
-#         new_password = request.form.get('new_password')
-
-#         # Check if email exists
-#         user_email = get_user_email(email_address)
-#         if not user_email:
-#             flash('Email address not found. Please enter a valid email address.', category='error')
-#             return redirect(url_for('restore_password'))
-
-#         # Update password
-#         update_password_by_email(email_address, new_password)
-
-#         flash('Password reset successful. You can now log in with your new password.', category='success')
-#         return redirect(url_for('login'))  # Redirect to the login route
 
 
 # contains the register page with a link to take user into login page
