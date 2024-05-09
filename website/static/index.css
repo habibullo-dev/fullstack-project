@@ -834,7 +834,7 @@ ul {
 .resetForm {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-primary);
+    background-color: var(--color-extra);
     padding: 2rem;
     border-radius: 1rem;
     width: 30rem;

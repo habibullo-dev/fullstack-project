@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class='hospL'>
                     <img class='hospLogo' src='../static/doctors/${doctor.Name}.jpeg' alt='Hospital Logo'>
                 </div>
-                <p class='rating'>${doctor.Ratings}/5</p>
+                <p class='rating'><span>★</span> ${doctor.Ratings}/5</p>
             </div>
             <div class='middle'>
                 <h2 class='nameElem'>${doctor.Name}</h2>
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class='hospL'>
         <img class='hospLogo' src='../static/images/medicalLogo.png' alt='Hospital Logo'>
         </div>
-        <p class='rating'>3.5/5</p>
+        <p class='rating'> <span>★</span> 3.5/5</p>
         </div>
         <div class='middle'>
         <h2 class='nameElem' style='font-size:1.8rem;'>${facility.Name}</h2>
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
         selectedCard.querySelector('.hospExpertise').textContent = doctor.Expertise;
         selectedCard.querySelector('.hospAddresses').textContent = `${doctor.Address}`;
         selectedCard.querySelector('.hospPhones').textContent = `${doctor.Phone}`;
-        selectedCard.querySelector('.hospRating').textContent = `${doctor.Ratings}`
+        selectedCard.querySelector('.hospRating').textContent = `★ ${doctor.Ratings}`
         selectedCard.querySelector('.blurbs').innerHTML = `
         This is the official information of '${doctor.Name}'.
         For more information, please contact the provided email or doctor ${doctor.Phone}.
@@ -379,13 +379,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // function for burgermenu//
-// function toggleMenu() {
-//     const menu = document.querySelector('.buttons');
-//     const screenWidth = window.innerWidth;
-//     if (screenWidth <= 600) {
-//         menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-//     }
-// }
+function toggleMenu() {
+    const menu = document.querySelector('.buttons');
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 600) {
+        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    }
+}
 // burgermenu function END//
 
 
