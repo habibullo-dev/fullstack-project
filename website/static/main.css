@@ -385,13 +385,15 @@ video {
 input[type="text"] {
     /* Adjust padding */
     padding: 0rem 0.5rem;
-    border: none;
+    border: transparent;
     /* Optional: adjust border radius */
     background-color: transparent;
+    color: var(--color-light);
 }
 
 input[type="text"]::placeholder {
-    color: var(--color-dark);
+    border: transparent;
+    color: var(--color-light);
     letter-spacing: 0.1rem;
     font-weight: 800;
 }
