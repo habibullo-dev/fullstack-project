@@ -44,7 +44,7 @@ def admin():
 # For a single email recipient first
 
 def send_email(recipient, full_name):
-    sender = 'medkorea01@gmail.com'
+    sender = 'medkorea01.contact@gmail.com'
     password = 'xykboumszwtyygkw'
     text = f"""
         Hello {full_name},\n 
