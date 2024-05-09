@@ -45,12 +45,12 @@ def admin():
 
 def send_email(recipient, full_name):
     sender = 'medkorea01.contact@gmail.com'
-    password = 'xykboumszwtyygkw'
+    password = 'dezorqgyrtmbtfql'
     text = f"""
         Hello {full_name},\n 
             Thank you for booking an appointment with MedKorea! We are excited to assist you with your healthcare needs.\n
             Your appointment has been successfully scheduled. Please make sure to arrive on time and bring any necessary documents.\n
-            If you have any questions or need to make changes to your appointment, feel free to contact our support team at medkorea1@gmail.com.\n
+            If you have any questions or need to make changes to your appointment, feel free to contact our support team at medkorea01.contact@gmail.com.\n
             Best regards,\n\nThe MedKorea Team\n\n\n
         
             Please do not respond or reply back to this email.
