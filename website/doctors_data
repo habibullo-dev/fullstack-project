@@ -8,8 +8,8 @@
         "Ratings": "3.5"
     },
     {
-        "Name": "Dr. Yoo Shin-ae",
-        "Expertise": "General Practice",
+        "Name": "Dr. Yoon Shin-ae",
+        "Expertise": "Paediatrics / Allergy",
         "Company": "Samsung Medical Centre",
         "Address": "50 Ilwon-dong, Kangnam-ku, Seoul",
         "Phone": "3410-0200",
@@ -49,7 +49,7 @@
     },
     {
         "Name": "Dr. Ho-wan Han",
-        "Expertise": "Obstetrics and Gynaecology",
+        "Expertise": "Pregnancy / Childbirth",
         "Company": "Samsung Cheil Hospital",
         "Address": "1/23 Mukchung-dong, Chung-ku, Seoul",
         "Phone": "2273-0151",
@@ -57,24 +57,16 @@
     },
     {
         "Name": "Dr. Sung Hae-ree",
-        "Expertise": "Obstetrics and Gynaecology",
+        "Expertise": "Pregnancy / Childbirth",
         "Company": "UN Village Clinic",
         "Address": "UN Village, Seoul",
         "Phone": "790-0802",
         "Ratings": "3.4"
     },
     {
-        "Name": "Dr. Yoo Shin-ae",
-        "Expertise": "Paediatrics / Allergy",
-        "Company": "Samsung Medical Centre",
-        "Address": "50 Ilwon-dong, Kangnam-ku, Seoul",
-        "Phone": "3410-0200",
-        "Ratings": "3.5"
-    },
-    {
         "Name": "Dr. Chung Chin-koo",
         "Expertise": "Dentist",
-        "Company": "Unknown",
+        "Company": "Global Dentist",
         "Address": "135-3 Itaewon-dong, Yongsan-ku, Seoul",
         "Phone": "795-7726",
         "Ratings": "3.6"
@@ -82,7 +74,7 @@
     {
         "Name": "Dr. Lee Soo-chan",
         "Expertise": "Dentist",
-        "Company": "Unknown",
+        "Company": "InterSeoul Dental Clinic",
         "Address": "186 Hangang-Ro, 2ga, Yongsan-ku, Seoul",
         "Phone": "798-0500",
         "Ratings": "3.6"
@@ -97,7 +89,7 @@
     },
     {
         "Name": "Dr. James Lee",
-        "Expertise": "Chiropractic physician",
+        "Expertise": "Chiropractic",
         "Company": "Itaewon Wellnes",
         "Address": "Itaewon Subway Exit #2, Hannam Bldg., 3F, Seoul",
         "Phone": "02-794-3536",

@@ -226,35 +226,3 @@ engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Projec
 #     )
 #     db.commit()  
 #     db.close()
-
-
-
-# This is for test purpose as well to see if insertion of image to database is feasible
-
-# # Specify the doctor ID and the path to the image file
-# doctor_id = 8
-# image_path = 'website/static/pictures/Dr._Sung_Hae-Ree.webp'
-
-
-# # Read and open the image file as binary data
-
-# with open(image_path, 'rb') as f:
-#     image_data = f.read()
-
-# # Execute the SQL Query to insert the image into the database
-
-# with engine.begin() as conn:
-#     conn.execute(
-#         text(
-#             """
-#             UPDATE Doctors
-#             SET images = :image_data
-#             WHERE id = :doctor_id
-#             """
-#         ),
-#         {'image_data': image_data, 'doctor_id': doctor_id}
-#     )
-
-
-# # Close the connection
-# conn.close()

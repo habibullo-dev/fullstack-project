@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Doctors(
     expertise VARCHAR(255), 
     type VARCHAR(255),
     address VARCHAR(255),
-    phone VARCHAR(20)
+    phone VARCHAR(20),
 );
 
 
@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS Facilities (
     type VARCHAR(255),
     address VARCHAR(255),
     phone VARCHAR(20),
-    emergency VARCHAR(20),
-    services VARCHAR(20)
+    emergency VARCHAR(20) NOT NULL,
+    services VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Users (
@@ -148,16 +148,3 @@ WHERE name IN ('Dr. Shin Ho-Chul', 'Dr. Yoon Shin-ae', 'Dr. Kwak', 'Dr. H.S. Rhe
 -- No ELSE part and no conditions are true, it returns NULL
 -- about column in the Doctors Table is set to NULL
  
-
-
--- We will not use these sql query / schema from below to save the images we have into the database
--- This only acts as an example on how to alter a table and insert an image as blob
-
-
--- Add new column called images with data type blob to Doctors table
-ALTER TABLE Doctors
-ADD COLUMN IF NOT EXISTS images BLOB;
-
--- Drop column images in the Doctors Table 
-ALTER TABLE Doctors
-DROP COLUMN images
