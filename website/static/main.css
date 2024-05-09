@@ -527,6 +527,11 @@ input[type="text"]::placeholder {
         font-size: 0.6rem;
     }
 
+    .text-overlay {
+        margin-left: 20px;
+        font-size: 1rem;
+        letter-spacing: 0.8rem;
+    }
 }
 
 /* responsiveness - tablet END */
@@ -534,11 +539,6 @@ input[type="text"]::placeholder {
 /* responsiveness - mobile */
 @media screen and (max-width: 600px) {
 
-    .text-overlay {
-        margin-left: 20px;
-        font-size: 1rem;
-        letter-spacing: 0.8rem;
-    }
 
     .container-1 {
         margin-bottom: 0;
