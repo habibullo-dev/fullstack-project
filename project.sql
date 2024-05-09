@@ -1,9 +1,9 @@
 -- Create the database if not exists
-CREATE DATABASE IF NOT EXISTS Project;
+CREATE DATABASE IF NOT EXISTS PHP;
 
 
 -- Use the Project database
-USE Project;
+USE PHP;
 
 
 -- Create the Doctors table if not exist
