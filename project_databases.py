@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.sql import text
-import os
+
 
 engine = sqlalchemy.create_engine("mariadb+pymysql://root:@127.0.0.1:3306/Project")
 # engine = sqlalchemy.create_engine("mariadb+mariadbconnector://root:@127.0.0.1:3306/fsi-23")
