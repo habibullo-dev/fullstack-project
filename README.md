@@ -60,14 +60,14 @@ Please check the **project_databases.py** + **project.sql** first or **database_
 
 How to Use:
 
-Clone this repository to your local machine.
+1) Clone this repository to your local machine.
 
-Set up the MariaDB database using the provided schema.
+2 Set up the MariaDB database using the provided schema.
 
-Configure the database connection in the Flask application.
+3) Configure the database connection in the Flask application.
 
-Host the Flask application on a server.
+4) Host the Flask application on a server.
 
-Access the website through your preferred web browser.
+5) Access the website through your preferred web browser.
 
-Use PHPMyAdmin to visualize and manage the database.
+6) Use PHPMyAdmin to visualize and manage the database.
