@@ -4,7 +4,8 @@ Project Name: MedKorea
 
 ---
 
-About
+About:
+
 MedKorea is a comprehensive platform dedicated to providing reliable and accessible information about English-speaking medical professionals and facilities in South Korea.
 
 Whether you're a tourist, student, or expat, navigating healthcare in a new country—especially with a language barrier—can be overwhelming. MedKorea helps bridge that gap with:
@@ -25,7 +26,8 @@ Whether you're a tourist, student, or expat, navigating healthcare in a new coun
 
 ---
 
-🔧 Technologies Used
+🔧 Technologies Used:
+
 Frontend: HTML, CSS, JavaScript
 
 Backend: Python with Flask (for server-side rendering)
@@ -44,9 +46,15 @@ Environment: XAMPP (Apache, MariaDB, PHP, Perl)
 
 ---
 
-Please check the project_databases.py + project.sql first or database_project.py file for creating the database schema.
+Please check the **project_databases.py** + **project.sql** first or **database_project.py** file for creating the database schema.
 
-We use HTML, CSS, and JavaScript for the frontend to create the user interface and user experience. Python with Flask is used for server-side rendering, providing dynamic content to the users. pymysql is used to connect to the MariaDB database. SQLAlchemy is used as an ORM to interact with the database. SQL language is employed for querying the database, and PHPMyAdmin serves as an administration interface for visual aid in database management.
+We use HTML, CSS, and JavaScript for the frontend to create the user interface and user experience. 
+
+Python with Flask is used for server-side rendering, providing dynamic content to the users. 
+
+pymysql is used to connect to the MariaDB database. SQLAlchemy is used as an ORM to interact with the database. 
+
+SQL language is employed for querying the database, and PHPMyAdmin serves as an administration interface for visual aid in database management.
 
 ---
 
