@@ -62,7 +62,7 @@ How to Use:
 
 1) Clone this repository to your local machine.
 
-2 Set up the MariaDB database using the provided schema.
+2) Set up the MariaDB database using the provided schema.
 
 3) Configure the database connection in the Flask application.
 
