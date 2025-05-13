@@ -48,13 +48,13 @@ Environment: XAMPP (Apache, MariaDB, PHP, Perl)
 
 Please check the **project_databases.py** + **project.sql** first or **database_project.py** file for creating the database schema.
 
-We use HTML, CSS, and JavaScript for the frontend to create the user interface and user experience. 
+-- We use HTML, CSS, and JavaScript for the frontend to create the user interface and user experience. 
 
-Python with Flask is used for server-side rendering, providing dynamic content to the users. 
+-- Python with Flask is used for server-side rendering, providing dynamic content to the users. 
 
-pymysql is used to connect to the MariaDB database. SQLAlchemy is used as an ORM to interact with the database. 
+-- pymysql is used to connect to the MariaDB database. SQLAlchemy is used as an ORM to interact with the database. 
 
-SQL language is employed for querying the database, and PHPMyAdmin serves as an administration interface for visual aid in database management.
+-- SQL language is employed for querying the database, and PHPMyAdmin serves as an administration interface for visual aid in database management.
 
 ---
 
