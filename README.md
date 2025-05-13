@@ -1,40 +1,45 @@
 Project Name: MedKorea
 
+![MedKorea Screenshot](project.gif)
+
 About
-MedKorea is a comprehensive platform dedicated to providing reliable and comprehensive information about English-speaking medical professionals and facilities in South Korea. Our goal is to make healthcare more accessible and less stressful for foreigners visiting or living in South Korea. Whether you are a tourist, student, or expat, finding quality healthcare in a new country can be challenging, especially if there is a language barrier. We are here to help bridge that gap by providing:
+MedKorea is a comprehensive platform dedicated to providing reliable and accessible information about English-speaking medical professionals and facilities in South Korea.
 
-A landing page for users to get an overview of our services.
-A search page for finding doctors and facilities.
-A registration page for creating a user account.
-A booking appointment page for scheduling medical appointments.
-A user dashboard page for managing appointments and account settings.
-An admin page for handling administrative tasks.
-An about page for providing information about our platform and mission.
+Whether you're a tourist, student, or expat, navigating healthcare in a new country—especially with a language barrier—can be overwhelming. MedKorea helps bridge that gap with:
+
+🌐 A landing page showcasing our services
+
+🔍 A search page for doctors and facilities
+
+📝 A registration page for creating accounts
+
+📅 A booking page for scheduling appointments
+
+👤 A user dashboard for managing bookings
+
+⚙️ An admin page for backend operations
+
+ℹ️ An about page outlining our mission
 
 
-Our project utilizes the following technologies:
+🔧 Technologies Used
+Frontend: HTML, CSS, JavaScript
 
+Backend: Python with Flask (for server-side rendering)
 
-Frontend Language: HTML, CSS, JavaScript
-
-Backend Language: Python
-
-Server-side Rendering: Python with Flask
-
-Database Management System: MariaDB
-
-Database Connection: pymysql
+Database: MariaDB
 
 ORM: SQLAlchemy
 
-SQL Language: Used for querying the database
+Connection: pymysql
 
-Administration Interface: PHPMyAdmin for visual aid in database management
+SQL Queries: Native SQL
 
-XAMPP, which includes Apache, MariaDB (MySQL), PHP, and Perl, needs to be installed to access the MariaDB database and phpMyAdmin.
+Admin Interface: PHPMyAdmin
+
+Environment: XAMPP (Apache, MariaDB, PHP, Perl)
 
 Please check the project_databases.py + project.sql first or database_project.py file for creating the database schema.
-
 
 We use HTML, CSS, and JavaScript for the frontend to create the user interface and user experience. Python with Flask is used for server-side rendering, providing dynamic content to the users. pymysql is used to connect to the MariaDB database. SQLAlchemy is used as an ORM to interact with the database. SQL language is employed for querying the database, and PHPMyAdmin serves as an administration interface for visual aid in database management.
 
@@ -51,25 +56,3 @@ Host the Flask application on a server.
 Access the website through your preferred web browser.
 
 Use PHPMyAdmin to visualize and manage the database.
-
-
-
-Contributing
-
-We welcome contributions from the community to help improve and expand MedKorea. If you would like to contribute, please follow these steps:
-
-
-Fork the repository:
-
-Create your feature branch (git checkout -b feature/YourFeature).
-Commit your changes (git commit -am 'Add some feature').
-
-Push to the branch (git push origin feature/YourFeature).
-
-Create a new Pull Request.
-
-Contact
-
-If you have any questions, suggestions, or concerns, feel free to reach out to us at medkorea01.contact@gmail.com.
-
-Thank you for using MedKorea! We hope our platform makes your healthcare experience in South Korea more convenient and accessible.
